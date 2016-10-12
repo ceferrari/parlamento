@@ -1,26 +1,13 @@
-using ParlamentoAplicacao.Interfaces.ServicosApp;
-using ParlamentoAplicacao.Interfaces.ServicosApp.Parlamentares;
-using ParlamentoAplicacao.ServicosApp.Parlamentares;
-using ParlamentoDominio.Interfaces.Servicos;
-using ParlamentoDominio.Servicos;
-using ParlamentoTarefas.Interfaces.ServicosExternos;
-using ParlamentoTarefas.ServicosExternos;
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParlamentoMvc.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ParlamentoMvc.NinjectWebCommon), "Stop")]
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParlamentoMvc.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ParlamentoMvc.App_Start.NinjectWebCommon), "Stop")]
-
-namespace ParlamentoMvc.App_Start
+namespace ParlamentoMvc
 {
-    using System;
-    using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
-    using ParlamentoDados.Repositorios;
-    using ParlamentoDominio.Interfaces.Repositorios;
-    using ParlamentoAplicacao.ServicosApp;
+    using System;
+    using System.Web;
 
     public static class NinjectWebCommon 
     {
@@ -72,20 +59,10 @@ namespace ParlamentoMvc.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            // Aplicacao
-            kernel.Bind(typeof(IBaseServicosApp<>)).To(typeof(BaseServicosApp<>));
-            kernel.Bind<IExerciciosServicosApp>().To<ExerciciosServicosApp>();
+            //GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+            //ParlamentoTransversal.NinjectBootstrapper.RegisterServices(kernel);
 
-            kernel.Bind(typeof(IBaseServicosExternos)).To(typeof(BaseServicosExternos));
-            kernel.Bind<IExemplosServicosExternos>().To<ExemplosServicosExternos>();
-
-            // Dominio
-            kernel.Bind(typeof(IBaseServicos<>)).To(typeof(BaseServicos<>));
-            kernel.Bind<IExemplosServicos>().To<ExemplosServicos>();
-
-            // Infra
-            kernel.Bind(typeof(IBaseRepositorio<>)).To(typeof(BaseRepositorio<>));
-            kernel.Bind<IExemplosRepositorio>().To<ExemplosRepositorio>();
+            TarefasConfig.Ninject(kernel);
         }        
     }
 }

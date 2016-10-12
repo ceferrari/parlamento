@@ -1,5 +1,16 @@
-﻿namespace ParlamentoTarefas.ViewModels.Parlamentares
+﻿using Newtonsoft.Json;
+using ParlamentoTransversal;
+using System.Collections.Generic;
+
+namespace ParlamentoTarefas.ViewModels.Parlamentares
 {
+    public class SuplentesViewModel
+    {
+
+        [JsonConverter(typeof(SingleOrArrayConverter<SuplenteViewModel>))]
+        public List<SuplenteViewModel> Suplente { get; set; }
+    }
+
     public class SuplenteViewModel
     {
         public string DescricaoParticipacao { get; set; }

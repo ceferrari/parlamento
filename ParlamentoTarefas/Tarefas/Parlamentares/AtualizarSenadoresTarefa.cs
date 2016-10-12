@@ -1,31 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Hangfire;
 using Ninject;
+using ParlamentoAplicacao.Interfaces.ServicosApp.Parlamentares;
+using ParlamentoDominio.Entidades.Parlamentares;
 using ParlamentoTarefas.Interfaces.ServicosExternos;
-using ParlamentoTarefas.Interfaces.Tarefas;
 using ParlamentoTarefas.Interfaces.Tarefas.Parlamentares;
+using System.Collections.Generic;
 
 namespace ParlamentoTarefas.Tarefas.Parlamentares
 {
     public class AtualizarSenadoresTarefa : NinjectJobActivator, IAtualizarSenadoresTarefa
     {
         private readonly ISenadoServicosExternos _senado;
+        private readonly IParlamentaresServicosApp _parlamentares;
 
-        public AtualizarSenadoresTarefa(ISenadoServicosExternos senado)
+        public AtualizarSenadoresTarefa(ISenadoServicosExternos senado, IParlamentaresServicosApp parlamentares)
             : base(new StandardKernel())
         {
             _senado = senado;
+            _parlamentares = parlamentares;
         }
 
         public void Executar()
         {
-            var senadores = _senado.ListarSenadores();
+            var senadoresViewModel = _senado.ListarSenadores().Conteudo.ListaParlamentarEmExercicio.Parlamentares.Parlamentar;
+            var senadoresEntidade = Mapper.Map<List<Parlamentar>>(senadoresViewModel);
 
-            var teste = senadores;
+            _parlamentares.MesclarEmMassa(senadoresEntidade);
         }
     }
 }

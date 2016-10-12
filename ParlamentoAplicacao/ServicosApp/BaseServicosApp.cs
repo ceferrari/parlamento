@@ -1,8 +1,8 @@
-﻿using System;
+﻿using ParlamentoAplicacao.Interfaces.ServicosApp;
+using ParlamentoDominio.Interfaces.Servicos;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using ParlamentoAplicacao.Interfaces.ServicosApp;
-using ParlamentoDominio.Interfaces.Servicos;
 
 namespace ParlamentoAplicacao.ServicosApp
 {

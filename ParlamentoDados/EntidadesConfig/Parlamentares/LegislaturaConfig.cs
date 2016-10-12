@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using ParlamentoDominio.Entidades.Parlamentares;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using ParlamentoDominio.Entidades.Parlamentares;
 
 namespace ParlamentoDados.EntidadesConfig.Parlamentares
 {

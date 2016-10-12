@@ -1,6 +1,6 @@
+using ParlamentoApi.Areas.HelpPage.App_Start;
 using System.Web.Http;
 using System.Web.Mvc;
-using ParlamentoApi.Areas.HelpPage.App_Start;
 
 namespace ParlamentoApi.Areas.HelpPage
 {

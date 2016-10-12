@@ -42,7 +42,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ServicosApp\IExemplosServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\Parlamentares\IExerciciosServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\Parlamentares\IIdentificacoesServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\Parlamentares\IMandatosServicosApp.cs" />
@@ -52,7 +51,6 @@
     <Compile Include="ServicosApp\BaseServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\IBaseServicosApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicosApp\ExemplosServicosApp.cs" />
     <Compile Include="ServicosApp\Parlamentares\ExerciciosServicosApp.cs" />
     <Compile Include="ServicosApp\Parlamentares\IdentificacoesServicosApp.cs" />
     <Compile Include="ServicosApp\Parlamentares\MandatosServicosApp.cs" />

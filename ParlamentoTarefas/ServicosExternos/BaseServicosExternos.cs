@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using ParlamentoTarefas.Interfaces.ServicosExternos;
+﻿using ParlamentoTarefas.Interfaces.ServicosExternos;
 using RestSharp;
+using System.Collections.Generic;
 
 namespace ParlamentoTarefas.ServicosExternos
 {
@@ -22,10 +22,35 @@ namespace ParlamentoTarefas.ServicosExternos
             };
         }
 
+        public List<Parameter> CriarParametrosPaginacao(int deslocamento, int limite,
+            string condicoes = null, string ordenarPor = null)
+        {
+            var parametros = new List<Parameter>()
+            {
+                CriarParametro("deslocamento", deslocamento),
+                CriarParametro("limite", limite)
+            };
+
+            if (!string.IsNullOrEmpty(condicoes))
+            {
+                parametros.Add(CriarParametro("condicoes", condicoes));
+            }
+
+            if (!string.IsNullOrEmpty(ordenarPor))
+            {
+                parametros.Add(CriarParametro("ordenarPor", ordenarPor));
+            }
+
+            return parametros;
+        }
+
         public IRestResponse Executar(string recurso, Method metodo,
             List<Parameter> parametros = null, object body = null)
         {
-            var requisicao = new RestRequest(recurso, metodo);
+            var requisicao = new RestRequest(recurso, metodo)
+            {
+                RequestFormat = DataFormat.Json
+            };
 
             //requisicao.AddHeader("Accept", "application/json");
             //requisicao.AddHeader("Content-Type", "application/json");

@@ -1,5 +1,5 @@
-using System.Data.Entity.Migrations;
 using ParlamentoDados.Contextos;
+using System.Data.Entity.Migrations;
 
 namespace ParlamentoDados.Migrations
 {

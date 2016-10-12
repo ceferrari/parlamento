@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Hangfire;
+﻿using Hangfire;
 using Microsoft.Owin;
 using Owin;
-using ParlamentoTarefas.Tarefas.Parlamentares;
 
 [assembly: OwinStartup(typeof(ParlamentoMvc.Startup))]
 
@@ -17,7 +14,7 @@ namespace ParlamentoMvc
                 .UseNinjectActivator(new Ninject.Web.Common.Bootstrapper().Kernel)
                 .UseSqlServerStorage("BaseConexao");
 
-            RecurringJob.AddOrUpdate<AtualizarSenadoresTarefa>("AtualizarSenadores", j => j.Executar(), Cron.Yearly);
+            TarefasConfig.Hangfire();
 
             app.UseHangfireDashboard();
             app.UseHangfireServer();

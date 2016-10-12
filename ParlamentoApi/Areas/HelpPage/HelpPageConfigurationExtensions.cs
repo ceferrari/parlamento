@@ -1,3 +1,6 @@
+using ParlamentoApi.Areas.HelpPage.ModelDescriptions;
+using ParlamentoApi.Areas.HelpPage.Models;
+using ParlamentoApi.Areas.HelpPage.SampleGeneration;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,9 +14,6 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using ParlamentoApi.Areas.HelpPage.ModelDescriptions;
-using ParlamentoApi.Areas.HelpPage.Models;
-using ParlamentoApi.Areas.HelpPage.SampleGeneration;
 
 namespace ParlamentoApi.Areas.HelpPage
 {

@@ -1,9 +1,7 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using ParlamentoDados.EntidadesConfig;
-using ParlamentoDados.EntidadesConfig.Parlamentares;
-using ParlamentoDominio.Entidades;
+﻿using ParlamentoDados.EntidadesConfig.Parlamentares;
 using ParlamentoDominio.Entidades.Parlamentares;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace ParlamentoDados.Contextos
 {

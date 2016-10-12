@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +13,7 @@ namespace ParlamentoMvc
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            TarefasConfig.AutoMapper();
         }
 
         protected void Application_BeginRequest()

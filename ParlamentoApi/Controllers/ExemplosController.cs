@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using ParlamentoAplicacao.Interfaces.ServicosApp;
+using ParlamentoDominio.Entidades;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ParlamentoAplicacao.Interfaces.ServicosApp;
-using ParlamentoDominio.Entidades;
 
 namespace ParlamentoApi.Controllers
 {
@@ -20,7 +20,7 @@ namespace ParlamentoApi.Controllers
         [ActionName("Listar")]
         public HttpResponseMessage Listar()
         {
-            var listaExemplos = _exemplos.ListarEmMemoria();
+            var listaExemplos = _exemplos.Listar(true);
 
             return Request.CreateResponse(HttpStatusCode.OK, listaExemplos);
         }

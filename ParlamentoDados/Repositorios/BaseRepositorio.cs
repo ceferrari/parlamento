@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ParlamentoDados.Contextos;
+using ParlamentoDominio.Interfaces.Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
-using ParlamentoDados.Contextos;
-using ParlamentoDominio.Interfaces.Repositorios;
 
 namespace ParlamentoDados.Repositorios
 {
@@ -26,15 +26,15 @@ namespace ParlamentoDados.Repositorios
             Db.SaveChanges();
         }
 
-        public void Mesclar(TEntity obj)
-        {
-            Db.Set<TEntity>().AddOrUpdate(obj);
-            Db.SaveChanges();
-        }
-
         public void Remover(TEntity obj)
         {
             Db.Set<TEntity>().Remove(obj);
+            Db.SaveChanges();
+        }
+
+        public void Mesclar(TEntity obj)
+        {
+            Db.Set<TEntity>().AddOrUpdate(obj);
             Db.SaveChanges();
         }
 
@@ -50,15 +50,15 @@ namespace ParlamentoDados.Repositorios
             Db.BulkSaveChanges();
         }
 
-        public void MesclarEmMassa(IEnumerable<TEntity> obj)
-        {
-            Db.BulkMerge(obj);
-            Db.BulkSaveChanges();
-        }
-
         public void RemoverEmMassa(IEnumerable<TEntity> obj)
         {
             Db.BulkDelete(obj);
+            Db.BulkSaveChanges();
+        }
+
+        public void MesclarEmMassa(IEnumerable<TEntity> obj)
+        {
+            Db.BulkMerge(obj);
             Db.BulkSaveChanges();
         }
 

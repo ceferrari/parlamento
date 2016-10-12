@@ -1,8 +1,8 @@
+using ParlamentoApi.Areas.HelpPage.ModelDescriptions;
+using ParlamentoApi.Areas.HelpPage.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using ParlamentoApi.Areas.HelpPage.ModelDescriptions;
-using ParlamentoApi.Areas.HelpPage.Models;
 
 namespace ParlamentoApi.Areas.HelpPage.Controllers
 {

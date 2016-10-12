@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ParlamentoTarefas.ViewModels.Parlamentares
 {
     public class ListaParlamentarViewModel
     {
-        public List<ParlamentarViewModel> Parlamentares { get; set; }
+        public ListaParlamentarEmExercicioViewModel ListaParlamentarEmExercicio { get; set; }
+    }
+
+    public class ListaParlamentarEmExercicioViewModel
+    {
+        public ParlamentaresViewModel Parlamentares { get; set; }
+    }
+
+    public class ParlamentaresViewModel
+    {
+        public List<ParlamentarViewModel> Parlamentar { get; set; }
     }
 }

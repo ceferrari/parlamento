@@ -1,7 +1,7 @@
-﻿using System;
-using System.Net;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestSharp;
+using System;
+using System.Net;
 
 namespace ParlamentoTarefas.ViewModels
 {
