@@ -1,5 +1,5 @@
-﻿using ParlamentoDados.EntidadesConfig.Parlamentares;
-using ParlamentoDominio.Entidades.Parlamentares;
+﻿using ParlamentoDados.EntidadesConfig.Senado;
+using ParlamentoDominio.Entidades.Senado;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -18,12 +18,13 @@ namespace ParlamentoDados.Contextos
             //Configuration.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Exercicio> Exercicios { get; set; }
-        public DbSet<Identificacao> Identificacoes { get; set; }
         public DbSet<Legislatura> Legislaturas { get; set; }
-        public DbSet<Mandato> Mandatos { get; set; }
-        public DbSet<Parlamentar> Parlamentares { get; set; }
-        public DbSet<Suplente> Suplentes { get; set; }
+        public DbSet<Materia> Materias { get; set; }
+        public DbSet<MateriaAssunto> MateriasAssuntos { get; set; }
+        public DbSet<MateriaSubtipo> MateriasSubtipos { get; set; }
+        public DbSet<Senador> Senadores { get; set; }
+        public DbSet<Votacao> Votacoes { get; set; }
+        public DbSet<Voto> Votos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,12 +36,13 @@ namespace ParlamentoDados.Contextos
             modelBuilder.Properties<string>().Configure(p => p.HasColumnType("VARCHAR"));
             modelBuilder.Properties<string>().Configure(p => p.HasMaxLength(255));
 
-            modelBuilder.Configurations.Add(new ExercicioConfig());
-            modelBuilder.Configurations.Add(new IdentificacaoConfig());
             modelBuilder.Configurations.Add(new LegislaturaConfig());
-            modelBuilder.Configurations.Add(new MandatoConfig());
-            modelBuilder.Configurations.Add(new ParlamentarConfig());
-            modelBuilder.Configurations.Add(new SuplenteConfig());
+            modelBuilder.Configurations.Add(new MateriaAssuntoConfig());
+            modelBuilder.Configurations.Add(new MateriaConfig());
+            modelBuilder.Configurations.Add(new MateriaSubtipoConfig());
+            modelBuilder.Configurations.Add(new SenadorConfig());
+            modelBuilder.Configurations.Add(new VotacaoConfig());
+            modelBuilder.Configurations.Add(new VotoConfig());
         }
 
         //public override int SaveChanges()

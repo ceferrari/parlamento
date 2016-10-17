@@ -1,20 +1,20 @@
 ﻿using Ninject;
 using ParlamentoAplicacao.Interfaces.ServicosApp;
-using ParlamentoAplicacao.Interfaces.ServicosApp.Parlamentares;
+using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoAplicacao.ServicosApp;
-using ParlamentoAplicacao.ServicosApp.Parlamentares;
+using ParlamentoAplicacao.ServicosApp.Senado;
 using ParlamentoDados.Repositorios;
-using ParlamentoDados.Repositorios.Parlamentares;
+using ParlamentoDados.Repositorios.Senado;
 using ParlamentoDominio.Interfaces.Repositorios;
-using ParlamentoDominio.Interfaces.Repositorios.Parlamentares;
+using ParlamentoDominio.Interfaces.Repositorios.Senado;
 using ParlamentoDominio.Interfaces.Servicos;
-using ParlamentoDominio.Interfaces.Servicos.Parlamentares;
+using ParlamentoDominio.Interfaces.Servicos.Senado;
 using ParlamentoDominio.Servicos;
-using ParlamentoDominio.Servicos.Parlamentares;
+using ParlamentoDominio.Servicos.Senado;
 using ParlamentoTarefas.Interfaces.ServicosExternos;
-using ParlamentoTarefas.Interfaces.Tarefas.Parlamentares;
+using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using ParlamentoTarefas.ServicosExternos;
-using ParlamentoTarefas.Tarefas.Parlamentares;
+using ParlamentoTarefas.Tarefas.Senado;
 
 namespace ParlamentoTarefas
 {
@@ -29,31 +29,39 @@ namespace ParlamentoTarefas
             kernel.Bind(typeof(IBaseServicosExternos)).To(typeof(BaseServicosExternos));
             kernel.Bind<ISenadoServicosExternos>().To<SenadoServicosExternos>();
 
+            kernel.Bind<IAtualizarLegislaturasTarefa>().To<AtualizarLegislaturasTarefa>();
+            kernel.Bind<IAtualizarMateriasTarefa>().To<AtualizarMateriasTarefa>();
             kernel.Bind<IAtualizarSenadoresTarefa>().To<AtualizarSenadoresTarefa>();
 
             // Aplicacao
             kernel.Bind(typeof(IBaseServicosApp<>)).To(typeof(BaseServicosApp<>));
-            kernel.Bind<IExerciciosServicosApp>().To<ExerciciosServicosApp>();
-            kernel.Bind<IIdentificacoesServicosApp>().To<IdentificacoesServicosApp>();
             kernel.Bind<ILegislaturasServicosApp>().To<LegislaturasServicosApp>();
-            kernel.Bind<IMandatosServicosApp>().To<MandatosServicosApp>();
-            kernel.Bind<IParlamentaresServicosApp>().To<ParlamentaresServicosApp>();
+            kernel.Bind<IMateriasAssuntosServicosApp>().To<MateriasAssuntosServicosApp>();
+            kernel.Bind<IMateriasServicosApp>().To<MateriasServicosApp>();
+            kernel.Bind<IMateriasSubtiposServicosApp>().To<MateriasSubtiposServicosApp>();
+            kernel.Bind<ISenadoresServicosApp>().To<SenadoresServicosApp>();
+            kernel.Bind<IVotacoesServicosApp>().To<VotacoesServicosApp>();
+            kernel.Bind<IVotosServicosApp>().To<VotosServicosApp>();
 
             // Dominio
             kernel.Bind(typeof(IBaseServicos<>)).To(typeof(BaseServicos<>));
-            kernel.Bind<IExerciciosServicos>().To<ExerciciosServicos>();
-            kernel.Bind<IIdentificacoesServicos>().To<IdentificacoesServicos>();
             kernel.Bind<ILegislaturasServicos>().To<LegislaturasServicos>();
-            kernel.Bind<IMandatosServicos>().To<MandatosServicos>();
-            kernel.Bind<IParlamentaresServicos>().To<ParlamentaresServicos>();
+            kernel.Bind<IMateriasAssuntosServicos>().To<MateriasAssuntosServicos>();
+            kernel.Bind<IMateriasServicos>().To<MateriasServicos>();
+            kernel.Bind<IMateriasSubtiposServicos>().To<MateriasSubtiposServicos>();
+            kernel.Bind<ISenadoresServicos>().To<SenadoresServicos>();
+            kernel.Bind<IVotacoesServicos>().To<VotacoesServicos>();
+            kernel.Bind<IVotosServicos>().To<VotosServicos>();
 
             // Infra
             kernel.Bind(typeof(IBaseRepositorio<>)).To(typeof(BaseRepositorio<>));
-            kernel.Bind<IExerciciosRepositorio>().To<ExerciciosRepositorio>();
-            kernel.Bind<IIdentificacoesRepositorio>().To<IdentificacoesRepositorio>();
             kernel.Bind<ILegislaturasRepositorio>().To<LegislaturasRepositorio>();
-            kernel.Bind<IMandatosRepositorio>().To<MandatosRepositorio>();
-            kernel.Bind<IParlamentaresRepositorio>().To<ParlamentaresRepositorio>();
+            kernel.Bind<IMateriasAssuntosRepositorio>().To<MateriasAssuntosRepositorio>();
+            kernel.Bind<IMateriasRepositorio>().To<MateriasRepositorio>();
+            kernel.Bind<IMateriasSubtiposRepositorio>().To<MateriasSubtiposRepositorio>();
+            kernel.Bind<ISenadoresRepositorio>().To<SenadoresRepositorio>();
+            kernel.Bind<IVotacoesRepositorio>().To<VotacoesRepositorio>();
+            kernel.Bind<IVotosRepositorio>().To<VotosRepositorio>();
         }
     }
 }

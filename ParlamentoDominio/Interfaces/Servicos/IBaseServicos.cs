@@ -10,21 +10,23 @@ namespace ParlamentoDominio.Interfaces.Servicos
 
         void Atualizar(TEntity obj);
 
-        void Remover(TEntity obj);
-
         void Mesclar(TEntity obj);
+
+        void Remover(TEntity obj);
 
         void InserirEmMassa(IEnumerable<TEntity> obj);
 
         void AtualizarEmMassa(IEnumerable<TEntity> obj);
 
-        void RemoverEmMassa(IEnumerable<TEntity> obj);
-
         void MesclarEmMassa(IEnumerable<TEntity> obj);
+
+        void RemoverEmMassa(IEnumerable<TEntity> obj);
 
         TEntity ObterPorCodigo(long codigo);
 
         TEntity ObterPorCodigo(string codigo);
+
+        object Contar();
 
         IEnumerable<TEntity> Listar(bool semCache = false);
 
@@ -36,6 +38,10 @@ namespace ParlamentoDominio.Interfaces.Servicos
 
         IEnumerable<TEntity> ListarPaginadoDesc<TKey>(int deslocamento, int limite,
             Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false);
+
+        void AtivarRestricoes();
+
+        void DesativarRestricoes();
 
         void TruncarTabela();
 

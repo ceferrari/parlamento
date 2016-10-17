@@ -26,15 +26,15 @@ namespace ParlamentoDados.Repositorios
             Db.SaveChanges();
         }
 
-        public void Remover(TEntity obj)
-        {
-            Db.Set<TEntity>().Remove(obj);
-            Db.SaveChanges();
-        }
-
         public void Mesclar(TEntity obj)
         {
             Db.Set<TEntity>().AddOrUpdate(obj);
+            Db.SaveChanges();
+        }
+
+        public void Remover(TEntity obj)
+        {
+            Db.Set<TEntity>().Remove(obj);
             Db.SaveChanges();
         }
 
@@ -50,15 +50,15 @@ namespace ParlamentoDados.Repositorios
             Db.BulkSaveChanges();
         }
 
-        public void RemoverEmMassa(IEnumerable<TEntity> obj)
-        {
-            Db.BulkDelete(obj);
-            Db.BulkSaveChanges();
-        }
-
         public void MesclarEmMassa(IEnumerable<TEntity> obj)
         {
             Db.BulkMerge(obj);
+            Db.BulkSaveChanges();
+        }
+
+        public void RemoverEmMassa(IEnumerable<TEntity> obj)
+        {
+            Db.BulkDelete(obj);
             Db.BulkSaveChanges();
         }
 
@@ -70,6 +70,11 @@ namespace ParlamentoDados.Repositorios
         public TEntity ObterPorCodigo(string codigo)
         {
             return Db.Set<TEntity>().Find(codigo);
+        }
+
+        public object Contar()
+        {
+            return new { Total = Db.Set<TEntity>().AsNoTracking().Count() };
         }
 
         public IEnumerable<TEntity> Listar(bool semCache = false)
@@ -113,6 +118,16 @@ namespace ParlamentoDados.Repositorios
                 : (condicoes == null
                     ? Db.Set<TEntity>().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList()
                     : Db.Set<TEntity>().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList());
+        }
+
+        public void AtivarRestricoes()
+        {
+            Db.Database.SqlQuery<string>("EXEC sp_msforeachtable \"ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL\";");
+        }
+
+        public void DesativarRestricoes()
+        {
+            Db.Database.SqlQuery<string>("EXEC sp_msforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT ALL\";");
         }
 
         public void TruncarTabela()

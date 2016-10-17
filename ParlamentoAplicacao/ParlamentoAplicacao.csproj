@@ -42,21 +42,23 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ServicosApp\Parlamentares\IExerciciosServicosApp.cs" />
-    <Compile Include="Interfaces\ServicosApp\Parlamentares\IIdentificacoesServicosApp.cs" />
-    <Compile Include="Interfaces\ServicosApp\Parlamentares\IMandatosServicosApp.cs" />
-    <Compile Include="Interfaces\ServicosApp\Parlamentares\IParlamentaresServicosApp.cs" />
-    <Compile Include="Interfaces\ServicosApp\Parlamentares\ILegislaturasServicosApp.cs" />
-    <Compile Include="Interfaces\ServicosApp\Parlamentares\ISuplentesServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\ILegislaturasServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\IMateriasSubtiposServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\IMateriasAssuntosServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\IMateriasServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\IVotosServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\IVotacoesServicosApp.cs" />
+    <Compile Include="Interfaces\ServicosApp\Senado\ISenadoresServicosApp.cs" />
     <Compile Include="ServicosApp\BaseServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\IBaseServicosApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicosApp\Parlamentares\ExerciciosServicosApp.cs" />
-    <Compile Include="ServicosApp\Parlamentares\IdentificacoesServicosApp.cs" />
-    <Compile Include="ServicosApp\Parlamentares\MandatosServicosApp.cs" />
-    <Compile Include="ServicosApp\Parlamentares\ParlamentaresServicosApp.cs" />
-    <Compile Include="ServicosApp\Parlamentares\LegislaturasServicosApp.cs" />
-    <Compile Include="ServicosApp\Parlamentares\SuplentesServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\LegislaturasServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\MateriasAssuntosServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\MateriasSubtiposServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\MateriasServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\VotosServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\VotacoesServicosApp.cs" />
+    <Compile Include="ServicosApp\Senado\SenadoresServicosApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParlamentoDominio\ParlamentoDominio.csproj">
@@ -71,10 +73,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\ServicosApp\Votacoes\" />
-    <Folder Include="ServicosApp\Votacoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

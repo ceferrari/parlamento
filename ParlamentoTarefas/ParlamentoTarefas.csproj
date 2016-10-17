@@ -60,27 +60,34 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="Interfaces\ServicosExternos\IBaseServicosExternos.cs" />
     <Compile Include="Interfaces\ServicosExternos\ISenadoServicosExternos.cs" />
     <Compile Include="Interfaces\Tarefas\IBaseTarefa.cs" />
-    <Compile Include="Interfaces\Tarefas\Parlamentares\IAtualizarSenadoresTarefa.cs" />
+    <Compile Include="Interfaces\Tarefas\Senado\IAtualizarLegislaturasTarefa.cs" />
+    <Compile Include="Interfaces\Tarefas\Senado\IAtualizarMateriasTarefa.cs" />
+    <Compile Include="Interfaces\Tarefas\Senado\IAtualizarSenadoresTarefa.cs" />
     <Compile Include="NinjectBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicosExternos\BaseServicosExternos.cs" />
     <Compile Include="ServicosExternos\SenadoServicosExternos.cs" />
-    <Compile Include="Tarefas\ExemplosTarefa.cs" />
-    <Compile Include="Tarefas\Parlamentares\AtualizarSenadoresTarefa.cs" />
-    <Compile Include="ViewModels\Parlamentares\ExercicioViewModel.cs" />
-    <Compile Include="ViewModels\Parlamentares\IdentificacaoViewModel.cs" />
-    <Compile Include="ViewModels\Parlamentares\ListaParlamentarViewModel.cs" />
-    <Compile Include="ViewModels\Parlamentares\MandatoViewModel.cs" />
-    <Compile Include="ViewModels\Parlamentares\ParlamentarViewModel.cs" />
-    <Compile Include="ViewModels\Parlamentares\LegislaturaViewModel.cs" />
-    <Compile Include="ViewModels\Parlamentares\SuplenteViewModel.cs" />
+    <Compile Include="Tarefas\Senado\AtualizarLegislaturasTarefa.cs" />
+    <Compile Include="Tarefas\Senado\AtualizarMateriasTarefa.cs" />
+    <Compile Include="Tarefas\Senado\AtualizarSenadoresTarefa.cs" />
     <Compile Include="ViewModels\RespostaViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ListaLegislaturasViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ListaMateriasViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ListaSenadoresLegislaturaViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ListaSenadoresViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ListaMateriasAssuntosViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ListaMateriasSubtiposViewModel.cs" />
+    <Compile Include="ViewModels\Senado\MateriaViewModel.cs" />
+    <Compile Include="ViewModels\Senado\ParlamentarViewModel.cs" />
+    <Compile Include="ViewModels\Senado\SenadorViewModel.cs" />
+    <Compile Include="ViewModels\Senado\VotacaoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -104,11 +111,7 @@
       <Name>ParlamentoTransversal</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Tarefas\Votacoes\" />
-    <Folder Include="Tarefas\Votacoes\" />
-    <Folder Include="ViewModels\Votacoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

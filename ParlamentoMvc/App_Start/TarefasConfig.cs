@@ -1,6 +1,7 @@
-﻿using Hangfire;
+﻿using System;
+using Hangfire;
 using Ninject;
-using ParlamentoTarefas.Interfaces.Tarefas.Parlamentares;
+using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 
 namespace ParlamentoMvc
 {
@@ -8,7 +9,9 @@ namespace ParlamentoMvc
     {
         public static void Hangfire()
         {
-            RecurringJob.AddOrUpdate<IAtualizarSenadoresTarefa>("AtualizarSenadores", j => j.Executar(), Cron.Yearly);
+            RecurringJob.AddOrUpdate<IAtualizarLegislaturasTarefa>("AtualizarLegislaturas", j => j.Executar(), Cron.Yearly, TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IAtualizarMateriasTarefa>("AtualizarMaterias", j => j.Executar(), Cron.Yearly, TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IAtualizarSenadoresTarefa>("AtualizarSenadores", j => j.Executar(), Cron.Yearly, TimeZoneInfo.Local);
         }
 
         public static void AutoMapper()

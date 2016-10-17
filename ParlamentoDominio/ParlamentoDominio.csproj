@@ -34,41 +34,40 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entidades\Parlamentares\Exercicio.cs" />
-    <Compile Include="Entidades\Parlamentares\Identificacao.cs" />
-    <Compile Include="Entidades\Parlamentares\Mandato.cs" />
-    <Compile Include="Entidades\Parlamentares\Parlamentar.cs" />
-    <Compile Include="Entidades\Parlamentares\Legislatura.cs" />
-    <Compile Include="Entidades\Parlamentares\Suplente.cs" />
+    <Compile Include="Entidades\Senado\Legislatura.cs" />
+    <Compile Include="Entidades\Senado\Materia.cs" />
+    <Compile Include="Entidades\Senado\MateriaAssunto.cs" />
+    <Compile Include="Entidades\Senado\MateriaSubtipo.cs" />
+    <Compile Include="Entidades\Senado\Senador.cs" />
+    <Compile Include="Entidades\Senado\Votacao.cs" />
+    <Compile Include="Entidades\Senado\Voto.cs" />
     <Compile Include="Interfaces\Repositorios\IBaseRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\Parlamentares\IExerciciosRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\Parlamentares\IIdentificacoesRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\Parlamentares\IMandatosRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\Parlamentares\IParlamentaresRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\Parlamentares\ILegislaturasRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\Parlamentares\ISuplentesRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\ILegislaturasRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\IMateriasAssuntosRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\IMateriasSubtiposRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\IMateriasRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\IVotosRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\IVotacoesRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Senado\ISenadoresRepositorio.cs" />
     <Compile Include="Interfaces\Servicos\IBaseServicos.cs" />
-    <Compile Include="Interfaces\Servicos\Parlamentares\IExerciciosServicos.cs" />
-    <Compile Include="Interfaces\Servicos\Parlamentares\IIdentificacoesServicos.cs" />
-    <Compile Include="Interfaces\Servicos\Parlamentares\IMandatosServicos.cs" />
-    <Compile Include="Interfaces\Servicos\Parlamentares\IParlamentaresServicos.cs" />
-    <Compile Include="Interfaces\Servicos\Parlamentares\ILegislaturasServicos.cs" />
-    <Compile Include="Interfaces\Servicos\Parlamentares\ISuplentesServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\ILegislaturasServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\IMateriasAssuntosServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\IMateriasSubtiposServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\IMateriasServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\ISenadoresServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\IVotacoesServicos.cs" />
+    <Compile Include="Interfaces\Servicos\Senado\IVotosServicos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\BaseServicos.cs" />
-    <Compile Include="Servicos\Parlamentares\ExerciciosServicos.cs" />
-    <Compile Include="Servicos\Parlamentares\IdentificacoesServicos.cs" />
-    <Compile Include="Servicos\Parlamentares\MandatosServicos.cs" />
-    <Compile Include="Servicos\Parlamentares\ParlamentaresServicos.cs" />
-    <Compile Include="Servicos\Parlamentares\LegislaturasServicos.cs" />
-    <Compile Include="Servicos\Parlamentares\SuplentesServicos.cs" />
+    <Compile Include="Servicos\Senado\LegislaturasServicos.cs" />
+    <Compile Include="Servicos\Senado\MateriasSubtiposServicos.cs" />
+    <Compile Include="Servicos\Senado\MateriasAssuntosServicos.cs" />
+    <Compile Include="Servicos\Senado\MateriasServicos.cs" />
+    <Compile Include="Servicos\Senado\VotosServicos.cs" />
+    <Compile Include="Servicos\Senado\VotacoesServicos.cs" />
+    <Compile Include="Servicos\Senado\SenadoresServicos.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entidades\Votacoes\" />
-    <Folder Include="Interfaces\Repositorios\Votacoes\" />
-    <Folder Include="Interfaces\Servicos\Votacoes\" />
-    <Folder Include="Servicos\Votacoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -65,6 +65,11 @@ namespace ParlamentoAplicacao.ServicosApp
             return _servicos.ObterPorCodigo(codigo);
         }
 
+        public object Contar()
+        {
+            return _servicos.Contar();
+        }
+
         public IEnumerable<TEntity> Listar(bool semCache = false)
         {
             return _servicos.Listar();
@@ -86,6 +91,16 @@ namespace ParlamentoAplicacao.ServicosApp
             Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false)
         {
             return _servicos.ListarPaginadoDesc(deslocamento, limite, ordenarPor, condicoes, semCache);
+        }
+
+        public void AtivarRestricoes()
+        {
+            _servicos.AtivarRestricoes();
+        }
+
+        public void DesativarRestricoes()
+        {
+            _servicos.DesativarRestricoes();
         }
 
         public void TruncarTabela()
