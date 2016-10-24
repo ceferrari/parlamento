@@ -13,9 +13,10 @@ namespace ParlamentoDados.Contextos
         }
 
         public BaseContexto() 
-            : base("BaseConexao")
+            : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=Parlamento;Integrated Security=True")
         {
-            //Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Legislatura> Legislaturas { get; set; }

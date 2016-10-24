@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using ParlamentoTransversal;
+using System.Collections.Generic;
 
 namespace ParlamentoTarefas.ViewModels.Senado
 {

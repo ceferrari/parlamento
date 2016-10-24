@@ -1,8 +1,6 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using ParlamentoDominio.Entidades.Senado;
 using ParlamentoTarefas.ViewModels.Senado;
-using System.Data.SqlTypes;
 
 namespace ParlamentoTarefas
 {
@@ -77,6 +75,11 @@ namespace ParlamentoTarefas
                     .ForMember(dest => dest.TotalVotosSim, opt => opt.MapFrom(src => src.TotalVotosSim))
                     .ForMember(dest => dest.TotalVotosNao, opt => opt.MapFrom(src => src.TotalVotosNao))
                     .ForMember(dest => dest.TotalVotosAbstencao, opt => opt.MapFrom(src => src.TotalVotosAbstencao));
+
+                CreateMap<VotacaoViewModelVotacao, Voto>()
+                    .ForMember(dest => dest.CodigoMateria, opt => opt.MapFrom(src => src.IdentificacaoMateria.CodigoMateria))
+                    .ForMember(dest => dest.CodigoSessao, opt => opt.MapFrom(src => src.SessaoPlenaria.CodigoSessao))
+                    .ForMember(dest => dest.DescricaoVoto, opt => opt.MapFrom(src => src.DescricaoVoto));
             }
         }
     }

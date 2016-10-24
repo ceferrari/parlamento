@@ -72,52 +72,58 @@ namespace ParlamentoDados.Repositorios
             return Db.Set<TEntity>().Find(codigo);
         }
 
-        public object Contar()
+        public object Contar(string condicoes)
         {
-            return new { Total = Db.Set<TEntity>().AsNoTracking().Count() };
+            return condicoes == null
+                ? new { Total = Db.Set<TEntity>().AsNoTracking().Count() }
+                : new { Total = Db.Set<TEntity>().AsNoTracking().Where(condicoes).Count() };
         }
 
-        public IEnumerable<TEntity> Listar(bool semCache = false)
+        public virtual IEnumerable<TEntity> Listar(string condicoes, string ordenarPor, bool emCache = false)
         {
-            return semCache
-                ? Db.Set<TEntity>().AsNoTracking().ToList()
-                : Db.Set<TEntity>().ToList();
-        }
-
-        public IEnumerable<TEntity> ListarPaginado(int deslocamento, int limite,
-            string ordenarPor, string condicoes, bool semCache = false)
-        {
-            return semCache
+            return emCache
                 ? (condicoes == null
-                    ? Db.Set<TEntity>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList())
+                    ? Db.Set<TEntity>().OrderBy(ordenarPor).ToList()
+                    : Db.Set<TEntity>().Where(condicoes).OrderBy(ordenarPor).ToList())
                 : (condicoes == null
+                    ? Db.Set<TEntity>().AsNoTracking().OrderBy(ordenarPor).ToList()
+                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).ToList());
+        }
+
+        public virtual IEnumerable<TEntity> ListarPaginado(int deslocamento, int limite,
+            string condicoes, string ordenarPor, bool emCache = false)
+        {
+            return emCache
+                ? (condicoes == null
                     ? Db.Set<TEntity>().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                    : Db.Set<TEntity>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList());
+                    : Db.Set<TEntity>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList())
+                : (condicoes == null
+                    ? Db.Set<TEntity>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
+                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList());
         }
 
         public IEnumerable<TEntity> ListarPaginadoAsc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false)
+            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false)
         {
-            return semCache
+            return emCache
                 ? (condicoes == null
-                    ? Db.Set<TEntity>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList())
-                : (condicoes == null
                     ? Db.Set<TEntity>().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                    : Db.Set<TEntity>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList());
+                    : Db.Set<TEntity>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList())
+                : (condicoes == null
+                    ? Db.Set<TEntity>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
+                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList());
         }
 
         public IEnumerable<TEntity> ListarPaginadoDesc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false)
+            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false)
         {
-            return semCache
+            return emCache
                 ? (condicoes == null
-                    ? Db.Set<TEntity>().AsNoTracking().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList())
-                : (condicoes == null
                     ? Db.Set<TEntity>().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                    : Db.Set<TEntity>().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList());
+                    : Db.Set<TEntity>().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList())
+                : (condicoes == null
+                    ? Db.Set<TEntity>().AsNoTracking().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList()
+                    : Db.Set<TEntity>().AsNoTracking().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList());
         }
 
         public void AtivarRestricoes()

@@ -24,7 +24,7 @@ namespace ParlamentoDados.Migrations
                     {
                         Codigo = c.Int(nullable: false),
                         Ano = c.Int(nullable: false),
-                        Ementa = c.String(maxLength: 255, unicode: false),
+                        Ementa = c.String(maxLength: 8000, unicode: false),
                         ExplicacaoEmenta = c.String(maxLength: 8000, unicode: false),
                         CodigoAutor = c.Int(nullable: false),
                         CodigoAssunto = c.Int(nullable: false),
@@ -32,9 +32,7 @@ namespace ParlamentoDados.Migrations
                     })
                 .PrimaryKey(t => t.Codigo)
                 .ForeignKey("dbo.MateriasAssuntos", t => t.CodigoAssunto)
-                .ForeignKey("dbo.Senadores", t => t.CodigoAutor)
                 .ForeignKey("dbo.MateriasSubtipos", t => t.CodigoSubtipo)
-                .Index(t => t.CodigoAutor)
                 .Index(t => t.CodigoAssunto)
                 .Index(t => t.CodigoSubtipo);
             
@@ -45,6 +43,15 @@ namespace ParlamentoDados.Migrations
                         Codigo = c.Int(nullable: false),
                         AssuntoGeral = c.String(maxLength: 255, unicode: false),
                         AssuntoEspecifico = c.String(maxLength: 255, unicode: false),
+                    })
+                .PrimaryKey(t => t.Codigo);
+            
+            CreateTable(
+                "dbo.MateriasSubtipos",
+                c => new
+                    {
+                        Codigo = c.String(nullable: false, maxLength: 10, unicode: false),
+                        Descricao = c.String(maxLength: 255, unicode: false),
                     })
                 .PrimaryKey(t => t.Codigo);
             
@@ -79,15 +86,6 @@ namespace ParlamentoDados.Migrations
                 .Index(t => t.CodigoSegundaLegislatura);
             
             CreateTable(
-                "dbo.MateriasSubtipos",
-                c => new
-                    {
-                        Codigo = c.String(nullable: false, maxLength: 10, unicode: false),
-                        Descricao = c.String(maxLength: 255, unicode: false),
-                    })
-                .PrimaryKey(t => t.Codigo);
-            
-            CreateTable(
                 "dbo.Votacoes",
                 c => new
                     {
@@ -109,38 +107,36 @@ namespace ParlamentoDados.Migrations
                 c => new
                     {
                         CodigoSenador = c.Int(nullable: false),
-                        CodigoSessao = c.Int(nullable: false),
                         CodigoMateria = c.Int(nullable: false),
+                        CodigoSessao = c.Int(nullable: false),
                         DescricaoVoto = c.String(maxLength: 255, unicode: false),
                     })
-                .PrimaryKey(t => new { t.CodigoSenador, t.CodigoSessao, t.CodigoMateria })
+                .PrimaryKey(t => new { t.CodigoSenador, t.CodigoMateria })
+                .ForeignKey("dbo.Materias", t => t.CodigoMateria)
                 .ForeignKey("dbo.Senadores", t => t.CodigoSenador)
-                .ForeignKey("dbo.Votacoes", t => new { t.CodigoSessao, t.CodigoMateria })
                 .Index(t => t.CodigoSenador)
-                .Index(t => new { t.CodigoSessao, t.CodigoMateria });
+                .Index(t => t.CodigoMateria);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Votos", new[] { "CodigoSessao", "CodigoMateria" }, "dbo.Votacoes");
             DropForeignKey("dbo.Votos", "CodigoSenador", "dbo.Senadores");
-            DropForeignKey("dbo.Materias", "CodigoSubtipo", "dbo.MateriasSubtipos");
-            DropForeignKey("dbo.Materias", "CodigoAutor", "dbo.Senadores");
+            DropForeignKey("dbo.Votos", "CodigoMateria", "dbo.Materias");
             DropForeignKey("dbo.Senadores", "CodigoSegundaLegislatura", "dbo.Legislaturas");
             DropForeignKey("dbo.Senadores", "CodigoPrimeiraLegislatura", "dbo.Legislaturas");
+            DropForeignKey("dbo.Materias", "CodigoSubtipo", "dbo.MateriasSubtipos");
             DropForeignKey("dbo.Materias", "CodigoAssunto", "dbo.MateriasAssuntos");
-            DropIndex("dbo.Votos", new[] { "CodigoSessao", "CodigoMateria" });
+            DropIndex("dbo.Votos", new[] { "CodigoMateria" });
             DropIndex("dbo.Votos", new[] { "CodigoSenador" });
             DropIndex("dbo.Senadores", new[] { "CodigoSegundaLegislatura" });
             DropIndex("dbo.Senadores", new[] { "CodigoPrimeiraLegislatura" });
             DropIndex("dbo.Materias", new[] { "CodigoSubtipo" });
             DropIndex("dbo.Materias", new[] { "CodigoAssunto" });
-            DropIndex("dbo.Materias", new[] { "CodigoAutor" });
             DropTable("dbo.Votos");
             DropTable("dbo.Votacoes");
-            DropTable("dbo.MateriasSubtipos");
             DropTable("dbo.Senadores");
+            DropTable("dbo.MateriasSubtipos");
             DropTable("dbo.MateriasAssuntos");
             DropTable("dbo.Materias");
             DropTable("dbo.Legislaturas");

@@ -32,6 +32,7 @@ namespace ParlamentoTarefas
             kernel.Bind<IAtualizarLegislaturasTarefa>().To<AtualizarLegislaturasTarefa>();
             kernel.Bind<IAtualizarMateriasTarefa>().To<AtualizarMateriasTarefa>();
             kernel.Bind<IAtualizarSenadoresTarefa>().To<AtualizarSenadoresTarefa>();
+            kernel.Bind<IAtualizarVotosTarefa>().To<AtualizarVotosTarefa>();
 
             // Aplicacao
             kernel.Bind(typeof(IBaseServicosApp<>)).To(typeof(BaseServicosApp<>));

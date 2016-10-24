@@ -65,10 +65,6 @@
       <Project>{5ea05ea5-fe8e-4057-ade9-d27aad179edb}</Project>
       <Name>ParlamentoDominio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParlamentoTransversal\ParlamentoTransversal.csproj">
-      <Project>{735867dc-0a81-460f-87ed-c92c1a79363c}</Project>
-      <Name>ParlamentoTransversal</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

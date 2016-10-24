@@ -4826,10 +4826,6 @@
       <Project>{1e01125a-2637-4f0a-8662-952259e046fe}</Project>
       <Name>ParlamentoTarefas</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParlamentoTransversal\ParlamentoTransversal.csproj">
-      <Project>{735867dc-0a81-460f-87ed-c92c1a79363c}</Project>
-      <Name>ParlamentoTransversal</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using ParlamentoTransversal;
 
 namespace ParlamentoTarefas.ViewModels.Senado
 {
@@ -43,6 +45,7 @@ namespace ParlamentoTarefas.ViewModels.Senado
 
     public class VotacaoViewModelVotacoes
     {
+        [JsonConverter(typeof(SingleOrArrayConverter<VotacaoViewModelVotacao>))]
         public IList<VotacaoViewModelVotacao> Votacao { get; set; }
     }
 
@@ -50,7 +53,8 @@ namespace ParlamentoTarefas.ViewModels.Senado
     {
         public VotacaoViewModelSessaoPlenaria SessaoPlenaria { get; set; }
         public VotacaoViewModelIdentificacaoMateria IdentificacaoMateria { get; set; }
-        public VotacaoViewModelTramitacao Tramitacao { get; set; }
+        [JsonConverter(typeof(SingleOrArrayConverter<VotacaoViewModelTramitacao>))]
+        public IList<VotacaoViewModelTramitacao> Tramitacao { get; set; }
         public string IndicadorVotacaoSecreta { get; set; }
         public string DescricaoVotacao { get; set; }
         public string DescricaoResultado { get; set; }

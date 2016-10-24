@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ParlamentoDominio.Entidades.Senado
 {
@@ -26,5 +27,6 @@ namespace ParlamentoDominio.Entidades.Senado
 
         public virtual Legislatura PrimeiraLegislatura { get; set; }
         public virtual Legislatura SegundaLegislatura { get; set; }
+        public virtual ICollection<Voto> Votos { get; set; }
     }
 }

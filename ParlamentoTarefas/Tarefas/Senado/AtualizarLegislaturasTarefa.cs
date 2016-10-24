@@ -1,4 +1,4 @@
-﻿using System;
+﻿using AutoMapper;
 using Hangfire;
 using Ninject;
 using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
@@ -7,11 +7,10 @@ using ParlamentoTarefas.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 
 namespace ParlamentoTarefas.Tarefas.Senado
 {
-    class AtualizarLegislaturasTarefa : NinjectJobActivator, IAtualizarLegislaturasTarefa
+    public class AtualizarLegislaturasTarefa : NinjectJobActivator, IAtualizarLegislaturasTarefa
     {
         private readonly ISenadoServicosExternos _senado;
         private readonly ILegislaturasServicosApp _legislaturas;

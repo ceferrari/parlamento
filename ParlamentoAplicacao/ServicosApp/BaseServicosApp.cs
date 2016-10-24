@@ -65,32 +65,32 @@ namespace ParlamentoAplicacao.ServicosApp
             return _servicos.ObterPorCodigo(codigo);
         }
 
-        public object Contar()
+        public object Contar(string condicoes)
         {
-            return _servicos.Contar();
+            return _servicos.Contar(condicoes);
         }
 
-        public IEnumerable<TEntity> Listar(bool semCache = false)
+        public IEnumerable<TEntity> Listar(string condicoes, string ordenarPor, bool emCache = false)
         {
-            return _servicos.Listar();
+            return _servicos.Listar(condicoes, ordenarPor, emCache);
         }
 
         public IEnumerable<TEntity> ListarPaginado(int deslocamento, int limite,
-            string ordenarPor, string condicoes, bool semCache = false)
+            string condicoes, string ordenarPor, bool emCache = false)
         {
-            return _servicos.ListarPaginado(deslocamento, limite, ordenarPor, condicoes, semCache);
-        }
-
-        public IEnumerable<TEntity> ListarPaginadoAsc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false)
-        {
-            return _servicos.ListarPaginadoAsc(deslocamento, limite, ordenarPor, condicoes, semCache);
+            return _servicos.ListarPaginado(deslocamento, limite, condicoes, ordenarPor, emCache);
         }
 
         public IEnumerable<TEntity> ListarPaginadoDesc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false)
+            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false)
         {
-            return _servicos.ListarPaginadoDesc(deslocamento, limite, ordenarPor, condicoes, semCache);
+            return _servicos.ListarPaginadoDesc(deslocamento, limite, condicoes, ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntity> ListarPaginadoAsc<TKey>(int deslocamento, int limite,
+            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false)
+        {
+            return _servicos.ListarPaginadoAsc(deslocamento, limite, condicoes, ordenarPor, emCache);
         }
 
         public void AtivarRestricoes()

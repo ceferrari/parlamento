@@ -5,7 +5,7 @@
 @model Collection<ApiDescription>
 
 @{
-    ViewBag.Title = "ASP.NET Web API Help Page";
+    ViewBag.Title = "Documentação API Votos Senado";
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model
@@ -24,9 +24,9 @@
 <div id="body" class="help-page">
     <section class="featured">
         <div class="content-wrapper">
-            <h2>Introduction</h2>
+            <h2>Introdução</h2>
             <p>
-                Provide a general description of your APIs here.
+                Essa API disponibiliza os dados coletados do sistema de dados abertos do Senado para o ambiente externo, permitindo que a aplicação seja desacoplada.
             </p>
         </div>
     </section>

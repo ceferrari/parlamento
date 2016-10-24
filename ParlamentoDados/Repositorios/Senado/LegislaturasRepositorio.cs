@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ParlamentoDominio.Entidades.Senado;
+﻿using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
+using System.Linq;
 
 namespace ParlamentoDados.Repositorios.Senado
 {

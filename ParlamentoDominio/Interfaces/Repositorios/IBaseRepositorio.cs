@@ -26,18 +26,18 @@ namespace ParlamentoDominio.Interfaces.Repositorios
 
         TEntity ObterPorCodigo(string codigo);
 
-        object Contar();
+        object Contar(string condicoes);
 
-        IEnumerable<TEntity> Listar(bool semCache = false);
+        IEnumerable<TEntity> Listar(string condicoes, string ordenarPor, bool emCache = false);
 
         IEnumerable<TEntity> ListarPaginado(int deslocamento, int limite,
-            string ordenarPor, string condicoes, bool semCache = false);
+            string condicoes, string ordenarPor, bool emCache = false);
 
         IEnumerable<TEntity> ListarPaginadoAsc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false);
+            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false);
 
         IEnumerable<TEntity> ListarPaginadoDesc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, TKey>> ordenarPor, Expression<Func<TEntity, bool>> condicoes, bool semCache = false);
+            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false);
 
         void AtivarRestricoes();
 

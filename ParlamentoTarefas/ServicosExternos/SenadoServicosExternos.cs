@@ -9,7 +9,7 @@ namespace ParlamentoTarefas.ServicosExternos
     public class SenadoServicosExternos : BaseServicosExternos, ISenadoServicosExternos
     {
         public SenadoServicosExternos()
-            : base (UrlServicos.SenadoApi)
+            : base ("http://legis.senado.leg.br/dadosabertos")
         {
         }
 

@@ -13,7 +13,7 @@ namespace ParlamentoDados.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201610162212494_Inicial"; }
+            get { return "201610231734477_Inicial"; }
         }
         
         string IMigrationMetadata.Source

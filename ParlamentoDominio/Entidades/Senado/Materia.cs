@@ -10,7 +10,6 @@
         public int CodigoAssunto { get; set; }
         public string CodigoSubtipo { get; set; }
 
-        public virtual Senador Autor { get; set; }
         public virtual MateriaAssunto Assunto { get; set; }
         public virtual MateriaSubtipo Subtipo { get; set; }
     }

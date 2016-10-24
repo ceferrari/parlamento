@@ -1,4 +1,5 @@
-﻿using Hangfire;
+﻿using AutoMapper;
+using Hangfire;
 using Ninject;
 using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
@@ -6,11 +7,10 @@ using ParlamentoTarefas.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 
 namespace ParlamentoTarefas.Tarefas.Senado
 {
-    class AtualizarMateriasTarefa : NinjectJobActivator, IAtualizarMateriasTarefa
+    public class AtualizarMateriasTarefa : NinjectJobActivator, IAtualizarMateriasTarefa
     {
         private readonly ISenadoServicosExternos _senado;
         private readonly IMateriasServicosApp _materiasSvc;
@@ -50,6 +50,13 @@ namespace ParlamentoTarefas.Tarefas.Senado
 
                 listaMateriasEntidades.Add(materiaEntidade);
             }
+
+            var listaCodigosMateriasAssuntos = listaMateriasAssuntosEntidades.Select(x => x.Codigo);
+            var listaCodigosMateriasSubtipos = listaMateriasSubtiposEntidades.Select(x => x.Codigo);
+
+            listaMateriasEntidades.RemoveAll(x => x == null);
+            listaMateriasEntidades.RemoveAll(x => x.CodigoAssunto == 0 || x.CodigoSubtipo == null);
+            listaMateriasEntidades.RemoveAll(x => !listaCodigosMateriasAssuntos.Contains(x.CodigoAssunto) || !listaCodigosMateriasSubtipos.Contains(x.CodigoSubtipo));
 
             _materiasSvc.MesclarEmMassa(listaMateriasEntidades);
         }

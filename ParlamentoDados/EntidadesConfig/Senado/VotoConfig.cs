@@ -10,7 +10,7 @@ namespace ParlamentoDados.EntidadesConfig.Senado
         {
             ToTable("Votos");
 
-            HasKey(t => new { t.CodigoSenador, t.CodigoSessao, t.CodigoMateria });
+            HasKey(t => new { t.CodigoSenador, t.CodigoMateria, t.CodigoSessao });
 
             Property(t => t.CodigoSenador)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
@@ -21,13 +21,15 @@ namespace ParlamentoDados.EntidadesConfig.Senado
             Property(t => t.CodigoMateria)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
+            Property(t => t.DescricaoVoto);
+
             HasRequired(t => t.Senador)
                 .WithMany()
                 .HasForeignKey(t => t.CodigoSenador);
 
-            HasRequired(t => t.Votacao)
+            HasRequired(t => t.Materia)
                 .WithMany()
-                .HasForeignKey(t => new { t.CodigoSessao, t.CodigoMateria });
+                .HasForeignKey(t => t.CodigoMateria);
         }
     }
 }

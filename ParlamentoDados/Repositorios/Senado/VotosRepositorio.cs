@@ -1,4 +1,5 @@
-﻿using ParlamentoDominio.Entidades.Senado;
+﻿using System.Collections.Generic;
+using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
 
 namespace ParlamentoDados.Repositorios.Senado

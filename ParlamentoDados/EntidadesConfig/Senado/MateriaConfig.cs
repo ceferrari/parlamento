@@ -15,15 +15,14 @@ namespace ParlamentoDados.EntidadesConfig.Senado
             Property(t => t.Codigo)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
+            Property(t => t.Ementa)
+                .HasMaxLength(8000);
+
             Property(t => t.ExplicacaoEmenta)
                 .HasMaxLength(8000);
 
             Property(t => t.CodigoSubtipo)
                 .HasMaxLength(10);
-
-            HasRequired(t => t.Autor)
-                .WithMany()
-                .HasForeignKey(t => t.CodigoAutor);
 
             HasRequired(t => t.Assunto)
                 .WithMany()

@@ -45,8 +45,8 @@
       <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Z.EntityFramework.Extensions, Version=3.10.15.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Extensions.3.10.15\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    <Reference Include="Z.EntityFramework.Extensions, Version=3.10.18.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.3.10.18\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -59,9 +59,9 @@
     <Compile Include="EntidadesConfig\Senado\VotoConfig.cs" />
     <Compile Include="EntidadesConfig\Senado\VotacaoConfig.cs" />
     <Compile Include="EntidadesConfig\Senado\SenadorConfig.cs" />
-    <Compile Include="Migrations\201610162212494_Inicial.cs" />
-    <Compile Include="Migrations\201610162212494_Inicial.Designer.cs">
-      <DependentUpon>201610162212494_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201610231734477_Inicial.cs" />
+    <Compile Include="Migrations\201610231734477_Inicial.Designer.cs">
+      <DependentUpon>201610231734477_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,8 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610162212494_Inicial.resx">
-      <DependentUpon>201610162212494_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610231734477_Inicial.resx">
+      <DependentUpon>201610231734477_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
