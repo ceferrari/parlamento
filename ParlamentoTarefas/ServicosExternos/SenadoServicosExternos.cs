@@ -1,7 +1,6 @@
 ﻿using ParlamentoTarefas.Interfaces.ServicosExternos;
 using ParlamentoTarefas.ViewModels;
 using ParlamentoTarefas.ViewModels.Senado;
-using ParlamentoTransversal;
 using RestSharp;
 
 namespace ParlamentoTarefas.ServicosExternos

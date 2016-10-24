@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
-namespace ParlamentoTransversal
+namespace ParlamentoTarefas
 {
     public class SingleOrArrayConverter<T> : JsonConverter
     {
