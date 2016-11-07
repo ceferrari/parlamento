@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ServicosApp\IUsuariosServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\Senado\ILegislaturasServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\Senado\IMateriasSubtiposServicosApp.cs" />
     <Compile Include="Interfaces\ServicosApp\Senado\IMateriasAssuntosServicosApp.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="ServicosApp\Senado\VotosServicosApp.cs" />
     <Compile Include="ServicosApp\Senado\VotacoesServicosApp.cs" />
     <Compile Include="ServicosApp\Senado\SenadoresServicosApp.cs" />
+    <Compile Include="ServicosApp\UsuariosServicosApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParlamentoDominio\ParlamentoDominio.csproj">

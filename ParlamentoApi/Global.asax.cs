@@ -15,6 +15,8 @@ namespace ParlamentoApi
             AreaRegistration.RegisterAllAreas() ;
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            TarefasConfig.AutoMapper();
         }
 
         protected void Application_BeginRequest()

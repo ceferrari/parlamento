@@ -1,4 +1,6 @@
-﻿using ParlamentoDados.EntidadesConfig.Senado;
+﻿using ParlamentoDados.EntidadesConfig;
+using ParlamentoDados.EntidadesConfig.Senado;
+using ParlamentoDominio.Entidades;
 using ParlamentoDominio.Entidades.Senado;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -24,6 +26,7 @@ namespace ParlamentoDados.Contextos
         public DbSet<MateriaAssunto> MateriasAssuntos { get; set; }
         public DbSet<MateriaSubtipo> MateriasSubtipos { get; set; }
         public DbSet<Senador> Senadores { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Votacao> Votacoes { get; set; }
         public DbSet<Voto> Votos { get; set; }
 
@@ -42,6 +45,7 @@ namespace ParlamentoDados.Contextos
             modelBuilder.Configurations.Add(new MateriaConfig());
             modelBuilder.Configurations.Add(new MateriaSubtipoConfig());
             modelBuilder.Configurations.Add(new SenadorConfig());
+            modelBuilder.Configurations.Add(new UsuarioConfig());
             modelBuilder.Configurations.Add(new VotacaoConfig());
             modelBuilder.Configurations.Add(new VotoConfig());
         }

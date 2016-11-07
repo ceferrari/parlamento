@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ParlamentoApi.Recursos;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;

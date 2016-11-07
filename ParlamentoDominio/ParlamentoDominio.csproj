@@ -41,7 +41,9 @@
     <Compile Include="Entidades\Senado\Senador.cs" />
     <Compile Include="Entidades\Senado\Votacao.cs" />
     <Compile Include="Entidades\Senado\Voto.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Interfaces\Repositorios\IBaseRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\IUsuariosRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\Senado\ILegislaturasRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\Senado\IMateriasAssuntosRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\Senado\IMateriasSubtiposRepositorio.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="Interfaces\Repositorios\Senado\IVotacoesRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\Senado\ISenadoresRepositorio.cs" />
     <Compile Include="Interfaces\Servicos\IBaseServicos.cs" />
+    <Compile Include="Interfaces\Servicos\IUsuariosServicos.cs" />
     <Compile Include="Interfaces\Servicos\Senado\ILegislaturasServicos.cs" />
     <Compile Include="Interfaces\Servicos\Senado\IMateriasAssuntosServicos.cs" />
     <Compile Include="Interfaces\Servicos\Senado\IMateriasSubtiposServicos.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Servicos\Senado\VotosServicos.cs" />
     <Compile Include="Servicos\Senado\VotacoesServicos.cs" />
     <Compile Include="Servicos\Senado\SenadoresServicos.cs" />
+    <Compile Include="Servicos\UsuariosServicos.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

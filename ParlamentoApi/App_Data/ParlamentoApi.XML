@@ -875,6 +875,11 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
+        <member name="T:ParlamentoApi.Controllers.UsuariosController">
+            <summary>
+            Métodos referetes aos Usuários da aplicação
+            </summary>
+        </member>
         <member name="T:ParlamentoApi.Controllers.VotosController">
             <summary>
             Métodos referetes aos Votos dos Senadores

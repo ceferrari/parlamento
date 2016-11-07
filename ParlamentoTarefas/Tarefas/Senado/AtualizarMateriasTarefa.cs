@@ -1,11 +1,13 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Hangfire;
 using Ninject;
 using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
-using ParlamentoTarefas.Interfaces.ServicosExternos;
+using ParlamentoRecursos.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ParlamentoTarefas.Tarefas.Senado
@@ -42,7 +44,6 @@ namespace ParlamentoTarefas.Tarefas.Senado
                 .Select(x => x.IdentificacaoMateria.CodigoMateria);
 
             var listaMateriasEntidades = new List<Materia>();
-
             foreach (var codigoMateria in listaCodigosMaterias)
             {
                 var materiaViewModel = _senado.ObterMateriaPorCodigo(codigoMateria).Conteudo;
