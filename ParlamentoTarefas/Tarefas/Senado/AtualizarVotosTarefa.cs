@@ -37,7 +37,7 @@ namespace ParlamentoTarefas.Tarefas.Senado
             foreach (var codigoSenador in listaCodigosSenadores)
             {
                 var votacoesViewModel = _senado.ObterVotacaoPorCodigo(codigoSenador).Conteudo;
-                    var aux = votacoesViewModel.VotacaoParlamentar.Parlamentar.Votacoes.Votacao;
+                var aux = votacoesViewModel.VotacaoParlamentar.Parlamentar.Votacoes.Votacao;
                 var votos = Mapper.Map<List<Voto>>(aux);
 
                 var codigoSenadorInt = Convert.ToInt32(codigoSenador);
@@ -49,15 +49,12 @@ namespace ParlamentoTarefas.Tarefas.Senado
                 listaVotosEntidades.AddRange(votos);
             }
 
-            var listaMateriasEntidades = _materiasSvc.Listar(null, null);
+            var listaMateriasEntidades = _materiasSvc.Listar();
             var listaCodigosMaterias = listaMateriasEntidades.Select(x => x.Codigo);
 
             listaVotosEntidades.RemoveAll(x => !listaCodigosMaterias.Contains(x.CodigoMateria));
 
-            listaVotosEntidades =
-                listaVotosEntidades.GroupBy(x => new {x.CodigoSenador, x.CodigoMateria, x.CodigoSessao})
-                    .Select(x => x.First())
-                    .ToList();
+            listaVotosEntidades = listaVotosEntidades.GroupBy(x => new {x.CodigoSenador, x.CodigoMateria, x.CodigoSessao}).Select(x => x.First()).ToList();
 
             _votosSvc.MesclarEmMassa(listaVotosEntidades);
         }

@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .controller('Register', Controller);
+        .controller('Register', controller);
 
-    function Controller($location, AuthenticationService) {
+    function controller($location, AuthenticationService) {
         var vm = this;
 
         vm.login = login;

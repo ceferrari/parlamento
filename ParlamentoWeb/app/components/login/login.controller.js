@@ -5,11 +5,11 @@
         .module('app')
         .controller('Login', controller);
 
-   function controller($location, AuthenticationService) {
+    function controller($location, AuthenticationService) {
         var vm = this;
 
         vm.login = login;
-        
+
         initController();
 
         function initController() {

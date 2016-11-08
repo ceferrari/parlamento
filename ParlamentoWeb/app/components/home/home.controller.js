@@ -5,7 +5,7 @@
         .module('app')
         .controller('Home', controller);
 
-    function controller() {
+    function controller(RestService) {
         var vm = this;
 
         initController();
@@ -15,6 +15,10 @@
                 $.AdminLTE.layout.fix();
                 $.AdminLTE.layout.fixSidebar();
             }, 250);
+
+            RestService.getArray({ controller: "Senadores", action: "Listar" }, function (resultado) {
+                vm.Senadores = resultado;
+            });
         }
     }
 })();

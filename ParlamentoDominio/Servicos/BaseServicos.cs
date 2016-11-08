@@ -6,91 +6,133 @@ using System.Linq.Expressions;
 
 namespace ParlamentoDominio.Servicos
 {
-    public class BaseServicos<TEntity> : IDisposable, IBaseServicos<TEntity> where TEntity : class
+    public abstract class BaseServicos<TEntidade> : IDisposable, IBaseServicos<TEntidade> where TEntidade : class
     {
-        private readonly IBaseRepositorio<TEntity> _repositorio;
+        private readonly IBaseRepositorio<TEntidade> _repositorio;
 
-        public BaseServicos(IBaseRepositorio<TEntity> repositorio)
+        protected BaseServicos(IBaseRepositorio<TEntidade> repositorio)
         {
             _repositorio = repositorio;
         }
 
-        public void Inserir(TEntity obj)
+        public void Inserir(TEntidade obj)
         {
             _repositorio.Inserir(obj);
         }
 
-        public void Atualizar(TEntity obj)
+        public void Atualizar(TEntidade obj)
         {
             _repositorio.Atualizar(obj);
         }
 
-        public void Mesclar(TEntity obj)
+        public void Mesclar(TEntidade obj)
         {
             _repositorio.Mesclar(obj);
         }
 
-        public void Remover(TEntity obj)
+        public void Remover(TEntidade obj)
         {
             _repositorio.Remover(obj);
         }
 
-        public void InserirEmMassa(IEnumerable<TEntity> obj)
+        public void InserirEmMassa(IEnumerable<TEntidade> obj)
         {
             _repositorio.InserirEmMassa(obj);
         }
 
-        public void AtualizarEmMassa(IEnumerable<TEntity> obj)
+        public void AtualizarEmMassa(IEnumerable<TEntidade> obj)
         {
             _repositorio.AtualizarEmMassa(obj);
         }
 
-        public void MesclarEmMassa(IEnumerable<TEntity> obj)
+        public void MesclarEmMassa(IEnumerable<TEntidade> obj)
         {
             _repositorio.MesclarEmMassa(obj);
         }
 
-        public void RemoverEmMassa(IEnumerable<TEntity> obj)
+        public void RemoverEmMassa(IEnumerable<TEntidade> obj)
         {
             _repositorio.RemoverEmMassa(obj);
         }
 
-        public TEntity ObterPorCodigo(long codigo)
+        public TEntidade ObterPorChave(object chave)
         {
-            return _repositorio.ObterPorCodigo(codigo);
+            return _repositorio.ObterPorChave(chave);
         }
 
-        public TEntity ObterPorCodigo(string codigo)
+        public TEntidade ObterPorChave(object[] chave)
         {
-            return _repositorio.ObterPorCodigo(codigo);
+            return _repositorio.ObterPorChave(chave);
         }
 
-        public object Contar(string condicoes)
+        public object Contar()
+        {
+            return _repositorio.Contar();
+        }
+
+        public object Contar(Expression<Func<TEntidade, bool>> condicoes)
         {
             return _repositorio.Contar(condicoes);
         }
 
-        public IEnumerable<TEntity> Listar(string condicoes, string ordenarPor, bool emCache = false)
+        public IEnumerable<TEntidade> Listar(bool emCache = false)
         {
-            return _repositorio.Listar(condicoes, ordenarPor, emCache);
+            return _repositorio.Listar(emCache);
         }
 
-        public IEnumerable<TEntity> ListarPaginado(int deslocamento, int limite,
-            string condicoes, string ordenarPor, bool emCache = false)
+        public IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes, bool emCache = false)
         {
-            return _repositorio.ListarPaginado(deslocamento, limite, condicoes, ordenarPor, emCache);
+            return _repositorio.Listar(condicoes, emCache);
         }
 
-        public IEnumerable<TEntity> ListarPaginadoDesc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false)
+        public IEnumerable<TEntidade> Listar(int deslocamento, int limite, bool emCache = false)
         {
-            return _repositorio.ListarPaginadoDesc(deslocamento, limite, condicoes, ordenarPor, emCache);
+            return _repositorio.Listar(deslocamento, limite, emCache);
         }
 
-        public IEnumerable<TEntity> ListarPaginadoAsc<TKey>(int deslocamento, int limite,
-            Expression<Func<TEntity, bool>> condicoes, Expression<Func<TEntity, TKey>> ordenarPor, bool emCache = false)
+        public IEnumerable<TEntidade> Listar(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, bool emCache = false)
         {
-            return _repositorio.ListarPaginadoAsc(deslocamento, limite, condicoes, ordenarPor, emCache);
+            return _repositorio.Listar(deslocamento, limite, condicoes, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarAsc(ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarAsc(condicoes, ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarAsc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarAsc(deslocamento, limite, ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarAsc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarAsc(deslocamento, limite, condicoes, ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarDesc(ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarDesc(condicoes, ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarDesc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarDesc(deslocamento, limite, ordenarPor, emCache);
+        }
+
+        public IEnumerable<TEntidade> ListarDesc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        {
+            return _repositorio.ListarDesc(deslocamento, limite, condicoes, ordenarPor, emCache);
         }
 
         public void AtivarRestricoes()

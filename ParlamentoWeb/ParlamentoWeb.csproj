@@ -59,6 +59,7 @@
     <Content Include="app\helpers\fake-backend.js" />
     <Content Include="app\main.controller.js" />
     <Content Include="app\services\authentication.service.js" />
+    <Content Include="app\services\rest.service.js" />
     <Content Include="app\shared\footer.partial.html" />
     <Content Include="app\shared\header.partial.html" />
     <Content Include="app\shared\menu.partial.html" />
@@ -103,6 +104,8 @@
     <Content Include="assets\js\AdminLTE.min.js" />
     <Content Include="assets\libs\angular-messages.js" />
     <Content Include="assets\libs\angular-messages.min.js" />
+    <Content Include="assets\libs\angular-resource.js" />
+    <Content Include="assets\libs\angular-resource.min.js" />
     <Content Include="assets\libs\iCheck\all.css" />
     <Content Include="assets\libs\iCheck\flat\aero%402x.png" />
     <Content Include="assets\libs\iCheck\flat\aero.css" />
@@ -248,6 +251,7 @@
     <Content Include="assets\js\jquery-3.1.1.slim.min.js" />
     <Content Include="assets\js\jquery-3.1.1.slim.min.map" />
     <Content Include="assets\js\jquery-3.1.1.min.map" />
+    <Content Include="assets\libs\angular-resource.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
