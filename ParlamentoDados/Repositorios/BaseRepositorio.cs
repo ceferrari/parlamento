@@ -1,4 +1,5 @@
 ﻿using ParlamentoDados.Contextos;
+using ParlamentoDados.Recursos;
 using ParlamentoDominio.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,28 @@ namespace ParlamentoDados.Repositorios
     public abstract class BaseRepositorio<TEntidade> : IDisposable, IBaseRepositorio<TEntidade> where TEntidade : class
     {
         protected readonly BaseContexto Db = new BaseContexto();
+
+        public void Dispose()
+        {
+            Db.Dispose();
+        }
+
+        public void AtivarRestricoes()
+        {
+            Db.Database.SqlQuery<string>("EXEC sp_msforeachtable \"ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL\";");
+        }
+
+        public void DesativarRestricoes()
+        {
+            Db.Database.SqlQuery<string>("EXEC sp_msforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT ALL\";");
+        }
+
+        public void TruncarTabela()
+        {
+            //Db.Set<TEntidade>().SqlQuery("TRUNCATE TABLE NomeTabela");
+            Db.Set<TEntidade>().RemoveRange(Db.Set<TEntidade>());
+            Db.SaveChanges();
+        }
 
         public void Inserir(TEntidade obj)
         {
@@ -81,122 +104,133 @@ namespace ParlamentoDados.Repositorios
             return new { Total = Db.Set<TEntidade>().AsNoTracking().Count(condicoes) };
         }
 
-        // Listar
-        public virtual IEnumerable<TEntidade> Listar(bool emCache = false)
+        public virtual IEnumerable<TEntidade> Listar<TChave>(
+            Expression<Func<TEntidade, bool>> condicoes = null,
+            Expression<Func<TEntidade, TChave>> ordenarPor = null, string ordem = "asc", 
+            int deslocamento = -1, int limite = -1,  bool emCache = false)
+        {
+            // Ordenado Paginado Condicional
+            if (condicoes != null && ordenarPor != null && deslocamento > -1 && limite > -1)
+            {
+                return string.Equals(ordem, "asc", StringComparison.OrdinalIgnoreCase)
+                    ? ListarAsc(condicoes, ordenarPor, deslocamento, limite, emCache)
+                    : ListarDesc(condicoes, ordenarPor, deslocamento, limite, emCache);
+            }
+
+            // Ordenado Paginado
+            if (condicoes == null && ordenarPor != null && deslocamento > -1 && limite > -1)
+            {
+                return string.Equals(ordem, "asc", StringComparison.OrdinalIgnoreCase)
+                    ? ListarAsc(ordenarPor, deslocamento, limite, emCache)
+                    : ListarDesc(ordenarPor, deslocamento, limite, emCache);
+            }
+
+            // Ordenado Condicional
+            if (condicoes != null && ordenarPor != null && deslocamento < 0 && limite < 0)
+            {
+                return string.Equals(ordem, "asc", StringComparison.OrdinalIgnoreCase)
+                    ? ListarAsc(condicoes, ordenarPor, emCache)
+                    : ListarDesc(condicoes, ordenarPor, emCache);
+            }
+
+            // Ordenado
+            if (condicoes == null && ordenarPor != null && deslocamento < 0 && limite < 0)
+            {
+                return string.Equals(ordem, "asc", StringComparison.OrdinalIgnoreCase)
+                    ? ListarAsc(ordenarPor, emCache)
+                    : ListarDesc(ordenarPor, emCache);
+            }
+
+            // Condicional
+            if (condicoes != null && ordenarPor == null && deslocamento < 0 && limite < 0)
+            {
+                return Listar(condicoes, emCache);
+            }
+
+            // Tudo
+            return Listar(emCache);
+        }
+
+        // Métodos privados auxiliares do Listar
+
+        // Tudo
+        private IEnumerable<TEntidade> Listar(bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().ToList()
-                : Db.Set<TEntidade>().AsNoTracking().ToList();
+                ? Db.Set<TEntidade>()
+                : Db.Set<TEntidade>().AsNoTracking();
         }
 
-        // Listar Condicional
-        public virtual IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes, bool emCache = false)
+        // Condicional
+        private IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().Where(condicoes).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).ToList();
+                ? Db.Set<TEntidade>().Where(condicoes)
+                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes);
         }
 
-        // Listar Paginado
-        public virtual IEnumerable<TEntidade> Listar(int deslocamento, int limite, bool emCache = false)
+        // Ordenado (Asc)
+        private IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().Skip(deslocamento).Take(limite).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Skip(deslocamento).Take(limite).ToList();
+                ? Db.Set<TEntidade>().OrderBy(ordenarPor)
+                : Db.Set<TEntidade>().AsNoTracking().OrderBy(ordenarPor);
         }
 
-        // Listar Paginado Condicional
-        public virtual IEnumerable<TEntidade> Listar(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, bool emCache = false)
+        // Ordenado (Desc)
+        private IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().Where(condicoes).Skip(deslocamento).Take(limite).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).Skip(deslocamento).Take(limite).ToList();
+                ? Db.Set<TEntidade>().OrderByDescending(ordenarPor)
+                : Db.Set<TEntidade>().AsNoTracking().OrderByDescending(ordenarPor);
         }
 
-        // Listar Ordenado Asc
-        public virtual IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        // Ordenado Condicional (Asc)
+        private IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().OrderBy(ordenarPor).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().OrderBy(ordenarPor).ToList();
+                ? Db.Set<TEntidade>().Where(condicoes).OrderBy(ordenarPor)
+                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderBy(condicoes);
         }
 
-        // Listar Ordenado Asc Condicional
-        public virtual IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        // Ordenado Condicional (Desc)
+        private IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().Where(condicoes).OrderBy(ordenarPor).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderBy(condicoes).ToList();
+                ? Db.Set<TEntidade>().Where(condicoes).OrderByDescending(ordenarPor)
+                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderByDescending(condicoes);
         }
 
-        // Listar Ordenado Asc Paginado
-        public virtual IEnumerable<TEntidade> ListarAsc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        // Ordenado Paginado (Asc)
+        private IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList();
+                ? Db.Set<TEntidade>().OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
+                : Db.Set<TEntidade>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite);
         }
 
-        // Listar Ordenado Asc Paginado Condicional
-        public virtual IEnumerable<TEntidade> ListarAsc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        // Ordenado Paginado (Desc)
+        private IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite).ToList();
+                ? Db.Set<TEntidade>().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite)
+                : Db.Set<TEntidade>().AsNoTracking().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite);
         }
 
-        // Listar Ordenado Desc
-        public virtual IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        // Ordenado Paginado Condicional (Asc)
+        private IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().OrderByDescending(ordenarPor).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().OrderByDescending(ordenarPor).ToList();
+                ? Db.Set<TEntidade>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
+                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite);
         }
-
-        // Listar Ordenado Desc Condicional
-        public virtual IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
+        
+        // Ordenado Paginado Condicional (Desc)
+        private IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache)
         {
             return emCache
-                ? Db.Set<TEntidade>().Where(condicoes).OrderByDescending(ordenarPor).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderByDescending(condicoes).ToList();
-        }
-
-        // Listar Ordenado Desc Paginado
-        public virtual IEnumerable<TEntidade> ListarDesc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return emCache
-                ? Db.Set<TEntidade>().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList();
-        }
-
-        // Listar Ordenado Desc Paginado Condicional
-        public virtual IEnumerable<TEntidade> ListarDesc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return emCache
-                ? Db.Set<TEntidade>().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList()
-                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite).ToList();
-        }
-
-        public void AtivarRestricoes()
-        {
-            Db.Database.SqlQuery<string>("EXEC sp_msforeachtable \"ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL\";");
-        }
-
-        public void DesativarRestricoes()
-        {
-            Db.Database.SqlQuery<string>("EXEC sp_msforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT ALL\";");
-        }
-
-        public void TruncarTabela()
-        {
-            //Db.Set<TEntidade>().SqlQuery("TRUNCATE TABLE NomeTabela");
-            Db.Set<TEntidade>().RemoveRange(Db.Set<TEntidade>());
-            Db.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            Db.Dispose();
+                ? Db.Set<TEntidade>().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite)
+                : Db.Set<TEntidade>().AsNoTracking().Where(condicoes).OrderByDescending(ordenarPor).Skip(deslocamento).Take(limite);
         }
     }
 }

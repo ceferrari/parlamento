@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using ParlamentoDominio.Entidades.Senado;
 using ParlamentoRecursos.ViewModels.Senado;
+using System.Linq;
 
 namespace ParlamentoRecursos.Recursos
 {

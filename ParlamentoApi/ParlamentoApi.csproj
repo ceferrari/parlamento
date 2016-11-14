@@ -214,11 +214,20 @@
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\VotosController.cs" />
     <Compile Include="Controllers\SenadoresController.cs" />
+    <Compile Include="Filtros\BaseFiltro.cs" />
+    <Compile Include="Filtros\MateriasFiltro.cs" />
+    <Compile Include="Filtros\MateriasAssuntosFiltro.cs" />
+    <Compile Include="Filtros\LegislaturasFiltro.cs" />
+    <Compile Include="Filtros\MateriasSubtiposFiltro.cs" />
+    <Compile Include="Filtros\SenadoresFiltro.cs" />
+    <Compile Include="Filtros\VotosFiltro.cs" />
     <Compile Include="Recursos\CustomExceptionHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recursos\OrderByExtensions.cs" />
+    <Compile Include="Recursos\PredicateBuilder.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParlamentoAplicacao\ParlamentoAplicacao.csproj">

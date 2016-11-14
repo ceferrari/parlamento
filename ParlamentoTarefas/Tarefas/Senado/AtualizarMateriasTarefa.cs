@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Hangfire;
 using Ninject;
 using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
@@ -7,7 +6,6 @@ using ParlamentoDominio.Entidades.Senado;
 using ParlamentoRecursos.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace ParlamentoTarefas.Tarefas.Senado

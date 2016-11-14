@@ -15,6 +15,26 @@ namespace ParlamentoDominio.Servicos
             _repositorio = repositorio;
         }
 
+        public void Dispose()
+        {
+            _repositorio.Dispose();
+        }
+
+        public void AtivarRestricoes()
+        {
+            _repositorio.AtivarRestricoes();
+        }
+
+        public void DesativarRestricoes()
+        {
+            _repositorio.DesativarRestricoes();
+        }
+
+        public void TruncarTabela()
+        {
+            _repositorio.TruncarTabela();
+        }
+        
         public void Inserir(TEntidade obj)
         {
             _repositorio.Inserir(obj);
@@ -75,84 +95,12 @@ namespace ParlamentoDominio.Servicos
             return _repositorio.Contar(condicoes);
         }
 
-        public IEnumerable<TEntidade> Listar(bool emCache = false)
+        public IEnumerable<TEntidade> Listar<TChave>(
+            Expression<Func<TEntidade, bool>> condicoes = null,
+            Expression<Func<TEntidade, TChave>> ordenarPor = null, string ordem = "asc",
+            int deslocamento = -1, int limite = -1, bool emCache = false)
         {
-            return _repositorio.Listar(emCache);
-        }
-
-        public IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes, bool emCache = false)
-        {
-            return _repositorio.Listar(condicoes, emCache);
-        }
-
-        public IEnumerable<TEntidade> Listar(int deslocamento, int limite, bool emCache = false)
-        {
-            return _repositorio.Listar(deslocamento, limite, emCache);
-        }
-
-        public IEnumerable<TEntidade> Listar(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, bool emCache = false)
-        {
-            return _repositorio.Listar(deslocamento, limite, condicoes, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarAsc(ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarAsc(condicoes, ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarAsc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarAsc(deslocamento, limite, ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarAsc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarAsc(deslocamento, limite, condicoes, ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarDesc(ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarDesc(condicoes, ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarDesc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarDesc(deslocamento, limite, ordenarPor, emCache);
-        }
-
-        public IEnumerable<TEntidade> ListarDesc<TChave>(int deslocamento, int limite, Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache = false)
-        {
-            return _repositorio.ListarDesc(deslocamento, limite, condicoes, ordenarPor, emCache);
-        }
-
-        public void AtivarRestricoes()
-        {
-            _repositorio.AtivarRestricoes();
-        }
-
-        public void DesativarRestricoes()
-        {
-            _repositorio.DesativarRestricoes();
-        }
-
-        public void TruncarTabela()
-        {
-            _repositorio.TruncarTabela();
-        }
-
-        public void Dispose()
-        {
-            _repositorio.Dispose();
+            return _repositorio.Listar(condicoes, ordenarPor, ordem, deslocamento, limite, emCache);
         }
     }
 }

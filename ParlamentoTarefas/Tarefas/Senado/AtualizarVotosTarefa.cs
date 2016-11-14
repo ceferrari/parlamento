@@ -49,7 +49,7 @@ namespace ParlamentoTarefas.Tarefas.Senado
                 listaVotosEntidades.AddRange(votos);
             }
 
-            var listaMateriasEntidades = _materiasSvc.Listar();
+            var listaMateriasEntidades = _materiasSvc.Listar<object>();
             var listaCodigosMaterias = listaMateriasEntidades.Select(x => x.Codigo);
 
             listaVotosEntidades.RemoveAll(x => !listaCodigosMaterias.Contains(x.CodigoMateria));

@@ -1,6 +1,9 @@
-﻿using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
+﻿using System;
+using ParlamentoApi.Filtros;
+using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -12,54 +15,36 @@ namespace ParlamentoApi.Controllers
     /// </summary>
     public class VotosController : ApiController
     {
-        private const string OrdenarPor = "CodigoSenador,CodigoMateria,CodigoSessao";
-        private readonly IVotosServicosApp _svc;
+        private readonly IVotosServicosApp _servicosApp;
 
-        public VotosController(IVotosServicosApp svc)
+        public VotosController(IVotosServicosApp servicosApp)
         {
-            _svc = svc;
+            _servicosApp = servicosApp;
         }
 
         /// <summary>
-        /// Conta os Votos com base nas condições fornecidas
+        /// Conta os Votos com base nos parâmetros fornecidos
         /// </summary>
-        /// <param name="condicoes"></param>
+        /// <param name="filtro"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage Contar(string condicoes = null)
+        public HttpResponseMessage Contar([FromUri]VotosFiltro filtro)
         {
-            var quantidade = _svc.Contar(condicoes);
+            var quantidade = _servicosApp.Contar(filtro?.Condicoes());
 
             return Request.CreateResponse(HttpStatusCode.OK, quantidade);
         }
 
         /// <summary>
-        /// Lista os Votos com base nas condições fornecidas
+        /// Lista os Votos com base nos parâmetros fornecidos
         /// </summary>
-        /// <param name="condicoes"></param>
-        /// <param name="ordenarPor"></param>
+        /// <param name="filtro"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage Listar(string condicoes = null, string ordenarPor = OrdenarPor)
+        public HttpResponseMessage Listar([FromUri]VotosFiltro filtro)
         {
-            var lista = _svc.Listar(condicoes, ordenarPor);
-
-            return Request.CreateResponse(HttpStatusCode.OK, lista);
-        }
-
-        /// <summary>
-        /// Lista os Votos com base nas condições fornecidas e com paginação
-        /// </summary>
-        /// <param name="deslocamento"></param>
-        /// <param name="limite"></param>
-        /// <param name="condicoes"></param>
-        /// <param name="ordenarPor"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage ListarPaginado(int deslocamento, int limite, string condicoes = null, string ordenarPor = OrdenarPor)
-        {
-            var lista = _svc.ListarPaginado(deslocamento, limite, condicoes, ordenarPor);
-
+            var lista = _servicosApp.Listar(filtro.Condicoes(), filtro.Ordenacao<dynamic>(), filtro.ordem, filtro.deslocamento, filtro.limite);
+            
             return Request.CreateResponse(HttpStatusCode.OK, lista);
         }
 
@@ -110,7 +95,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage Inserir([FromBody]Voto entidade)
         {
-            _svc.Inserir(entidade);
+            _servicosApp.Inserir(entidade);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -123,7 +108,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage InserirEmMassa([FromBody]IEnumerable<Voto> lista)
         {
-            _svc.InserirEmMassa(lista);
+            _servicosApp.InserirEmMassa(lista);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -136,7 +121,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage Atualizar([FromBody]Voto entidade)
         {
-            _svc.Atualizar(entidade);
+            _servicosApp.Atualizar(entidade);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -149,7 +134,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage AtualizarEmMassa([FromBody]IEnumerable<Voto> lista)
         {
-            _svc.AtualizarEmMassa(lista);
+            _servicosApp.AtualizarEmMassa(lista);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -162,7 +147,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage Remover([FromBody]Voto entidade)
         {
-            _svc.Remover(entidade);
+            _servicosApp.Remover(entidade);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -175,7 +160,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage RemoverEmMassa([FromBody]IEnumerable<Voto> lista)
         {
-            _svc.RemoverEmMassa(lista);
+            _servicosApp.RemoverEmMassa(lista);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -188,7 +173,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage Mesclar([FromBody]Voto entidade)
         {
-            _svc.Mesclar(entidade);
+            _servicosApp.Mesclar(entidade);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -201,7 +186,7 @@ namespace ParlamentoApi.Controllers
         [HttpPost]
         public HttpResponseMessage MesclarEmMassa([FromBody]IEnumerable<Voto> lista)
         {
-            _svc.MesclarEmMassa(lista);
+            _servicosApp.MesclarEmMassa(lista);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

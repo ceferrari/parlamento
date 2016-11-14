@@ -8,12 +8,11 @@ namespace ParlamentoApi.Controllers
     /// </summary>
     public class UsuariosController : ApiController
     {
-        private const string OrdenarPor = "CodigoSenador,CodigoMateria,CodigoSessao";
-        private readonly IUsuariosServicosApp _svc;
+        private readonly IUsuariosServicosApp _servicosApp;
 
-        public UsuariosController(IUsuariosServicosApp svc)
+        public UsuariosController(IUsuariosServicosApp servicosApp)
         {
-            _svc = svc;
+            _servicosApp = servicosApp;
         }
     }
 }

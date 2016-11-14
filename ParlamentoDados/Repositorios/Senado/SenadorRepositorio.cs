@@ -10,7 +10,7 @@ namespace ParlamentoDados.Repositorios.Senado
 {
     public class SenadoresRepositorio : BaseRepositorio<Senador>, ISenadoresRepositorio
     {
-        public override IEnumerable<Senador> Listar(bool emCache = false)
+        public IEnumerable<Senador> Listar(bool emCache = false)
         {
             return emCache
                 ? Db.Set<Senador>()
@@ -25,7 +25,7 @@ namespace ParlamentoDados.Repositorios.Senado
                     .ToList();
         }
 
-        public override IEnumerable<Senador> Listar(Expression<Func<Senador, bool>> condicoes, bool emCache = false)
+        public IEnumerable<Senador> Listar(Expression<Func<Senador, bool>> condicoes, bool emCache = false)
         {
             return emCache
                 ? Db.Set<Senador>()
@@ -42,7 +42,7 @@ namespace ParlamentoDados.Repositorios.Senado
                     .ToList();
         }
 
-        //public override IEnumerable<Senador> Listar(string condicoes, string ordenarPor, bool emCache = false)
+        //public IEnumerable<Senador> Listar(string condicoes, string ordenarPor, bool emCache = false)
         //{
         //    return emCache
         //        ? (condicoes == null
@@ -72,7 +72,7 @@ namespace ParlamentoDados.Repositorios.Senado
         //                .ToList());
         //}
 
-        //public override IEnumerable<Senador> ListarPaginado(int deslocamento, int limite,
+        //public IEnumerable<Senador> ListarPaginado(int deslocamento, int limite,
         //    string condicoes, string ordenarPor, bool emCache = false)
         //{
         //    return emCache

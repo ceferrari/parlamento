@@ -5,7 +5,7 @@ using System.Net;
 
 namespace ParlamentoRecursos.ViewModels
 {
-    public class RespostaViewModel<TEntity> where TEntity : class
+    public class RespostaViewModel<TEntidade> where TEntidade : class
     {
         [JsonProperty("CodigoStatus")]
         public HttpStatusCode CodigoStatus { get; set; }
@@ -17,20 +17,33 @@ namespace ParlamentoRecursos.ViewModels
         public string MensagemErro { get; set; }
 
         [JsonProperty("Conteudo", NullValueHandling = NullValueHandling.Ignore)]
-        public TEntity Conteudo { get; set; }
+        public TEntidade Conteudo { get; set; }
 
         public RespostaViewModel(IRestResponse resposta)
         {
             CodigoStatus = resposta.StatusCode;
             DescricaoStatus = resposta.StatusDescription;
 
-            try
+            if (CodigoStatus == HttpStatusCode.OK ||
+                CodigoStatus == HttpStatusCode.Created ||
+                CodigoStatus == HttpStatusCode.Accepted ||
+                CodigoStatus == HttpStatusCode.NonAuthoritativeInformation ||
+                CodigoStatus == HttpStatusCode.NoContent ||
+                CodigoStatus == HttpStatusCode.ResetContent ||
+                CodigoStatus == HttpStatusCode.PartialContent)
             {
-                Conteudo = JsonConvert.DeserializeObject<TEntity>(resposta.Content);
+                try
+                {
+                    Conteudo = JsonConvert.DeserializeObject<TEntidade>(resposta.Content);
+                }
+                catch (Exception ex)
+                {
+                    MensagemErro = ex.Message;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MensagemErro = ex.Message;
+                MensagemErro = resposta.Content;
             }
         }
     }
