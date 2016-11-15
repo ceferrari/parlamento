@@ -1,7 +1,6 @@
 ﻿using ParlamentoApi.Recursos;
 using ParlamentoDominio.Entidades.Senado;
 using System;
-using System.CodeDom;
 using System.Linq.Expressions;
 
 namespace ParlamentoApi.Filtros
@@ -49,7 +48,7 @@ namespace ParlamentoApi.Filtros
                 condicoes = condicoes.And(x => x.EmExercicio == emExercicio);
             }
 
-            return condicoes;
+            return condicoes.Body.NodeType == ExpressionType.Constant ? null : condicoes;
         }
     }
 }

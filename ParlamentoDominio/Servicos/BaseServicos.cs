@@ -30,9 +30,9 @@ namespace ParlamentoDominio.Servicos
             _repositorio.DesativarRestricoes();
         }
 
-        public void TruncarTabela()
+        public void TruncarTabela(string tabela)
         {
-            _repositorio.TruncarTabela();
+            _repositorio.TruncarTabela(tabela);
         }
         
         public void Inserir(TEntidade obj)
@@ -95,12 +95,10 @@ namespace ParlamentoDominio.Servicos
             return _repositorio.Contar(condicoes);
         }
 
-        public IEnumerable<TEntidade> Listar<TChave>(
-            Expression<Func<TEntidade, bool>> condicoes = null,
-            Expression<Func<TEntidade, TChave>> ordenarPor = null, string ordem = "asc",
-            int deslocamento = -1, int limite = -1, bool emCache = false)
+        public IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+            string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false)
         {
-            return _repositorio.Listar(condicoes, ordenarPor, ordem, deslocamento, limite, emCache);
+            return _repositorio.Listar(condicoes, ordenarPor, deslocamento, limite, noContexto);
         }
     }
 }

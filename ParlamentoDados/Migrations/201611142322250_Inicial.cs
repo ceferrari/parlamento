@@ -64,8 +64,6 @@ namespace ParlamentoDados.Migrations
                         NomeCompleto = c.String(maxLength: 255, unicode: false),
                         SiglaPartido = c.String(maxLength: 10, unicode: false),
                         UfMandato = c.String(maxLength: 2, unicode: false),
-                        CodigoPrimeiraLegislatura = c.Int(nullable: false),
-                        CodigoSegundaLegislatura = c.Int(nullable: false),
                         DataNascimento = c.DateTime(),
                         CidadeNascimento = c.String(maxLength: 255, unicode: false),
                         UfNascimento = c.String(maxLength: 10, unicode: false),
@@ -77,6 +75,8 @@ namespace ParlamentoDados.Migrations
                         UrlFoto = c.String(maxLength: 255, unicode: false),
                         UrlPagina = c.String(maxLength: 255, unicode: false),
                         EmExercicio = c.Boolean(nullable: false),
+                        CodigoPrimeiraLegislatura = c.Int(nullable: false),
+                        CodigoSegundaLegislatura = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Codigo)
                 .ForeignKey("dbo.Legislaturas", t => t.CodigoPrimeiraLegislatura)
@@ -92,15 +92,12 @@ namespace ParlamentoDados.Migrations
                         CodigoMateria = c.Int(nullable: false),
                         CodigoSessao = c.Int(nullable: false),
                         DescricaoVoto = c.String(maxLength: 255, unicode: false),
-                        Senador_Codigo = c.Int(),
                     })
                 .PrimaryKey(t => new { t.CodigoSenador, t.CodigoMateria, t.CodigoSessao })
                 .ForeignKey("dbo.Materias", t => t.CodigoMateria)
                 .ForeignKey("dbo.Senadores", t => t.CodigoSenador)
-                .ForeignKey("dbo.Senadores", t => t.Senador_Codigo)
                 .Index(t => t.CodigoSenador)
-                .Index(t => t.CodigoMateria)
-                .Index(t => t.Senador_Codigo);
+                .Index(t => t.CodigoMateria);
             
             CreateTable(
                 "dbo.Usuarios",
@@ -134,14 +131,12 @@ namespace ParlamentoDados.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Votos", "Senador_Codigo", "dbo.Senadores");
             DropForeignKey("dbo.Votos", "CodigoSenador", "dbo.Senadores");
             DropForeignKey("dbo.Votos", "CodigoMateria", "dbo.Materias");
             DropForeignKey("dbo.Senadores", "CodigoSegundaLegislatura", "dbo.Legislaturas");
             DropForeignKey("dbo.Senadores", "CodigoPrimeiraLegislatura", "dbo.Legislaturas");
             DropForeignKey("dbo.Materias", "CodigoSubtipo", "dbo.MateriasSubtipos");
             DropForeignKey("dbo.Materias", "CodigoAssunto", "dbo.MateriasAssuntos");
-            DropIndex("dbo.Votos", new[] { "Senador_Codigo" });
             DropIndex("dbo.Votos", new[] { "CodigoMateria" });
             DropIndex("dbo.Votos", new[] { "CodigoSenador" });
             DropIndex("dbo.Senadores", new[] { "CodigoSegundaLegislatura" });

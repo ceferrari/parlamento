@@ -24,7 +24,7 @@ namespace ParlamentoDados.EntidadesConfig.Senado
             Property(t => t.DescricaoVoto);
 
             HasRequired(t => t.Senador)
-                .WithMany()
+                .WithMany(t => t.Votos)
                 .HasForeignKey(t => t.CodigoSenador);
 
             HasRequired(t => t.Materia)

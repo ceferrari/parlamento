@@ -1,5 +1,4 @@
-﻿using ParlamentoApi.Recursos;
-using ParlamentoDominio.Entidades.Senado;
+﻿using ParlamentoDominio.Entidades.Senado;
 using System;
 using System.Linq.Expressions;
 

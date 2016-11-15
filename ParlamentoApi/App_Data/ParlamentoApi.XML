@@ -585,6 +585,12 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
+        <member name="M:ParlamentoApi.Controllers.LegislaturasController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Legislaturas no banco de dados
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ParlamentoApi.Controllers.MateriasSubtiposController">
             <summary>
             Métodos referetes aos Subtipos de Matérias votadas pelo Senado
@@ -665,6 +671,12 @@
             Mescla em massa uma lista de Subtipos de Matérias
             </summary>
             <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.MateriasSubtiposController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Subtipos de Matérias no banco de dados
+            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Controllers.MateriasAssuntosController">
@@ -749,6 +761,12 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
+        <member name="M:ParlamentoApi.Controllers.MateriasAssuntosController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Assuntos de Matérias no banco de dados
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ParlamentoApi.Controllers.MateriasController">
             <summary>
             Métodos referetes às Matérias votadas pelo Senado
@@ -831,6 +849,12 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
+        <member name="M:ParlamentoApi.Controllers.MateriasController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Matérias no banco de dados
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ParlamentoApi.Controllers.UsuariosController">
             <summary>
             Métodos referetes aos Usuários da aplicação
@@ -909,6 +933,12 @@
             Mescla em massa uma lista de Votos
             </summary>
             <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.VotosController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Votos no banco de dados
+            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Controllers.SenadoresController">
@@ -991,6 +1021,12 @@
             Mescla em massa uma lista de Senadores
             </summary>
             <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.SenadoresController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Senadores no banco de dados
+            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Recursos.PredicateBuilder">

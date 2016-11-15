@@ -12,7 +12,7 @@ namespace ParlamentoDominio.Interfaces.Repositorios
 
         void DesativarRestricoes();
 
-        void TruncarTabela();
+        void TruncarTabela(string tabela);
         
         void Inserir(TEntidade obj);
 
@@ -38,39 +38,7 @@ namespace ParlamentoDominio.Interfaces.Repositorios
 
         object Contar(Expression<Func<TEntidade, bool>> condicoes);
 
-        IEnumerable<TEntidade> Listar<TChave>(
-            Expression<Func<TEntidade, bool>> condicoes = null,
-            Expression<Func<TEntidade, TChave>> ordenarPor = null, string ordem = "asc",
-            int deslocamento = -1, int limite = -1, bool emCache = false);
-
-        //// Tudo
-        //IEnumerable<TEntidade> Listar(bool emCache);
-
-        //// Condicional
-        //IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes, bool emCache);
-
-        //// Ordenado (Asc)
-        //IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache);
-
-        //// Ordenado (Desc)
-        //IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache);
-
-        //// Ordenado Condicional (Asc)
-        //IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache);
-
-        //// Ordenado Condicional (Desc)
-        //IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, bool emCache);
-
-        //// Ordenado Paginado (Asc)
-        //IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache);
-
-        //// Ordenado Paginado (Desc)
-        //IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache);
-
-        //// Ordenado Paginado Condicional (Asc)
-        //IEnumerable<TEntidade> ListarAsc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache);
-
-        //// Ordenado Paginado Condicional (Desc)
-        //IEnumerable<TEntidade> ListarDesc<TChave>(Expression<Func<TEntidade, bool>> condicoes, Expression<Func<TEntidade, TChave>> ordenarPor, int deslocamento, int limite, bool emCache);
+        IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+            string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false);
     }
 }

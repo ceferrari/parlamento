@@ -15,15 +15,13 @@ namespace ParlamentoTarefas.Tarefas.Senado
     {
         private readonly ISenadoServicosExternos _senado;
         private readonly IMateriasServicosApp _materiasSvc;
-        private readonly ISenadoresServicosApp _senadoresSvc;
         private readonly IVotosServicosApp _votosSvc;
 
-        public AtualizarVotosTarefa(ISenadoServicosExternos senado, IMateriasServicosApp materiasSvc, ISenadoresServicosApp senadoresSvc, IVotosServicosApp votosSvc)
+        public AtualizarVotosTarefa(ISenadoServicosExternos senado, IMateriasServicosApp materiasSvc, IVotosServicosApp votosSvc)
             : base(new StandardKernel())
         {
             _senado = senado;
             _materiasSvc = materiasSvc;
-            _senadoresSvc = senadoresSvc;
             _votosSvc = votosSvc;
         }
 
@@ -49,8 +47,8 @@ namespace ParlamentoTarefas.Tarefas.Senado
                 listaVotosEntidades.AddRange(votos);
             }
 
-            var listaMateriasEntidades = _materiasSvc.Listar<object>();
-            var listaCodigosMaterias = listaMateriasEntidades.Select(x => x.Codigo);
+            var listaMateriasEntidades = _materiasSvc.Listar().ToList();
+            var listaCodigosMaterias = listaMateriasEntidades.Select(x => x.Codigo).ToList();
 
             listaVotosEntidades.RemoveAll(x => !listaCodigosMaterias.Contains(x.CodigoMateria));
 

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using ParlamentoApi.Filtros;
 using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ParlamentoApi.Filtros;
 
 namespace ParlamentoApi.Controllers
 {
@@ -43,7 +41,7 @@ namespace ParlamentoApi.Controllers
         [HttpGet]
         public HttpResponseMessage Listar([FromUri]LegislaturasFiltro filtro)
         {
-            var lista = _servicosApp.Listar(filtro.Condicoes(), filtro.Ordenacao<dynamic>(), filtro.ordem, filtro.deslocamento, filtro.limite);
+            var lista = _servicosApp.Listar(filtro.Condicoes(), filtro.ordenarPor, filtro.deslocamento, filtro.limite);
 
             return Request.CreateResponse(HttpStatusCode.OK, lista);
         }
@@ -161,6 +159,18 @@ namespace ParlamentoApi.Controllers
         public HttpResponseMessage MesclarEmMassa([FromBody]IEnumerable<Legislatura> lista)
         {
             _servicosApp.MesclarEmMassa(lista);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Trunca a tabela de Legislaturas no banco de dados
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage TruncarTabela()
+        {
+            _servicosApp.TruncarTabela("Legislaturas");
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

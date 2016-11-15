@@ -12,7 +12,7 @@ namespace ParlamentoAplicacao.Interfaces.ServicosApp
 
         void DesativarRestricoes();
 
-        void TruncarTabela();
+        void TruncarTabela(string tabela);
 
         void Inserir(TEntidade obj);
 
@@ -38,9 +38,7 @@ namespace ParlamentoAplicacao.Interfaces.ServicosApp
 
         object Contar(Expression<Func<TEntidade, bool>> condicoes);
 
-        IEnumerable<TEntidade> Listar<TChave>(
-            Expression<Func<TEntidade, bool>> condicoes = null,
-            Expression<Func<TEntidade, TChave>> ordenarPor = null, string ordem = "asc",
-            int deslocamento = -1, int limite = -1, bool emCache = false);
+        IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+            string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false);
     }
 }

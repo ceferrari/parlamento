@@ -30,7 +30,7 @@ namespace ParlamentoApi.Filtros
                 condicoes = condicoes.And(x => x.CodigoSessao == codigoSessao);
             }
 
-            return condicoes;
+            return condicoes.Body.NodeType == ExpressionType.Constant ? null : condicoes;
         }
     }
 }

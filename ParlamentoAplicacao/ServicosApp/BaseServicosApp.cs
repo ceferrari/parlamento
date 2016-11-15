@@ -30,9 +30,9 @@ namespace ParlamentoAplicacao.ServicosApp
             _servicos.DesativarRestricoes();
         }
 
-        public void TruncarTabela()
+        public void TruncarTabela(string tabela)
         {
-            _servicos.TruncarTabela();
+            _servicos.TruncarTabela(tabela);
         }
 
         public void Inserir(TEntidade obj)
@@ -95,12 +95,10 @@ namespace ParlamentoAplicacao.ServicosApp
             return _servicos.Contar(condicoes);
         }
 
-        public IEnumerable<TEntidade> Listar<TChave>(
-            Expression<Func<TEntidade, bool>> condicoes = null,
-            Expression<Func<TEntidade, TChave>> ordenarPor = null, string ordem = "asc",
-            int deslocamento = -1, int limite = -1, bool emCache = false)
+        public IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+            string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false)
         {
-            return _servicos.Listar(condicoes, ordenarPor, ordem, deslocamento, limite, emCache);
+            return _servicos.Listar(condicoes, ordenarPor, deslocamento, limite, noContexto);
         }
     }
 }

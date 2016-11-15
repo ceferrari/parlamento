@@ -11,11 +11,19 @@ namespace ParlamentoApi.Recursos
     {
         public override void Handle(ExceptionHandlerContext context)
         {
+            var exception = context.Exception;
+            var message = exception.Message;
+            while (exception.InnerException != null)
+            {
+                exception = exception.InnerException;
+                message = exception.Message;
+            }
+
             var resposta = new RestResponse
             {
                 StatusCode = HttpStatusCode.InternalServerError,
                 StatusDescription = "Internal Server Error",
-                Content = context.Exception.Message
+                Content = message
             };
 
             var retorno = context.Request.CreateResponse
@@ -25,8 +33,6 @@ namespace ParlamentoApi.Recursos
             );
 
             context.Result = new ResponseMessageResult(retorno);
-
-            //new ErrorLogger().Log(context.Exception);
         }
 
         public override bool ShouldHandle(ExceptionHandlerContext context)

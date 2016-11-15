@@ -11,8 +11,6 @@ namespace ParlamentoDominio.Entidades.Senado
         public string NomeCompleto { get; set; }
         public string SiglaPartido { get; set; }
         public string UfMandato { get; set; }
-        public int CodigoPrimeiraLegislatura { get; set; }
-        public int CodigoSegundaLegislatura { get; set; }
         public DateTime? DataNascimento { get; set; }
         public string CidadeNascimento { get; set; }
         public string UfNascimento { get; set; }
@@ -24,6 +22,8 @@ namespace ParlamentoDominio.Entidades.Senado
         public string UrlFoto { get; set; }
         public string UrlPagina { get; set; }
         public bool EmExercicio { get; set; }
+        public int CodigoPrimeiraLegislatura { get; set; }
+        public int CodigoSegundaLegislatura { get; set; }
 
         public virtual Legislatura PrimeiraLegislatura { get; set; }
         public virtual Legislatura SegundaLegislatura { get; set; }

@@ -1,4 +1,5 @@
-﻿using ParlamentoDominio.Entidades.Senado;
+﻿using ParlamentoDados.Recursos;
+using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
 using System;
 using System.Collections.Generic;
@@ -10,108 +11,89 @@ namespace ParlamentoDados.Repositorios.Senado
 {
     public class SenadoresRepositorio : BaseRepositorio<Senador>, ISenadoresRepositorio
     {
-        public IEnumerable<Senador> Listar(bool emCache = false)
+        public override IEnumerable<Senador> Listar(Expression<Func<Senador, bool>> condicoes = null,
+            string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false)
         {
-            return emCache
+            // Ordenado Paginado Condicional
+            if (condicoes != null && ordenarPor != null && deslocamento > -1 && limite > 0)
+            {
+                return noContexto
+                    ? Db.Set<Senador>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos)
+                    : Db.Set<Senador>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos);
+            }
+
+            // Ordenado Paginado
+            if (condicoes == null && ordenarPor != null && deslocamento > -1 && limite > 0)
+            {
+                return noContexto
+                    ? Db.Set<Senador>().OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos)
+                    : Db.Set<Senador>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos);
+            }
+
+            // Ordenado Condicional
+            if (condicoes != null && ordenarPor != null && deslocamento < 0 && limite < 1)
+            {
+                return noContexto
+                    ? Db.Set<Senador>().Where(condicoes).OrderBy(ordenarPor)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos)
+                    : Db.Set<Senador>().AsNoTracking().Where(condicoes).OrderBy(condicoes)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos);
+            }
+
+            // Ordenado
+            if (condicoes == null && ordenarPor != null && deslocamento < 0 && limite < 1)
+            {
+                return noContexto
+                    ? Db.Set<Senador>().OrderBy(ordenarPor)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos)
+                    : Db.Set<Senador>().AsNoTracking().OrderBy(ordenarPor)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos);
+            }
+
+            // Condicional
+            if (condicoes != null && ordenarPor == null && deslocamento < 0 && limite < 0)
+            {
+                return noContexto
+                    ? Db.Set<Senador>().Where(condicoes)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos)
+                    : Db.Set<Senador>().AsNoTracking().Where(condicoes)
+                        .Include(x => x.PrimeiraLegislatura)
+                        .Include(x => x.SegundaLegislatura)
+                        .Include(x => x.Votos);
+            }
+
+            // Tudo
+            return noContexto
                 ? Db.Set<Senador>()
                     .Include(x => x.PrimeiraLegislatura)
                     .Include(x => x.SegundaLegislatura)
                     .Include(x => x.Votos)
-                    .ToList()
                 : Db.Set<Senador>().AsNoTracking()
                     .Include(x => x.PrimeiraLegislatura)
                     .Include(x => x.SegundaLegislatura)
-                    .Include(x => x.Votos)
-                    .ToList();
+                    .Include(x => x.Votos);
         }
-
-        public IEnumerable<Senador> Listar(Expression<Func<Senador, bool>> condicoes, bool emCache = false)
-        {
-            return emCache
-                ? Db.Set<Senador>()
-                    .Include(x => x.PrimeiraLegislatura)
-                    .Include(x => x.SegundaLegislatura)
-                    .Include(x => x.Votos)
-                    .Where(condicoes)
-                    .ToList()
-                : Db.Set<Senador>().AsNoTracking()
-                    .Include(x => x.PrimeiraLegislatura)
-                    .Include(x => x.SegundaLegislatura)
-                    .Include(x => x.Votos)
-                    .Where(condicoes)
-                    .ToList();
-        }
-
-        //public IEnumerable<Senador> Listar(string condicoes, string ordenarPor, bool emCache = false)
-        //{
-        //    return emCache
-        //        ? (condicoes == null
-        //            ? Db.Set<Senador>()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .OrderBy(ordenarPor)
-        //                .ToList()
-        //            : Db.Set<Senador>().AsNoTracking()
-        //                .Where(condicoes)
-        //                .OrderBy(ordenarPor)
-        //                .ToList())
-        //        : (condicoes == null
-        //            ? Db.Set<Senador>().AsNoTracking()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .OrderBy(ordenarPor)
-        //                .ToList()
-        //            : Db.Set<Senador>()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .Where(condicoes)
-        //                .OrderBy(ordenarPor)
-        //                .ToList());
-        //}
-
-        //public IEnumerable<Senador> ListarPaginado(int deslocamento, int limite,
-        //    string condicoes, string ordenarPor, bool emCache = false)
-        //{
-        //    return emCache
-        //        ? (condicoes == null
-        //            ? Db.Set<Senador>()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .OrderBy(ordenarPor)
-        //                .Skip(deslocamento)
-        //                .Take(limite)
-        //                .ToList()
-        //            : Db.Set<Senador>()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .Where(condicoes)
-        //                .OrderBy(ordenarPor)
-        //                .Skip(deslocamento)
-        //                .Take(limite)
-        //                .ToList())
-        //        : (condicoes == null
-        //            ? Db.Set<Senador>().AsNoTracking()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .OrderBy(ordenarPor)
-        //                .Skip(deslocamento)
-        //                .Take(limite)
-        //                .ToList()
-        //            : Db.Set<Senador>().AsNoTracking()
-        //                .Include(x => x.PrimeiraLegislatura)
-        //                .Include(x => x.SegundaLegislatura)
-        //                .Include(x => x.Votos)
-        //                .Where(condicoes)
-        //                .OrderBy(ordenarPor)
-        //                .Skip(deslocamento)
-        //                .Take(limite)
-        //                .ToList());
-        //}
     }
 }

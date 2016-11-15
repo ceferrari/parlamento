@@ -12,7 +12,7 @@ namespace ParlamentoApi
         {
             GlobalConfiguration.Configuration
                 .UseNinjectActivator(new Ninject.Web.Common.Bootstrapper().Kernel)
-                .UseSqlServerStorage("BaseConexao");
+                .UseSqlServerStorage(@"Data Source=.\SQLEXPRESS;Initial Catalog=ParlamentoTarefas;Integrated Security=True");
 
             TarefasConfig.Hangfire();
 

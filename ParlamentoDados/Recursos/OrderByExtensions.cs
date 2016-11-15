@@ -27,7 +27,7 @@ namespace ParlamentoDados.Recursos
             string[] props = orderByInfo.PropertyName.Split('.');
             foreach (string prop in props)
             {
-                PropertyInfo pi = type.GetProperty(prop);
+                PropertyInfo pi = type.GetProperty(prop, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                 expr = Expression.Property(expr, pi);
                 type = pi.PropertyType;
             }
