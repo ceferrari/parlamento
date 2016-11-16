@@ -35,7 +35,7 @@ namespace ParlamentoDados.Repositorios
         {
             Db.Database.ExecuteSqlCommand("EXEC TruncarTabela @p0", tabela);
 
-            //Db.Set<TEntidade>().SqlQuery("TRUNCATE TABLE NomeTabela");
+            //Db.Database.ExecuteSqlCommand("TRUNCATE TABLE @p0", tabela);
             //Db.Set<TEntidade>().RemoveRange(Db.Set<TEntidade>());
             //Db.SaveChanges();
         }
