@@ -100,14 +100,11 @@ namespace ParlamentoDados.Repositorios
             return Db.Set<TEntidade>().Find(chave);
         }
 
-        public object Contar()
+        public object Contar(Expression<Func<TEntidade, bool>> condicoes = null)
         {
-            return new { Total = Db.Set<TEntidade>().AsNoTracking().Count() };
-        }
-
-        public object Contar(Expression<Func<TEntidade, bool>> condicoes)
-        {
-            return new { Total = Db.Set<TEntidade>().AsNoTracking().Count(condicoes) };
+            return condicoes == null
+                ? new { Total = Db.Set<TEntidade>().AsNoTracking().Count() }
+                : new { Total = Db.Set<TEntidade>().AsNoTracking().Count(condicoes) };
         }
 
         public virtual IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,

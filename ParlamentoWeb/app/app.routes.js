@@ -37,6 +37,23 @@
                     },
                     "footer": { templateUrl: "app/shared/footer.partial.html" }
                 }
+            })
+            .state('senadores', {
+                url: '/',
+                views: {
+                    "header": {
+                        controller: 'Main',
+                        controllerAs: 'vm',
+                        templateUrl: "app/shared/header.partial.html"
+                    },
+                    "menu": { templateUrl: "app/shared/menu.partial.html" },
+                    "content": {
+                        controller: 'Senadores',
+                        controllerAs: 'vm',
+                        templateUrl: "app/components/senadores/senadores.view.html"
+                    },
+                    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                }
             });
 
         //$locationProvider.html5Mode({

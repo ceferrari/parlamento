@@ -34,9 +34,7 @@ namespace ParlamentoDominio.Interfaces.Repositorios
 
         TEntidade ObterPorChave(object[] chave);
 
-        object Contar();
-
-        object Contar(Expression<Func<TEntidade, bool>> condicoes);
+        object Contar(Expression<Func<TEntidade, bool>> condicoes = null);
 
         IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
             string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false);

@@ -28,7 +28,7 @@ namespace ParlamentoApi.Controllers
         [HttpGet]
         public HttpResponseMessage Contar([FromUri]MateriasSubtiposFiltro filtro)
         {
-            var quantidade = _servicosApp.Contar(filtro?.Condicoes());
+            var quantidade = _servicosApp.Contar(filtro.Condicoes());
 
             return Request.CreateResponse(HttpStatusCode.OK, quantidade);
         }

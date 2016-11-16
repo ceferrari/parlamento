@@ -7,6 +7,7 @@ namespace ParlamentoApi.Filtros
 {
     public class SenadoresFiltro : BaseFiltro<Senador>
     {
+        public string nome { get; set; }
         public string siglaPartido { get; set; }
         public string ufMandato { get; set; }
         public int? codigoPrimeiraLegislatura { get; set; }
@@ -17,6 +18,11 @@ namespace ParlamentoApi.Filtros
         public override Expression<Func<Senador, bool>> Condicoes()
         {
             Expression<Func<Senador, bool>> condicoes = PredicateBuilder.True<Senador>();
+
+            if (nome != null)
+            {
+                condicoes = condicoes.And(x => x.Nome.Contains(nome));
+            }
 
             if (siglaPartido != null)
             {

@@ -28,7 +28,7 @@ namespace ParlamentoApi.Controllers
         [HttpGet]
         public HttpResponseMessage Contar([FromUri]SenadoresFiltro filtro)
         {
-            var quantidade = _servicosApp.Contar(filtro?.Condicoes());
+            var quantidade = _servicosApp.Contar(filtro.Condicoes());
 
             return Request.CreateResponse(HttpStatusCode.OK, quantidade);
         }
@@ -42,6 +42,42 @@ namespace ParlamentoApi.Controllers
         public HttpResponseMessage Listar([FromUri]SenadoresFiltro filtro)
         {
             var lista = _servicosApp.Listar(filtro.Condicoes(), filtro.ordenarPor, filtro.deslocamento, filtro.limite);
+
+            return Request.CreateResponse(HttpStatusCode.OK, lista);
+        }
+
+        /// <summary>
+        /// Lista os Partidos distintos dos Senadores
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage ListarPartidos()
+        {
+            var lista = _servicosApp.ListarPartidos();
+
+            return Request.CreateResponse(HttpStatusCode.OK, lista);
+        }
+
+        /// <summary>
+        /// Lista os Estados distintos dos Senadores
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage ListarEstados()
+        {
+            var lista = _servicosApp.ListarEstados();
+
+            return Request.CreateResponse(HttpStatusCode.OK, lista);
+        }
+
+        /// <summary>
+        /// Lista os Sexos distintos dos Senadores
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage ListarSexos()
+        {
+            var lista = _servicosApp.ListarSexos();
 
             return Request.CreateResponse(HttpStatusCode.OK, lista);
         }

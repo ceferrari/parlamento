@@ -85,12 +85,7 @@ namespace ParlamentoDominio.Servicos
             return _repositorio.ObterPorChave(chave);
         }
 
-        public object Contar()
-        {
-            return _repositorio.Contar();
-        }
-
-        public object Contar(Expression<Func<TEntidade, bool>> condicoes)
+        public object Contar(Expression<Func<TEntidade, bool>> condicoes = null)
         {
             return _repositorio.Contar(condicoes);
         }

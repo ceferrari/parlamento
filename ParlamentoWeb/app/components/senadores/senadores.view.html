@@ -1,0 +1,67 @@
+﻿<section class="content-header">
+    <h1>
+        Lista de Senadores
+        <small>Por Partido</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Senadores</a></li>
+        <li class="active">Por Partido</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box">
+        <div class="box-body">
+            <div ng-include="'app/components/senadores/partials/filtros.partial.html'"></div>
+            <div ng-include="'app/components/senadores/partials/paginacao.partial.html'"></div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Partido</th>
+                    <th>Estado</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody ng-if="!vm.Senadores.length">
+                    <tr>
+                        <td class="text-center" colspan="6">
+                            <h3>
+                                <span class="glyphicon glyphicon-alert"></span>
+                                &nbsp;&nbsp;&nbsp;Nenhum Senador encontrado com os filtros selecionados!
+                            </h3>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                <tr ng-repeat="Senador in vm.Senadores">
+                    <td class="text-center">
+                        <img ng-src="{{Senador.UrlFoto}}" style="height: 70px"/>
+                    </td>
+                    <td>
+                        <h3>{{Senador.Nome}}</h3>
+                    </td>
+                    <td>
+                        <h3>{{Senador.SiglaPartido}}</h3>
+                    </td>
+                    <td>
+                        <h3>{{Senador.UfMandato}}</h3>
+                    </td>
+                    <td>
+                        <h3>{{Senador.Email}}</h3>
+                    </td>
+                    <td class="vmiddle">
+                        <a href="##" class="btn btn-block btn-default">
+                            <i class="glyphicon glyphicon-list"></i>
+                            &nbsp;&nbsp;&nbsp;Votos
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div ng-include="'app/components/senadores/partials/paginacao.partial.html'"></div>
+        </div>
+    </div>
+</section>

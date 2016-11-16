@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ParlamentoDados.Repositorios.Senado
 {
@@ -94,6 +95,21 @@ namespace ParlamentoDados.Repositorios.Senado
                     .Include(x => x.PrimeiraLegislatura)
                     .Include(x => x.SegundaLegislatura)
                     .Include(x => x.Votos);
+        }
+
+        public IEnumerable<string> ListarPartidos()
+        {
+            return Db.Set<Senador>().AsNoTracking().Select(x => x.SiglaPartido).Distinct();
+        }
+
+        public IEnumerable<string> ListarEstados()
+        {
+            return Db.Set<Senador>().AsNoTracking().Select(x => x.UfMandato).Distinct();
+        }
+
+        public IEnumerable<string> ListarSexos()
+        {
+            return Db.Set<Senador>().AsNoTracking().Select(x => x.Sexo).Distinct();
         }
     }
 }

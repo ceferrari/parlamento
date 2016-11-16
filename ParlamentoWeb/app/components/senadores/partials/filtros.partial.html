@@ -1,0 +1,35 @@
+﻿<div class="row margin-lr-m5 margin-t-10">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="filtroNome">Nome</label>
+            <input type="text" class="form-control" id="filtroNome" ng-model="vm.Filtros.Nome" ng-keypress="vm.Atualizar($event)">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="filtroPartido">Partido</label>
+            <select class="form-control" id="filtroPartido" ng-model="vm.Filtros.Partido" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Partido for Partido in vm.Partidos">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="filtroEstado">Estado</label>
+            <select class="form-control" id="filtroEstado" ng-model="vm.Filtros.Estado" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Estado for Estado in vm.Estados">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="filtroSexo">Sexo</label>
+            <select class="form-control" id="filtroSexo" ng-model="vm.Filtros.Sexo" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Sexo for Sexo in vm.Sexos">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+</div>

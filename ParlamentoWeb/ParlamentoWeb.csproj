@@ -56,6 +56,10 @@
     <Content Include="app\components\login\login.controller.js" />
     <Content Include="app\components\register\register.controller.js" />
     <Content Include="app\components\register\register.view.html" />
+    <Content Include="app\components\senadores\partials\filtros.partial.html" />
+    <Content Include="app\components\senadores\senadores.controller.js" />
+    <Content Include="app\components\senadores\senadores.view.html" />
+    <Content Include="app\components\senadores\partials\paginacao.partial.html" />
     <Content Include="app\helpers\fake-backend.js" />
     <Content Include="app\main.controller.js" />
     <Content Include="app\services\authentication.service.js" />
@@ -102,6 +106,8 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\js\AdminLTE.js" />
     <Content Include="assets\js\AdminLTE.min.js" />
+    <Content Include="assets\libs\angular-animate.js" />
+    <Content Include="assets\libs\angular-animate.min.js" />
     <Content Include="assets\libs\angular-messages.js" />
     <Content Include="assets\libs\angular-messages.min.js" />
     <Content Include="assets\libs\angular-resource.js" />
@@ -223,6 +229,10 @@
     <Content Include="assets\libs\iCheck\square\_all.css" />
     <Content Include="assets\libs\ngStorage.js" />
     <Content Include="assets\libs\ngStorage.min.js" />
+    <Content Include="assets\libs\slimScroll\jquery.slimscroll.js" />
+    <Content Include="assets\libs\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="assets\libs\ui-bootstrap-2.2.0.js" />
+    <Content Include="assets\libs\ui-bootstrap-tpls-2.2.0.js" />
     <Content Include="favicon.ico" />
     <Content Include="assets\libs\angular-mocks.js" />
     <Content Include="assets\js\angular.js" />
@@ -252,6 +262,7 @@
     <Content Include="assets\js\jquery-3.1.1.slim.min.map" />
     <Content Include="assets\js\jquery-3.1.1.min.map" />
     <Content Include="assets\libs\angular-resource.min.js.map" />
+    <Content Include="assets\libs\angular-animate.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -269,7 +280,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\senadores\" />
     <Folder Include="assets\img\" />
   </ItemGroup>
   <PropertyGroup>

@@ -960,6 +960,24 @@
             <param name="filtro"></param>
             <returns></returns>
         </member>
+        <member name="M:ParlamentoApi.Controllers.SenadoresController.ListarPartidos">
+            <summary>
+            Lista os Partidos distintos dos Senadores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.SenadoresController.ListarEstados">
+            <summary>
+            Lista os Estados distintos dos Senadores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.SenadoresController.ListarSexos">
+            <summary>
+            Lista os Sexos distintos dos Senadores
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ParlamentoApi.Controllers.SenadoresController.ObterPorChave(System.Int32)">
             <summary>
             Obtém um Senador pelo código

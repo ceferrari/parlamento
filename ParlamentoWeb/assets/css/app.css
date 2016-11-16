@@ -1,6 +1,175 @@
-﻿.text-left-i {
+﻿.content-wrapper,
+.right-side,
+.main-footer,
+.main-header > .navbar  {
+    margin-left: 190px;
+}
+.left-side,
+.main-sidebar,
+.main-header .logo {
+    width: 190px;
+}
+.main-header .logo .logo-mini img {
+    width: 40px;
+}
+.main-header .logo .logo-lg img {
+    width: 160px;
+}
+/*.main-header > .navbar {
+    border-left: 1px solid #ecf0f5;
+}*/
+.main-header > .navbar a,
+.main-header > .navbar a:active,
+.main-header > .navbar a:hover {
+    text-decoration: none;
+}
+.sidebar-menu .treeview-menu .treeview-menu {
+    padding-left: 0;
+}
+.sidebar-menu .treeview-menu > li > a {
+    color: #3c8dbc;
+    font-size: 13px;
+    padding: 5px;
+    text-decoration: none;
+}
+.skin-blue-light .wrapper, 
+.skin-blue-light .main-sidebar, 
+.skin-blue-light .left-side,
+.skin-blue-light .sidebar-menu > li.header {
+    background-color: #fff;
+}
+.skin-blue-light .sidebar-menu > li > a,
+.skin-blue-light .sidebar-menu > li:hover > a, 
+.skin-blue-light .sidebar-menu > li.active > a {
+    border-top: 1px solid #d2d6de;
+    border-bottom: 1px solid #d2d6de;
+    margin-top: -1px;
+}
+.skin-blue-light .sidebar-menu > li:hover > a, 
+.skin-blue-light .sidebar-menu > li.active > a,
+.skin-blue-light .sidebar-menu > li > .treeview-menu {
+    background: #ecf0f5;
+}
+.skin-blue-light .sidebar a,
+.skin-blue-light .sidebar-menu > li > a,
+.skin-blue-light .sidebar-menu > li.active > a,
+.skin-blue-light .treeview-menu > li > a,
+.skin-blue-light .treeview-menu > li.active > a,
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > a,
+.sidebar-mini.sidebar-collapse .sidebar-menu > li.active > a {
+    color: #3c8dbc;
+}
+.skin-blue-light .sidebar a:hover,
+.skin-blue-light .sidebar a:focus,
+.skin-blue-light .sidebar-menu > li > a:hover,
+.skin-blue-light .sidebar-menu > li > a:focus,
+.skin-blue-light .sidebar-menu > li.active > a:hover,
+.skin-blue-light .sidebar-menu > li.active > a:focus,
+.skin-blue-light .treeview-menu > li > a:hover,
+.skin-blue-light .treeview-menu > li > a:focus,
+.skin-blue-light .treeview-menu > li.active > a:hover
+.skin-blue-light .treeview-menu > li.active > a:focus
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > a:hover,
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > a:focus,
+.sidebar-mini.sidebar-collapse .sidebar-menu > li.active > a:hover,
+.sidebar-mini.sidebar-collapse .sidebar-menu > li.active > a:focus {
+    color: #3c8dbc;
+    font-weight: bold;
+    text-decoration: none;
+}
+.sidebar-menu .treeview-menu > li > a > .fa, 
+.sidebar-menu .treeview-menu > li > a > .glyphicon, 
+.sidebar-menu .treeview-menu > li > a > .ion {
+    width: 15px;
+}
+.skin-blue-light .sidebar-menu > li.header {
+    cursor: default;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.toast,
+#toast-container > div {
+  opacity: 0.95 !important; 
+}
+.box,
+.content-header {
+    max-width: 1128px;
+    margin: 0 auto;
+}
+.pagination,
+.paginacao {
+    font-family: monospace;
+}
+.pagination {
+    margin: 10px 0;
+    vertical-align: middle;
+}
+.pagination-sm > li > a, 
+.pagination-sm > li > span {
+    padding: 2px 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    width: 55px;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:nth-child(2) > a,
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:nth-last-child(2) > a {
+    width: 30.25px;
+}
+.pagination > .disabled > a, 
+.pagination > .disabled > a:focus, 
+.pagination > .disabled > a:hover, 
+.pagination > .disabled > span, 
+.pagination > .disabled > span:focus, 
+.pagination > .disabled > span:hover {
+    color: #ddd;
+}
+.paginacao select,
+.paginacao option {
+    margin-top: 14px;
+}
+.paginacao p {
+    margin-top: 16px;
+}
+.paginacao select,
+.paginacao option,
+.paginacao p {
+    font-size: 14px;
+    white-space: nowrap;
+}
+.paginacao select,
+.paginacao option {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    outline: 0;
+    text-decoration: underline;
+}
+.paginacao select:hover,
+.paginacao option:hover {
+    text-decoration: underline;
+}
+.paginacao select {
+    color: #337ab7;
+}
+.paginacao option {
+    color: #555;
+}
+.paginacao p {
+    margin-right: 15px;
+}
+.ordenacao {
+    cursor: pointer;
+}
+.table > tbody > tr:last-child {
+    border-bottom: 2px solid #f4f4f4;
+}
+.text-left-i {
     text-align: left !important;
 }
 .margin-top-5 {
     margin-top: 5px !important;
+}
+
+.vmiddle {
+    vertical-align: middle !important;
 }

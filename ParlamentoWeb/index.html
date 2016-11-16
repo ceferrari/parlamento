@@ -20,7 +20,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 </head>
-<body class="hold-transition ng-cloak" ng-cloak ng-class="{'login-page': $state.current.name == 'login', 'skin-blue-light sidebar-mini': $state.current.name != 'login' }">
+<body class="hold-transition fixed ng-cloak" ng-cloak ng-class="{'login-page': $state.current.name == 'login', 'skin-blue-light sidebar-mini': $state.current.name != 'login' }">
     <div ng-class="{'wrapper': $state.current.name != 'login' }" ui-view>
         <header class="main-header" ui-view="header"></header>
         <aside class="main-sidebar" ui-view="menu"></aside>
@@ -30,13 +30,16 @@
     <!-- Theme -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/AdminLTE.min.js"></script>
-    <script src="/assets/libs/iCheck/icheck.min.js"></script>
+    <script src="assets/libs/iCheck/icheck.min.js"></script>
+    <script src="assets/libs/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- Angular Libs -->
-    <script src="assets/libs/angular-ui-router.min.js"></script>
+    <script src="assets/libs/angular-animate.min.js"></script>
     <script src="assets/libs/angular-resource.min.js"></script>
     <script src="assets/libs/angular-messages.min.js"></script>
     <script src="assets/libs/angular-mocks.js"></script>
     <script src="assets/libs/ngStorage.min.js"></script>
+    <script src="assets/libs/angular-ui-router.min.js"></script>
+    <script src="assets/libs/ui-bootstrap-tpls-2.2.0.js"></script>
     <!-- Angular App -->
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
@@ -49,6 +52,7 @@
     <script src="app/components/login/login.controller.js"></script>
     <script src="app/components/register/register.controller.js"></script>
     <script src="app/components/home/home.controller.js"></script>
+    <script src="app/components/senadores/senadores.controller.js"></script>
     <!-- Angular Fake Backend -->
     <script src="app/helpers/fake-backend.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

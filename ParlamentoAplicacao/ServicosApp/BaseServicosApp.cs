@@ -85,12 +85,7 @@ namespace ParlamentoAplicacao.ServicosApp
             return _servicos.ObterPorChave(chave);
         }
 
-        public object Contar()
-        {
-            return _servicos.Contar();
-        }
-
-        public object Contar(Expression<Func<TEntidade, bool>> condicoes)
+        public object Contar(Expression<Func<TEntidade, bool>> condicoes = null)
         {
             return _servicos.Contar(condicoes);
         }

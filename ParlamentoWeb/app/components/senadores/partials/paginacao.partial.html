@@ -1,0 +1,23 @@
+﻿<div class="row paginacao text-center">
+    <div class="col-sm-6 text-left">
+        <label for="ordenacao">Ordenar por: </label>
+        <select class="ordenacao" id="ordenacao" ng-model="vm.Paginacao.Ordem" ng-change="vm.Atualizar(null, true)">
+            <option value="Nome ASC">Nome ASC</option>
+            <option value="Nome DESC">Nome DESC</option>
+            <option value="SiglaPartido ASC">Partido ASC</option>
+            <option value="SiglaPartido DESC">Partido DESC</option>
+            <option value="UfMandato ASC">Estado ASC</option>
+            <option value="UfMandato DESC">Estado DESC</option>
+        </select>
+    </div>
+    <div class="col-sm-12">
+         <ul class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-change="vm.Atualizar()"
+            ng-model="vm.Paginacao.Atual" total-items="vm.Paginacao.Total" items-per-page="vm.Paginacao.Limite" max-size="5" 
+            uib-pagination="" boundary-links="true" boundary-link-numbers="false" force-ellipses="false" rotate="true"
+            previous-text="‹" next-text="›" first-text="«" last-text="»">
+        </ul>
+    </div>
+    <div class="col-sm-6 text-right">
+        <p class="pull-right">{{vm.Paginacao.Calcular()}} Senadores</p>
+    </div>
+</div>

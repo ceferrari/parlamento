@@ -1,6 +1,7 @@
 ﻿using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Servicos.Senado;
+using System.Collections.Generic;
 
 namespace ParlamentoAplicacao.ServicosApp.Senado
 {
@@ -12,6 +13,21 @@ namespace ParlamentoAplicacao.ServicosApp.Senado
             : base (servicos)
         {
             _servicos = servicos;
+        }
+
+        public IEnumerable<string> ListarPartidos()
+        {
+            return _servicos.ListarPartidos();
+        }
+
+        public IEnumerable<string> ListarEstados()
+        {
+            return _servicos.ListarEstados();
+        }
+
+        public IEnumerable<string> ListarSexos()
+        {
+            return _servicos.ListarSexos();
         }
     }
 }
