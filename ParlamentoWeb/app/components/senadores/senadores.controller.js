@@ -59,8 +59,8 @@
                     limite: vm.Paginacao.Limite,
                     ordenarPor: vm.Paginacao.Ordem + ",Nome",
                     nome: vm.Filtros.Nome,
-                    siglaPartido: vm.Filtros.Partido,
-                    ufMandato: vm.Filtros.Estado,
+                    partido: vm.Filtros.Partido,
+                    estado: vm.Filtros.Estado,
                     sexo: vm.Filtros.Sexo
                 }, function (resultado) {
                     vm.Senadores = resultado;
@@ -68,8 +68,8 @@
                 RestService.get({
                     controller: "Senadores", action: "Contar",
                     nome: vm.Filtros.Nome,
-                    siglaPartido: vm.Filtros.Partido,
-                    ufMandato: vm.Filtros.Estado,
+                    partido: vm.Filtros.Partido,
+                    estado: vm.Filtros.Estado,
                     sexo: vm.Filtros.Sexo
                 }, function (resultado) {
                     vm.Paginacao.Total = resultado.Total;
@@ -86,6 +86,7 @@
             };
 
             vm.LimparFiltros = function () {
+                vm.Paginacao.Limite = 9;
                 vm.Paginacao.Ordem = "Nome ASC";
                 vm.Filtros = {
                     Nome: "",

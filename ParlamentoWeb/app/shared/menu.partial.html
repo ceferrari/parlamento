@@ -11,13 +11,13 @@
     </form>
     <ul class="sidebar-menu">
         <li class="header">MENU PRINCIPAL</li>
-        <li class="treeview">
-            <a ui-sref="home">
+        <li class="treeview" ng-class="{ active: $state.current.name == 'dashboard'}">
+            <a ui-sref="dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
             <ul class="treeview-menu"></ul>
         </li>
-        <li class="treeview">
+        <li class="treeview" ng-class="{ active: $state.current.name == 'senadores'}">
             <a ui-sref="senadores">
                 <i class="fa fa-users"></i> <span>Senadores</span>
             </a>

@@ -1,23 +1,33 @@
 ﻿<div class="row paginacao text-center">
-    <div class="col-sm-6 text-left">
-        <label for="ordenacao">Ordenar por: </label>
-        <select class="ordenacao" id="ordenacao" ng-model="vm.Paginacao.Ordem" ng-change="vm.Atualizar(null, true)">
-            <option value="Nome ASC">Nome ASC</option>
-            <option value="Nome DESC">Nome DESC</option>
-            <option value="SiglaPartido ASC">Partido ASC</option>
-            <option value="SiglaPartido DESC">Partido DESC</option>
-            <option value="UfMandato ASC">Estado ASC</option>
-            <option value="UfMandato DESC">Estado DESC</option>
-        </select>
+    <div class="col-sm-7 text-left no-padding-right">
+        <div class="col-sm-14 text-left no-padding">
+            <label for="ordenacao">Ordem: </label>
+            <select class="ordenacao" id="ordenacao" ng-model="vm.Paginacao.Ordem" ng-change="vm.Atualizar(null, true)">
+                <option value="Nome ASC">Nome ASC</option>
+                <option value="Nome DESC">Nome DESC</option>
+                <option value="SiglaPartido ASC">Partido ASC</option>
+                <option value="SiglaPartido DESC">Partido DESC</option>
+                <option value="UfMandato ASC">Estado ASC</option>
+                <option value="UfMandato DESC">Estado DESC</option>
+            </select>
+        </div>
+        <div class="col-sm-10 text-right no-padding">
+            <label for="exibicao">Por página: </label>
+            <select class="exibicao" id="exibicao" ng-model="vm.Paginacao.Limite" ng-change="vm.Atualizar(null, true)" convert-to-number>
+                <option value="9">9</option>
+                <option value="27">27</option>
+                <option value="81">81</option>
+            </select>
+        </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-10 no-padding">
          <ul class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-change="vm.Atualizar()"
             ng-model="vm.Paginacao.Atual" total-items="vm.Paginacao.Total" items-per-page="vm.Paginacao.Limite" max-size="5" 
             uib-pagination="" boundary-links="true" boundary-link-numbers="false" force-ellipses="false" rotate="true"
             previous-text="‹" next-text="›" first-text="«" last-text="»">
         </ul>
     </div>
-    <div class="col-sm-6 text-right">
+    <div class="col-sm-7 text-right no-padding-left">
         <p class="pull-right">{{vm.Paginacao.Calcular()}} Senadores</p>
     </div>
 </div>

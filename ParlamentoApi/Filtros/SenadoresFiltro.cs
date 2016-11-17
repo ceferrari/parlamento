@@ -8,10 +8,10 @@ namespace ParlamentoApi.Filtros
     public class SenadoresFiltro : BaseFiltro<Senador>
     {
         public string nome { get; set; }
-        public string siglaPartido { get; set; }
-        public string ufMandato { get; set; }
-        public int? codigoPrimeiraLegislatura { get; set; }
-        public int? codigoSegundaLegislatura { get; set; }
+        public string partido { get; set; }
+        public string estado { get; set; }
+        public int? primeiraLeg { get; set; }
+        public int? segundaLeg { get; set; }
         public string sexo { get; set; }
         public bool? emExercicio { get; set; }
 
@@ -24,24 +24,24 @@ namespace ParlamentoApi.Filtros
                 condicoes = condicoes.And(x => x.Nome.Contains(nome));
             }
 
-            if (siglaPartido != null)
+            if (partido != null)
             {
-                condicoes = condicoes.And(x => x.SiglaPartido.Equals(siglaPartido));
+                condicoes = condicoes.And(x => x.SiglaPartido.Equals(partido));
             }
 
-            if (ufMandato != null)
+            if (estado != null)
             {
-                condicoes = condicoes.And(x => x.UfMandato.Equals(ufMandato));
+                condicoes = condicoes.And(x => x.UfMandato.Equals(estado));
             }
 
-            if (codigoPrimeiraLegislatura != null)
+            if (primeiraLeg != null)
             {
-                condicoes = condicoes.And(x => x.CodigoPrimeiraLegislatura == codigoPrimeiraLegislatura);
+                condicoes = condicoes.And(x => x.CodigoPrimeiraLegislatura == primeiraLeg);
             }
 
-            if (codigoSegundaLegislatura != null)
+            if (segundaLeg != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSegundaLegislatura == codigoSegundaLegislatura);
+                condicoes = condicoes.And(x => x.CodigoSegundaLegislatura == segundaLeg);
             }
 
             if (sexo != null)

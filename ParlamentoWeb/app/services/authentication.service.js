@@ -17,7 +17,7 @@
                     if (response.token) {
                         $localStorage.currentUser = { fullName: response.fullName, email: email, token: response.token };
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
-                        $state.go("home");
+                        $state.go("dashboard");
                         callback(true);
                     } else {
                         callback(false);

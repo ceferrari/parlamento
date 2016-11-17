@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('Home', controller);
+        .controller('Dashboard', controller);
 
     function controller() {
         var vm = this;

@@ -6,7 +6,7 @@
         .config(routes);
 
     function routes($stateProvider, $urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/dashboard');
 
         $stateProvider
             .state('login', {
@@ -21,8 +21,8 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/components/register/register.view.html'
             })
-            .state('home', {
-                url: '/',
+            .state('dashboard', {
+                url: '/dashboard',
                 views: {
                     "header": {
                         controller: 'Main',
@@ -31,15 +31,15 @@
                     },
                     "menu": { templateUrl: "app/shared/menu.partial.html" },
                     "content": {
-                        controller: 'Home',
+                        controller: 'Dashboard',
                         controllerAs: 'vm',
-                        templateUrl: "app/components/home/home.view.html"
+                        templateUrl: "app/components/dashboard/dashboard.view.html"
                     },
                     "footer": { templateUrl: "app/shared/footer.partial.html" }
                 }
             })
             .state('senadores', {
-                url: '/',
+                url: '/senadores',
                 views: {
                     "header": {
                         controller: 'Main',
@@ -56,9 +56,9 @@
                 }
             });
 
-        //$locationProvider.html5Mode({
-        //    enabled: true,
-        //    requireBase: false
-        //});
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
     }
 })();

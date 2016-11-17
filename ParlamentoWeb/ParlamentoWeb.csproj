@@ -50,8 +50,8 @@
     <Content Include="app\app.module.js" />
     <Content Include="app\app.routes.js" />
     <Content Include="app\app.run.js" />
-    <Content Include="app\components\home\home.view.html" />
-    <Content Include="app\components\home\home.controller.js" />
+    <Content Include="app\components\dashboard\dashboard.view.html" />
+    <Content Include="app\components\dashboard\dashboard.controller.js" />
     <Content Include="app\components\login\login.view.html" />
     <Content Include="app\components\login\login.controller.js" />
     <Content Include="app\components\register\register.controller.js" />
@@ -60,6 +60,7 @@
     <Content Include="app\components\senadores\senadores.controller.js" />
     <Content Include="app\components\senadores\senadores.view.html" />
     <Content Include="app\components\senadores\partials\paginacao.partial.html" />
+    <Content Include="app\directives\convertToNumber.directive.js" />
     <Content Include="app\helpers\fake-backend.js" />
     <Content Include="app\main.controller.js" />
     <Content Include="app\services\authentication.service.js" />
@@ -104,6 +105,33 @@
     <Content Include="assets\css\skins\_all-skins.min.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\img\uf\AC_p.gif" />
+    <Content Include="assets\img\uf\AL_p.gif" />
+    <Content Include="assets\img\uf\AM_p.gif" />
+    <Content Include="assets\img\uf\AP_p.gif" />
+    <Content Include="assets\img\uf\BA_p.gif" />
+    <Content Include="assets\img\uf\CE_p.gif" />
+    <Content Include="assets\img\uf\DF_p.gif" />
+    <Content Include="assets\img\uf\ES_p.gif" />
+    <Content Include="assets\img\uf\GO_p.gif" />
+    <Content Include="assets\img\uf\MA_p.gif" />
+    <Content Include="assets\img\uf\MG_p.gif" />
+    <Content Include="assets\img\uf\MS_p.gif" />
+    <Content Include="assets\img\uf\MT_p.gif" />
+    <Content Include="assets\img\uf\PA_p.gif" />
+    <Content Include="assets\img\uf\PB_p.gif" />
+    <Content Include="assets\img\uf\PE_p.gif" />
+    <Content Include="assets\img\uf\PI_p.gif" />
+    <Content Include="assets\img\uf\PR_p.gif" />
+    <Content Include="assets\img\uf\RJ_p.gif" />
+    <Content Include="assets\img\uf\RN_p.gif" />
+    <Content Include="assets\img\uf\RO_p.gif" />
+    <Content Include="assets\img\uf\RR_p.gif" />
+    <Content Include="assets\img\uf\RS_p.gif" />
+    <Content Include="assets\img\uf\SC_p.gif" />
+    <Content Include="assets\img\uf\SE_p.gif" />
+    <Content Include="assets\img\uf\SP_p.gif" />
+    <Content Include="assets\img\uf\TO_p.gif" />
     <Content Include="assets\js\AdminLTE.js" />
     <Content Include="assets\js\AdminLTE.min.js" />
     <Content Include="assets\libs\angular-animate.js" />
@@ -279,9 +307,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\img\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

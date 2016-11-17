@@ -124,6 +124,10 @@
 .pagination > .disabled > span:hover {
     color: #ddd;
 }
+.paginacao label {
+    font-size: 12px;
+    font-weight: 100;
+}
 .paginacao select,
 .paginacao option {
     margin-top: 14px;
@@ -154,22 +158,47 @@
 .paginacao option {
     color: #555;
 }
-.paginacao p {
+/*.paginacao p {
     margin-right: 15px;
-}
-.ordenacao {
+}*/
+.ordenacao,
+.exibicao {
     cursor: pointer;
 }
 .table > tbody > tr:last-child {
     border-bottom: 2px solid #f4f4f4;
 }
+.vmiddle {
+    vertical-align: middle !important;
+}
 .text-left-i {
     text-align: left !important;
 }
-.margin-top-5 {
+.margin-t-5 {
     margin-top: 5px !important;
 }
-
-.vmiddle {
-    vertical-align: middle !important;
+.margin-r-10 {
+    margin-right: 10px !important;
+}
+.padding-t-3 {
+    padding-top: 3px !important;
+}
+.no-padding-right {
+    padding-right: 0 !important;
+}
+.no-padding-left {
+    padding-left: 0 !important;
+}
+.border-tb-1 {
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+}
+.table > thead > tr > th > span {
+    padding-top: 3px;
+}
+.table > tbody > tr > td > h3 > img {
+    padding-bottom: 3px;
+}
+.fundo-cinza {
+    /*background: #f4f4f4;*/
 }
