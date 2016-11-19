@@ -6,8 +6,8 @@
         .factory('RestService', service);
 
     function service($resource) {
-        //var provider = "http://localhost:54400/:controller/:action/:id";
-        var provider = "http://votossenado.net/api/:controller/:action/:id";
+        var provider = "http://localhost:54400/:controller/:action/:id";
+        //var provider = "http://votossenado.net/api/:controller/:action/:id";
         var params = { "controller": "@controller", "action": "@action", "id": "@id" };
         var methods = {
             'get': { method: "GET" },

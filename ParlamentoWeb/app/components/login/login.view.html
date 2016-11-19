@@ -5,18 +5,21 @@
     <div class="login-box-body">
         <p class="login-box-msg">Faça o login para acessar o sistema</p>
         <form name="form" ng-submit="form.$valid && vm.login()" novalidate>
-            <div class="form-group has-feedback" ng-class="{ 'has-error': form.$submitted && form.email.$invalid }">
-                <input type="email" class="form-control" placeholder="E-mail" ng-model="vm.email" required>
+            <div class="form-group has-feedback" ng-class="{ 'has-error': form.email.$dirty && !Compare(form.email.$error, {}) }">
+                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" ng-model="vm.email" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                <div ng-messages="form.$submitted && form.email.$error" class="help-block">
+                <div ng-messages="form.email.$dirty && form.email.$error" class="help-block">
                     <div ng-message="required">E-mail obrigatório</div>
+                    <div ng-message="email">E-mail inválido</div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Senha" ng-model="vm.password" required>
+            <div class="form-group has-feedback" ng-class="{ 'has-error': form.senha.$dirty && !Compare(form.senha.$error, {}) }">
+                <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" ng-model="vm.senha" ng-minlength="6" ng-maxlength="20" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                <div ng-messages="form.$submitted && form.password.$error" class="help-block">
+                <div ng-messages="form.senha.$dirty && form.senha.$error" class="help-block">
                     <div ng-message="required">Senha obrigatória</div>
+                    <div ng-message="minlength">Senha deve ter no mínimo 6 caracteres</div>
+                    <div ng-message="maxlength">Senha deve ter no máximo 20 caracteres</div>
                 </div>
             </div>
             <div class="row">
@@ -36,7 +39,7 @@
             </div>
         </form>
         <a href="#">Esqueci minha senha</a><br>
-        <a ui-sref="register" class="text-center">Registrar novo usuário</a>
+        <a ui-sref="registro" class="text-center">Registrar novo usuário</a>
     </div>
     <br />
     <div ng-if="vm.error" class="alert alert-danger">{{vm.error}}</div>

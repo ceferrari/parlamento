@@ -6,13 +6,13 @@
         .run(setupFakeBackend);
 
     function setupFakeBackend($httpBackend) {
-        var testUser = { fullName: 'Carlos Eduardo Ferrari', email: 'carled@gmail.com', password: '123456' };
+        var usuario = { nomeCompleto: 'Carlos Eduardo Ferrari', email: 'carled@gmail.com', senha: '123456' };
 
         $httpBackend.whenPOST('/api/authenticate').respond(function (method, url, data) {
             var params = angular.fromJson(data);
 
-            if (params.email === testUser.email && params.password === testUser.password) {
-                return [200, { token: 'fake-jwt-token', fullName: testUser.fullName }, {}];
+            if (params.email === usuario.email && params.senha === usuario.senha) {
+                return [200, { token: 'fake-jwt-token', nomeCompleto: usuario.nomeCompleto }, {}];
             } else {
                 return [200, {}, {}];
             }

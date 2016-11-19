@@ -23,13 +23,12 @@ namespace ParlamentoApi.Controllers
         /// <summary>
         /// Autentica um Usuário pelo e-mail e senha fornecidos
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="senha"></param>
+        /// <param name="usuario"></param>
         /// <returns></returns>
         [HttpPost]
-        public HttpResponseMessage Autenticar([FromBody]string email, [FromBody]string senha)
+        public HttpResponseMessage Autenticar([FromBody]Usuario usuario)
         {
-            var entidade = _servicosApp.Autenticar(email, senha);
+            var entidade = _servicosApp.Autenticar(usuario.Email, usuario.Senha);
 
             return Request.CreateResponse(HttpStatusCode.OK, entidade);
         }

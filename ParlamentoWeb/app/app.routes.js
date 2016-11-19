@@ -15,11 +15,11 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/components/login/login.view.html'
             })
-            .state('register', {
-                url: '/register',
-                controller: 'Register',
+            .state('registro', {
+                url: '/registro',
+                controller: 'Registro',
                 controllerAs: 'vm',
-                templateUrl: 'app/components/register/register.view.html'
+                templateUrl: 'app/components/registro/registro.view.html'
             })
             .state('dashboard', {
                 url: '/dashboard',

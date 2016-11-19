@@ -11,8 +11,8 @@
         initController();
 
         function initController() {
-            vm.fullName = $localStorage.currentUser.fullName;
-            vm.email = $localStorage.currentUser.email;
+            vm.nomeCompleto = $localStorage.Usuario.nomeCompleto;
+            vm.email = $localStorage.Usuario.email;
             vm.logout = logout;
         };
 

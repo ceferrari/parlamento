@@ -56,13 +56,14 @@
     <Content Include="app\components\login\login.controller.js" />
     <Content Include="app\components\materias\materias.controller.js" />
     <Content Include="app\components\materias\materias.view.html" />
-    <Content Include="app\components\register\register.controller.js" />
-    <Content Include="app\components\register\register.view.html" />
+    <Content Include="app\components\registro\registro.controller.js" />
+    <Content Include="app\components\registro\registro.view.html" />
     <Content Include="app\components\senadores\partials\filtros.partial.html" />
     <Content Include="app\components\senadores\senadores.controller.js" />
     <Content Include="app\components\senadores\senadores.view.html" />
     <Content Include="app\components\senadores\partials\paginacao.partial.html" />
     <Content Include="app\components\votos\votos.controller.js" />
+    <Content Include="app\directives\compare.directive.js" />
     <Content Include="app\directives\convertToNumber.directive.js" />
     <Content Include="app\helpers\fake-backend.js" />
     <Content Include="app\main.controller.js" />

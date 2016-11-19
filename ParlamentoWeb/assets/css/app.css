@@ -194,6 +194,8 @@
     padding-top: 3px;
 }
 .table > tbody > tr > td > h3 > img {
-    height: 70px;
     padding-bottom: 3px;
+}
+.table > tbody > tr > td > img {
+    height: 70px;
 }

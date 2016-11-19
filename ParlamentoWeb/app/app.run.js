@@ -9,14 +9,18 @@
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
-        if ($localStorage.currentUser) {
-            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+        $rootScope.Compare = function (a, b) {
+            return angular.equals(a, b);
         }
+
+        //if ($localStorage.Usuario) {
+        //    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.Usuario.token;
+        //}
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var publicPages = ['/login'];
             var restrictedPage = publicPages.indexOf($location.path()) === -1;
-            if (restrictedPage && !$localStorage.currentUser) {
+            if (restrictedPage && !$localStorage.Usuario) {
                 $location.path('/login');
             }
         });

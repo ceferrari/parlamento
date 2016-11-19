@@ -21,11 +21,9 @@ namespace ParlamentoDados.Repositorios.Senado
                     ? Db.Set<Senador>().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
                         .Include(x => x.PrimeiraLegislatura)
                         .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos)
                     : Db.Set<Senador>().AsNoTracking().Where(condicoes).OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
                         .Include(x => x.PrimeiraLegislatura)
-                        .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos);
+                        .Include(x => x.SegundaLegislatura);
             }
 
             // Ordenado Paginado
@@ -35,11 +33,9 @@ namespace ParlamentoDados.Repositorios.Senado
                     ? Db.Set<Senador>().OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
                         .Include(x => x.PrimeiraLegislatura)
                         .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos)
                     : Db.Set<Senador>().AsNoTracking().OrderBy(ordenarPor).Skip(deslocamento).Take(limite)
                         .Include(x => x.PrimeiraLegislatura)
-                        .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos);
+                        .Include(x => x.SegundaLegislatura);
             }
 
             // Ordenado Condicional
@@ -49,11 +45,9 @@ namespace ParlamentoDados.Repositorios.Senado
                     ? Db.Set<Senador>().Where(condicoes).OrderBy(ordenarPor)
                         .Include(x => x.PrimeiraLegislatura)
                         .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos)
                     : Db.Set<Senador>().AsNoTracking().Where(condicoes).OrderBy(condicoes)
                         .Include(x => x.PrimeiraLegislatura)
-                        .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos);
+                        .Include(x => x.SegundaLegislatura);
             }
 
             // Ordenado
@@ -63,11 +57,9 @@ namespace ParlamentoDados.Repositorios.Senado
                     ? Db.Set<Senador>().OrderBy(ordenarPor)
                         .Include(x => x.PrimeiraLegislatura)
                         .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos)
                     : Db.Set<Senador>().AsNoTracking().OrderBy(ordenarPor)
                         .Include(x => x.PrimeiraLegislatura)
-                        .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos);
+                        .Include(x => x.SegundaLegislatura);
             }
 
             // Condicional
@@ -77,11 +69,9 @@ namespace ParlamentoDados.Repositorios.Senado
                     ? Db.Set<Senador>().Where(condicoes)
                         .Include(x => x.PrimeiraLegislatura)
                         .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos)
                     : Db.Set<Senador>().AsNoTracking().Where(condicoes)
                         .Include(x => x.PrimeiraLegislatura)
-                        .Include(x => x.SegundaLegislatura)
-                        .Include(x => x.Votos);
+                        .Include(x => x.SegundaLegislatura);
             }
 
             // Tudo
@@ -89,11 +79,9 @@ namespace ParlamentoDados.Repositorios.Senado
                 ? Db.Set<Senador>()
                     .Include(x => x.PrimeiraLegislatura)
                     .Include(x => x.SegundaLegislatura)
-                    .Include(x => x.Votos)
                 : Db.Set<Senador>().AsNoTracking()
                     .Include(x => x.PrimeiraLegislatura)
-                    .Include(x => x.SegundaLegislatura)
-                    .Include(x => x.Votos);
+                    .Include(x => x.SegundaLegislatura);
         }
 
         public IEnumerable<string> ListarPartidos()

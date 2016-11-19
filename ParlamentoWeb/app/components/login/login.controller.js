@@ -8,21 +8,21 @@
     function controller($location, AuthenticationService) {
         var vm = this;
 
-        vm.login = login;
-
         initController();
 
         function initController() {
+            vm.login = login;
+
             AuthenticationService.Logout();
         };
 
         function login() {
             vm.loading = true;
-            AuthenticationService.Login(vm.email, vm.password, function (result) {
+            AuthenticationService.Login(vm.email, vm.senha, function (result) {
                 if (result === true) {
                     //$location.path('/');
                 } else {
-                    vm.error = 'Usuário e/ou senha incorreto(s).';
+                    vm.error = 'E-mail e/ou senha incorreto(s).';
                     vm.loading = false;
                 }
             });

@@ -3,26 +3,24 @@
 
     angular
         .module('app')
-        .controller('Register', controller);
+        .controller('Registro', controller);
 
     function controller($location, AuthenticationService) {
         var vm = this;
 
-        vm.login = login;
-
         initController();
 
         function initController() {
-            AuthenticationService.Logout();
+            vm.registrar = registrar;
         };
 
-        function login() {
+        function registrar() {
             vm.loading = true;
-            AuthenticationService.Login(vm.email, vm.password, function (result) {
+            AuthenticationService.Registrar(vm.nomeCompleto, vm.email, vm.senha, function (result) {
                 if (result === true) {
-                    $location.path('/');
+                    //$location.path('/login');
                 } else {
-                    vm.error = 'Usuário e/ou senha incorreto(s).';
+                    vm.error = 'Erro.';
                     vm.loading = false;
                 }
             });
