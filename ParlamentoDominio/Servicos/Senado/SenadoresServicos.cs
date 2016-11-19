@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using ParlamentoDominio.Entidades.Senado;
+﻿using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
 using ParlamentoDominio.Interfaces.Servicos.Senado;
+using System.Collections.Generic;
 
 namespace ParlamentoDominio.Servicos.Senado
 {

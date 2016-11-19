@@ -12,7 +12,8 @@
         }
 
         function login(email, password, callback) {
-            $http.post('/api/authenticate', { email: email, password: password })
+            //$http.post('/api/authenticate', { email: email, password: password })
+            $http.post('/usuario', { email: email, password: password })
                 .success(function (response) {
                     if (response.token) {
                         $localStorage.currentUser = { fullName: response.fullName, email: email, token: response.token };

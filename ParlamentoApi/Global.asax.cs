@@ -12,11 +12,18 @@ namespace ParlamentoApi
     {
         protected void Application_Start()
         {
+            HangfireBootstrapper.Instance.Start();
+
             AreaRegistration.RegisterAllAreas() ;
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             TarefasConfig.AutoMapper();
+        }
+
+        protected void Application_End()
+        {
+            HangfireBootstrapper.Instance.Stop();
         }
 
         protected void Application_BeginRequest()

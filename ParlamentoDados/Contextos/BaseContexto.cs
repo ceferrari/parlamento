@@ -14,8 +14,8 @@ namespace ParlamentoDados.Contextos
             Database.SetInitializer<BaseContexto>(null);
         }
 
-        public BaseContexto() 
-            : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=Parlamento;Integrated Security=True")
+        public BaseContexto()
+            : base("BaseConexao")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

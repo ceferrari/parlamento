@@ -1,7 +1,5 @@
-﻿using System;
+﻿using ParlamentoDominio.Entidades.Senado;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using ParlamentoDominio.Entidades.Senado;
 
 namespace ParlamentoDominio.Interfaces.Repositorios.Senado
 {

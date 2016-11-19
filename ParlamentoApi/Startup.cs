@@ -1,6 +1,8 @@
 ﻿using Hangfire;
+using Hangfire.Dashboard;
 using Microsoft.Owin;
 using Owin;
+using System.Linq;
 
 [assembly: OwinStartup(typeof(ParlamentoApi.Startup))]
 
@@ -10,14 +12,14 @@ namespace ParlamentoApi
     {
         public void Configuration(IAppBuilder app)
         {
-            GlobalConfiguration.Configuration
-                .UseNinjectActivator(new Ninject.Web.Common.Bootstrapper().Kernel)
-                .UseSqlServerStorage(@"Data Source=.\SQLEXPRESS;Initial Catalog=ParlamentoTarefas;Integrated Security=True");
-
             TarefasConfig.Hangfire();
 
-            app.UseHangfireDashboard();
-            app.UseHangfireServer();
+            app.UseHangfireDashboard("/crons", new DashboardOptions
+            {
+                Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
+            });
+
+            //app.UseHangfireServer();
         }
     }
 }

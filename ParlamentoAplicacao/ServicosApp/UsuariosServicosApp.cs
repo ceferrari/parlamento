@@ -13,5 +13,15 @@ namespace ParlamentoAplicacao.ServicosApp
         {
             _servicos = servicos;
         }
+
+        public Usuario Autenticar(string email, string senha)
+        {
+            return _servicos.Autenticar(email, senha);
+        }
+
+        public void Registrar(Usuario usuario)
+        {
+            _servicos.Registrar(usuario);
+        }
     }
 }

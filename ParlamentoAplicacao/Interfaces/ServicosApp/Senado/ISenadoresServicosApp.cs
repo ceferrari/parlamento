@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ParlamentoDominio.Entidades.Senado;
+﻿using ParlamentoDominio.Entidades.Senado;
+using System.Collections.Generic;
 
 namespace ParlamentoAplicacao.Interfaces.ServicosApp.Senado
 {

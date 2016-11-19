@@ -860,6 +860,104 @@
             Métodos referetes aos Usuários da aplicação
             </summary>
         </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Autenticar(System.String,System.String)">
+            <summary>
+            Autentica um Usuário pelo e-mail e senha fornecidos
+            </summary>
+            <param name="email"></param>
+            <param name="senha"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Registrar(ParlamentoDominio.Entidades.Usuario)">
+            <summary>
+            Registra um Usuário
+            </summary>
+            <param name="usuario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Contar(ParlamentoApi.Filtros.UsuariosFiltro)">
+            <summary>
+            Conta os Usuários com base nos parâmetros fornecidos
+            </summary>
+            <param name="filtro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Listar(ParlamentoApi.Filtros.UsuariosFiltro)">
+            <summary>
+            Lista os Usuários com base nos parâmetros fornecidos
+            </summary>
+            <param name="filtro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.ObterPorChave(System.Int32)">
+            <summary>
+            Obtém um Usuário pelo código
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Inserir(ParlamentoDominio.Entidades.Usuario)">
+            <summary>
+            Insere um Usuário
+            </summary>
+            <param name="entidade"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.InserirEmMassa(System.Collections.Generic.IEnumerable{ParlamentoDominio.Entidades.Usuario})">
+            <summary>
+            Insere em massa uma lista de Usuários
+            </summary>
+            <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Atualizar(ParlamentoDominio.Entidades.Usuario)">
+            <summary>
+            Atualiza um Usuário
+            </summary>
+            <param name="entidade"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.AtualizarEmMassa(System.Collections.Generic.IEnumerable{ParlamentoDominio.Entidades.Usuario})">
+            <summary>
+            Atualiza em massa uma lista de Usuários
+            </summary>
+            <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Remover(ParlamentoDominio.Entidades.Usuario)">
+            <summary>
+            Remove um Usuário
+            </summary>
+            <param name="entidade"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.RemoverEmMassa(System.Collections.Generic.IEnumerable{ParlamentoDominio.Entidades.Usuario})">
+            <summary>
+            Remove em massa uma lista de Usuários
+            </summary>
+            <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.Mesclar(ParlamentoDominio.Entidades.Usuario)">
+            <summary>
+            Mescla um Usuário
+            </summary>
+            <param name="entidade"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.MesclarEmMassa(System.Collections.Generic.IEnumerable{ParlamentoDominio.Entidades.Usuario})">
+            <summary>
+            Mescla em massa uma lista de Usuários
+            </summary>
+            <param name="lista"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.UsuariosController.TruncarTabela">
+            <summary>
+            Trunca a tabela de Usuários no banco de dados
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ParlamentoApi.Controllers.VotosController">
             <summary>
             Métodos referetes aos Votos dos Senadores

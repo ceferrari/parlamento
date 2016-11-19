@@ -170,11 +170,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ParlamentoApi.XML" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicationPreload.cs" />
+    <Compile Include="App_Start\HangfireBootstrapper.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\TarefasConfig.cs" />
@@ -219,6 +222,7 @@
     <Compile Include="Filtros\MateriasAssuntosFiltro.cs" />
     <Compile Include="Filtros\LegislaturasFiltro.cs" />
     <Compile Include="Filtros\MateriasSubtiposFiltro.cs" />
+    <Compile Include="Filtros\UsuariosFiltro.cs" />
     <Compile Include="Filtros\SenadoresFiltro.cs" />
     <Compile Include="Filtros\VotosFiltro.cs" />
     <Compile Include="Recursos\CustomExceptionHandler.cs" />
@@ -251,6 +255,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\ParlamentoApi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -258,9 +263,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ParlamentoAplicacao\ParlamentoAplicacao.csproj">
       <Project>{7DCBBB3E-68EA-4677-89F8-4CC7B42D1307}</Project>
