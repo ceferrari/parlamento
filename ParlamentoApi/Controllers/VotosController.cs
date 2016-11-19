@@ -46,45 +46,6 @@ namespace ParlamentoApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, lista);
         }
 
-        ///// <summary>
-        ///// Lista os Votos pelo código do Senador
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //public HttpResponseMessage ListarPorSenador(int id)
-        //{
-        //    var entidade = _svc.ListarPorSenador(id);
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, entidade);
-        //}
-
-        ///// <summary>
-        ///// Lista os Votos pelo código da Matéria
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //public HttpResponseMessage ListarPorMateria(int id)
-        //{
-        //    var entidade = _svc.ListarPorMateria(id);
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, entidade);
-        //}
-
-        ///// <summary>
-        ///// Lista os Votos pelo código da Sessão
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //public HttpResponseMessage ListarPorSessao(int id)
-        //{
-        //    var entidade = _svc.ListarPorSessao(id);
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, entidade);
-        //}
-
         /// <summary>
         /// Insere um Voto
         /// </summary>

@@ -1,12 +1,13 @@
 ﻿using ParlamentoDominio.Entidades.Senado;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlamentoAplicacao.Interfaces.ServicosApp.Senado
 {
     public interface ISenadoresServicosApp : IBaseServicosApp<Senador>
     {
-        IEnumerable<string> ListarPartidos();
-        IEnumerable<string> ListarEstados();
-        IEnumerable<string> ListarSexos();
+        IQueryable<string> ListarPartidos();
+        IQueryable<string> ListarEstados();
+        IQueryable<string> ListarSexos();
     }
 }

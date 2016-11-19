@@ -15,7 +15,7 @@
         function login(email, senha, callback) {
             RestService.post({ controller: "Usuarios", action: "Autenticar" }, { email: email, senha: senha }, function (resultado) {
                 if (resultado.Id) {
-                    $localStorage.Usuario = { id: resultado.Id, nomeCompleto: resultado.NomeCompleto, email: resultado.Email };
+                    $localStorage.Usuario = { Id: resultado.Id, NomeCompleto: resultado.NomeCompleto, Email: resultado.Email };
                     $state.go("dashboard");
                     callback(true);
                 } else {

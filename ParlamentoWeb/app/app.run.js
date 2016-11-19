@@ -5,12 +5,19 @@
         .module('app')
         .run(run);
 
-    function run($rootScope, $http, $location, $localStorage, $state, $stateParams) {
+    function run($rootScope, $http, $location, $localStorage, $state, $stateParams, $timeout) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
         $rootScope.Compare = function (a, b) {
             return angular.equals(a, b);
+        }
+
+        $rootScope.FixLayout = function () {
+            $timeout(function () {
+                $.AdminLTE.layout.fix();
+                $.AdminLTE.layout.fixSidebar();
+            }, 250);
         }
 
         //if ($localStorage.Usuario) {

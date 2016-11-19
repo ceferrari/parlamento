@@ -162,9 +162,6 @@
 .exibicao {
     cursor: pointer;
 }
-.table > tbody > tr:last-child {
-    border-bottom: 2px solid #f4f4f4;
-}
 .vmiddle {
     vertical-align: middle !important;
 }
@@ -174,11 +171,23 @@
 .margin-t-5 {
     margin-top: 5px !important;
 }
+.margin-b-5 {
+    margin-bottom: 5px !important;
+}
 .margin-r-10 {
     margin-right: 10px !important;
 }
+.no-margin-top {
+    margin-top: 0 !important;
+}
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
 .padding-t-3 {
     padding-top: 3px !important;
+}
+.padding-t-10 {
+    padding-top: 10px !important;
 }
 .no-padding-right {
     padding-right: 0 !important;
@@ -187,8 +196,8 @@
     padding-left: 0 !important;
 }
 .border-tb-1 {
-    border-top: 1px solid #f4f4f4;
-    border-bottom: 1px solid #f4f4f4;
+    border-top: 1px solid #F4f4f4;
+    border-bottom: 1px solid #F4f4f4;
 }
 .table > thead > tr > th > span {
     padding-top: 3px;
@@ -198,4 +207,32 @@
 }
 .table > tbody > tr > td > img {
     height: 70px;
+}
+.table > tbody > tr:last-child {
+    border-bottom: 2px solid #F4f4f4;
+}
+.votos .table > tbody > tr:last-child {
+    border-top: 2px solid #F4f4f4;
+    border-bottom: 2px solid #F4f4f4;
+}
+.votos fieldset {
+    border: solid 2px #F4f4f4 !important;
+    border-bottom: none;
+    height: 134px;
+    padding: 0 10px 10px 10px;
+}
+.votos legend {
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: auto !important;
+}
+.votos fieldset img {
+    height: 90px;
+}
+.votos fieldset label {
+    color: #999;
+}
+.votos #grafico {
+    margin-top: 30px;
 }

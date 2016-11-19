@@ -20,7 +20,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 </head>
-<body class="hold-transition fixed ng-cloak" ng-cloak 
+<body class="hold-transition fixed ng-cloak" ng-cloak ng-init="FixLayout()"
       ng-class="{'login-page': $state.current.name == 'login', 'register-page': $state.current.name == 'registro',
                  'skin-blue-light sidebar-mini': $state.current.name != 'login' && $state.current.name != 'registro' }">
     <div ng-class="{'wrapper': $state.current.name != 'login' }" ui-view>
@@ -34,6 +34,7 @@
     <script src="assets/js/AdminLTE.min.js"></script>
     <script src="assets/libs/iCheck/icheck.min.js"></script>
     <script src="assets/libs/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/libs/Highcharts/code/highcharts.js"></script>
     <!-- Angular Libs -->
     <script src="assets/libs/angular-animate.min.js"></script>
     <script src="assets/libs/angular-resource.min.js"></script>
@@ -57,6 +58,7 @@
     <script src="app/components/registro/registro.controller.js"></script>
     <script src="app/components/dashboard/dashboard.controller.js"></script>
     <script src="app/components/senadores/senadores.controller.js"></script>
+    <script src="app/components/senador/votos/votos.controller.js"></script>
     <!-- Angular Fake Backend -->
     <!--<script src="assets/libs/angular-mocks.js"></script>
     <script src="app/helpers/fake-backend.js"></script>-->

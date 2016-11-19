@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace ParlamentoAplicacao.Interfaces.ServicosApp
@@ -36,7 +37,7 @@ namespace ParlamentoAplicacao.Interfaces.ServicosApp
 
         object Contar(Expression<Func<TEntidade, bool>> condicoes = null);
 
-        IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+        IQueryable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
             string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false);
     }
 }

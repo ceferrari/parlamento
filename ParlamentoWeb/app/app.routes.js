@@ -54,6 +54,41 @@
                     },
                     "footer": { templateUrl: "app/shared/footer.partial.html" }
                 }
+            })
+            .state('senador', {
+                abstract: true,
+                url: '/senador/:id'
+                //views: {
+                //    "header": {
+                //        controller: 'Senador',
+                //        controllerAs: 'vm',
+                //        templateUrl: "app/shared/header.partial.html"
+                //    },
+                //    "menu": { templateUrl: "app/shared/menu.partial.html" },
+                //    "content": {
+                //        controller: 'Votos',
+                //        controllerAs: 'vm',
+                //        templateUrl: "app/components/senador/senador.view.html"
+                //    },
+                //    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                //}
+            })
+            .state('senador.votos', {
+                url: '/votos',
+                views: {
+                    "header": {
+                        controller: 'Main',
+                        controllerAs: 'vm',
+                        templateUrl: "app/shared/header.partial.html"
+                    },
+                    "menu": { templateUrl: "app/shared/menu.partial.html" },
+                    "content": {
+                        controller: 'Senador.Votos',
+                        controllerAs: 'vm',
+                        templateUrl: "app/components/senador/votos/votos.view.html"
+                    },
+                    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                }
             });
 
         //$locationProvider.html5Mode({

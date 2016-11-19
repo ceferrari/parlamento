@@ -8,13 +8,11 @@
     function controller($location, AuthenticationService) {
         var vm = this;
 
-        initController();
+        vm.login = login;
 
-        function initController() {
-            vm.login = login;
-
+        (function initController() {
             AuthenticationService.Logout();
-        };
+        })();
 
         function login() {
             vm.loading = true;

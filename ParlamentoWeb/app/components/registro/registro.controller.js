@@ -8,11 +8,7 @@
     function controller($location, AuthenticationService) {
         var vm = this;
 
-        initController();
-
-        function initController() {
-            vm.registrar = registrar;
-        };
+        vm.registrar = registrar;
 
         function registrar() {
             vm.loading = true;

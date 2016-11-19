@@ -11,7 +11,7 @@ namespace ParlamentoDados.Repositorios.Senado
 {
     public class SenadoresRepositorio : BaseRepositorio<Senador>, ISenadoresRepositorio
     {
-        public override IEnumerable<Senador> Listar(Expression<Func<Senador, bool>> condicoes = null,
+        public override IQueryable<Senador> Listar(Expression<Func<Senador, bool>> condicoes = null,
             string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false)
         {
             // Ordenado Paginado Condicional
@@ -84,17 +84,17 @@ namespace ParlamentoDados.Repositorios.Senado
                     .Include(x => x.SegundaLegislatura);
         }
 
-        public IEnumerable<string> ListarPartidos()
+        public IQueryable<string> ListarPartidos()
         {
             return Db.Set<Senador>().AsNoTracking().Select(x => x.SiglaPartido).Distinct();
         }
 
-        public IEnumerable<string> ListarEstados()
+        public IQueryable<string> ListarEstados()
         {
             return Db.Set<Senador>().AsNoTracking().Select(x => x.UfMandato).Distinct();
         }
 
-        public IEnumerable<string> ListarSexos()
+        public IQueryable<string> ListarSexos()
         {
             return Db.Set<Senador>().AsNoTracking().Select(x => x.Sexo).Distinct();
         }

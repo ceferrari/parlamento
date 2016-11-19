@@ -2,6 +2,7 @@
 using ParlamentoDominio.Interfaces.Servicos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace ParlamentoAplicacao.ServicosApp
@@ -90,7 +91,7 @@ namespace ParlamentoAplicacao.ServicosApp
             return _servicos.Contar(condicoes);
         }
 
-        public IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+        public IQueryable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
             string ordenarPor = null, int deslocamento = -1, int limite = -1, bool noContexto = false)
         {
             return _servicos.Listar(condicoes, ordenarPor, deslocamento, limite, noContexto);

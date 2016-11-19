@@ -47,6 +47,30 @@ namespace ParlamentoApi.Controllers
         }
 
         /// <summary>
+        /// Lista os Assuntos Gerais de Matérias com base nos parâmetros fornecidos
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage ListarGerais()
+        {
+            var lista = _servicosApp.ListarGerais();
+
+            return Request.CreateResponse(HttpStatusCode.OK, lista);
+        }
+
+        /// <summary>
+        /// Lista os Assuntos Específicos de Matérias com base nos parâmetros fornecidos
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage ListarEspecificos()
+        {
+            var lista = _servicosApp.ListarEspecificos();
+
+            return Request.CreateResponse(HttpStatusCode.OK, lista);
+        }
+
+        /// <summary>
         /// Obtém um Assunto de Matéria pelo código
         /// </summary>
         /// <param name="id"></param>

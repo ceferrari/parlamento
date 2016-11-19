@@ -8,7 +8,7 @@
     function directive() {
         return {
             require: 'ngModel',
-            link: function (scope, element, attrs, ngModel) {
+            link: function (scope, element, attributes, ngModel) {
                 ngModel.$parsers.push(function (val) {
                     return val === null ? null : parseInt(val, 10);
                 });

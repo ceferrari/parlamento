@@ -1,0 +1,92 @@
+﻿<section class="content-header">
+    <h1>
+        Votos do Senador <small>{{vm.Senador.Codigo}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#">Senador</a></li>
+        <li class="active"><a href="#">Votos</a></li>
+    </ol>
+</section>
+<section class="content votos">
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <fieldset>
+                        <legend><strong>Senador</strong></legend>
+                        <div class="col-sm-6 text-center">
+                            <img ng-src="{{vm.Senador.UrlFoto}}"/>
+                        </div>
+                        <div class="col-sm-18">
+                            <h3 class="no-margin-top"><a ng-href="{{vm.Senador.UrlPagina}}" target="_blank">{{vm.Senador.Nome}}</a></h3>
+                            <h4 class="no-margin"><strong>{{vm.Senador.SiglaPartido}} - {{vm.Senador.UfMandato}}</strong></h4>
+                            <!--<h3><img ng-src="assets/img/uf/{{vm.Senador.UfMandato}}_p.gif"/>&nbsp;&nbsp;{{vm.Senador.UfMandato}}</h3>-->
+                            <h4 class="no-margin-bottom">{{vm.Senador.Email}}</h4>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12">
+                    <fieldset>
+                        <legend><strong>Opções do Gráfico</strong></legend>
+                        <div class="col-sm-8 padding-t-10">
+                            <div class="form-group">
+                                <label for="filtroAssuntoGeral">Assunto Geral</label>
+                                <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.CodigoAssuntoMateria" ng-change="vm.Atualizar(null, true)"
+                                        ng-options="AssuntoGeral for AssuntoGeral in vm.AssuntosGerais">
+                                    <option value="">Tudo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 padding-t-10">
+                            <div class="form-group">
+                                <label for="filtroAssuntoEspecifico">Assunto Específico</label>
+                                <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.CodigoAssuntoMateria" ng-change="vm.Atualizar(null, true)"
+                                        ng-options="AssuntoEspecifico for AssuntoEspecifico in vm.AssuntosEspecificos">
+                                    <option value="">Tudo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 padding-t-10">
+                            <div class="form-group">
+                                <label for="filtroTipoGrafico">Tipo do Gráfico</label>
+                                <select class="form-control" id="filtroTipoGrafico" ng-model="vm.TipoGrafico" ng-change="vm.Atualizar(null, true)"
+                                        ng-options="AssuntoEspecifico for AssuntoEspecifico in vm.AssuntosEspecificos">
+                                    <option value="">Tudo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="grafico"></div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        var myChart = Highcharts.chart('grafico', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Fruit Consumption'
+            },
+            xAxis: {
+                categories: ['Apples', 'Bananas', 'Oranges']
+            },
+            yAxis: {
+                title: {
+                    text: 'Fruit eaten'
+                }
+            },
+            series: [{
+                name: 'Jane',
+                data: [1, 0, 4]
+            }, {
+                name: 'John',
+                data: [5, 7, 3]
+            }]
+        });
+    });
+</script>

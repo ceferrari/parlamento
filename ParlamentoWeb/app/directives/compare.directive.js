@@ -7,15 +7,15 @@
 
     function directive() {
         return {
-            require: "ngModel",
+            require: 'ngModel',
             scope: {
-                otherModelValue: "=compare"
+                otherModelValue: '=compare'
             },
             link: function(scope, element, attributes, ngModel) {
                 ngModel.$validators.compare = function (modelValue) {
                     return modelValue === scope.otherModelValue;
                 };
-                scope.$watch("otherModelValue", function() {
+                scope.$watch('otherModelValue', function () {
                     ngModel.$validate();
                 });
             }

@@ -7,27 +7,45 @@ namespace ParlamentoApi.Filtros
 {
     public class VotosFiltro : BaseFiltro<Voto>
     {
-        public int? codigoSenador { get; set; }
-        public int? codigoMateria { get; set; }
-        public int? codigoSessao { get; set; }
+        public int? senador { get; set; }
+        public int? materia { get; set; }
+        public int? sessao { get; set; }
+        public int? autorMateria { get; set; }
+        public int? assuntoMateria { get; set; }
+        public string subtipoMateria { get; set; }
 
         public override Expression<Func<Voto, bool>> Condicoes()
         {
             Expression<Func<Voto, bool>> condicoes = PredicateBuilder.True<Voto>();
 
-            if (codigoSenador != null)
+            if (senador != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSenador == codigoSenador);
+                condicoes = condicoes.And(x => x.CodigoSenador == senador);
             }
 
-            if (codigoMateria != null)
+            if (materia != null)
             {
-                condicoes = condicoes.And(x => x.CodigoMateria == codigoMateria);
+                condicoes = condicoes.And(x => x.CodigoMateria == materia);
             }
 
-            if (codigoSessao != null)
+            if (sessao != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSessao == codigoSessao);
+                condicoes = condicoes.And(x => x.CodigoSessao == sessao);
+            }
+
+            if (autorMateria != null)
+            {
+                condicoes = condicoes.And(x => x.Materia.CodigoAutor == autorMateria);
+            }
+
+            if (assuntoMateria != null)
+            {
+                condicoes = condicoes.And(x => x.Materia.CodigoAssunto == assuntoMateria);
+            }
+
+            if (subtipoMateria != null)
+            {
+                condicoes = condicoes.And(x => x.Materia.CodigoSubtipo.Equals(subtipoMateria));
             }
 
             return condicoes.Body.NodeType == ExpressionType.Constant ? null : condicoes;

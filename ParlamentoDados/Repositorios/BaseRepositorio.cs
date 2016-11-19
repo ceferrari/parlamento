@@ -107,7 +107,7 @@ namespace ParlamentoDados.Repositorios
                 : new { Total = Db.Set<TEntidade>().AsNoTracking().Count(condicoes) };
         }
 
-        public virtual IEnumerable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
+        public virtual IQueryable<TEntidade> Listar(Expression<Func<TEntidade, bool>> condicoes = null,
             string ordenarPor = null, int deslocamento = -1, int limite = -1,  bool noContexto = false)
         {
             // Ordenado Paginado Condicional

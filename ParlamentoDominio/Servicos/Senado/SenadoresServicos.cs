@@ -2,6 +2,7 @@
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
 using ParlamentoDominio.Interfaces.Servicos.Senado;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlamentoDominio.Servicos.Senado
 {
@@ -15,17 +16,17 @@ namespace ParlamentoDominio.Servicos.Senado
             _repositorio = repositorio;
         }
 
-        public IEnumerable<string> ListarPartidos()
+        public IQueryable<string> ListarPartidos()
         {
             return _repositorio.ListarPartidos();
         }
 
-        public IEnumerable<string> ListarEstados()
+        public IQueryable<string> ListarEstados()
         {
             return _repositorio.ListarEstados();
         }
 
-        public IEnumerable<string> ListarSexos()
+        public IQueryable<string> ListarSexos()
         {
             return _repositorio.ListarSexos();
         }
