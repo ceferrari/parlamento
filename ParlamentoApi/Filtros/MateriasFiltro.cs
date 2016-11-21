@@ -8,9 +8,9 @@ namespace ParlamentoApi.Filtros
     public class MateriasFiltro : BaseFiltro<Materia>
     {
         public int? ano { get; set; }
-        public int? codigoAutor { get; set; }
-        public int? codigoAssunto { get; set; }
-        public string codigoSubtipo { get; set; }
+        public int? autor { get; set; }
+        public int? assunto { get; set; }
+        public string subtipo { get; set; }
 
         public override Expression<Func<Materia, bool>> Condicoes()
         {
@@ -21,19 +21,19 @@ namespace ParlamentoApi.Filtros
                 condicoes = condicoes.And(x => x.Ano == ano);
             }
 
-            if (codigoAutor != null)
+            if (autor != null)
             {
-                condicoes = condicoes.And(x => x.CodigoAutor == codigoAutor);
+                condicoes = condicoes.And(x => x.CodigoAutor == autor);
             }
 
-            if (codigoAssunto != null)
+            if (assunto != null)
             {
-                condicoes = condicoes.And(x => x.CodigoAssunto == codigoAssunto);
+                condicoes = condicoes.And(x => x.CodigoAssunto == assunto);
             }
 
-            if (codigoSubtipo != null)
+            if (subtipo != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSubtipo.Equals(codigoSubtipo));
+                condicoes = condicoes.And(x => x.CodigoSubtipo.Equals(subtipo));
             }
 
             return condicoes.Body.NodeType == ExpressionType.Constant ? null : condicoes;

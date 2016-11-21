@@ -15,7 +15,7 @@ namespace ParlamentoRecursos.ServicosExternos
 
         public Parameter CriarParametro(string nome, object valor)
         {
-            return new Parameter()
+            return new Parameter
             {
                 Name = nome,
                 Value = valor
@@ -25,8 +25,9 @@ namespace ParlamentoRecursos.ServicosExternos
         public List<Parameter> CriarParametrosPaginacao(int deslocamento, int limite,
             string condicoes = null, string ordenarPor = null)
         {
-            var parametros = new List<Parameter>()
+            var parametros = new List<Parameter>
             {
+                CriarParametro("ordenarPor", ordenarPor),
                 CriarParametro("deslocamento", deslocamento),
                 CriarParametro("limite", limite)
             };
@@ -34,11 +35,6 @@ namespace ParlamentoRecursos.ServicosExternos
             if (!string.IsNullOrEmpty(condicoes))
             {
                 parametros.Add(CriarParametro("condicoes", condicoes));
-            }
-
-            if (!string.IsNullOrEmpty(ordenarPor))
-            {
-                parametros.Add(CriarParametro("ordenarPor", ordenarPor));
             }
 
             return parametros;
@@ -63,7 +59,7 @@ namespace ParlamentoRecursos.ServicosExternos
                 }
             }
 
-            if (body != null && metodo == Method.POST)
+            if (body != null)
             {
                 requisicao.AddJsonBody(body);
             }

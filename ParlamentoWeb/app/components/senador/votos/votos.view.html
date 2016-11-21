@@ -12,28 +12,27 @@
     <div class="box">
         <div class="box-body">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-10" ng-if="vm.Senador">
                     <fieldset>
                         <legend><strong>Senador</strong></legend>
-                        <div class="col-sm-6 text-center">
+                        <div class="col-sm-5 text-center">
                             <img ng-src="{{vm.Senador.UrlFoto}}"/>
                         </div>
-                        <div class="col-sm-18">
+                        <div class="col-sm-19">
                             <h3 class="no-margin-top"><a ng-href="{{vm.Senador.UrlPagina}}" target="_blank">{{vm.Senador.Nome}}</a></h3>
-                            <h4 class="no-margin"><strong>{{vm.Senador.SiglaPartido}} - {{vm.Senador.UfMandato}}</strong></h4>
-                            <!--<h3><img ng-src="assets/img/uf/{{vm.Senador.UfMandato}}_p.gif"/>&nbsp;&nbsp;{{vm.Senador.UfMandato}}</h3>-->
+                            <h4 class="no-margin"><strong>{{vm.Senador.SiglaPartido}} - {{vm.EstadoPorSigla(vm.Senador.UfMandato)}}</strong></h4>
                             <h4 class="no-margin-bottom">{{vm.Senador.Email}}</h4>
                         </div>
                     </fieldset>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-14">
                     <fieldset>
                         <legend><strong>Opções do Gráfico</strong></legend>
                         <div class="col-sm-8 padding-t-10">
                             <div class="form-group">
                                 <label for="filtroAssuntoGeral">Assunto Geral</label>
-                                <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.CodigoAssuntoMateria" ng-change="vm.Atualizar(null, true)"
-                                        ng-options="AssuntoGeral for AssuntoGeral in vm.AssuntosGerais">
+                                <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.MateriaAssuntoGeral" ng-change="vm.Atualizar(null, true)"
+                                        ng-options="MateriaAssuntoGeral for MateriaAssuntoGeral in vm.MateriasAssuntosGerais">
                                     <option value="">Tudo</option>
                                 </select>
                             </div>
@@ -42,7 +41,8 @@
                             <div class="form-group">
                                 <label for="filtroAssuntoEspecifico">Assunto Específico</label>
                                 <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.CodigoAssuntoMateria" ng-change="vm.Atualizar(null, true)"
-                                        ng-options="AssuntoEspecifico for AssuntoEspecifico in vm.AssuntosEspecificos">
+                                        ng-options="MateriaAssunto.Codigo as MateriaAssunto.AssuntoEspecifico for MateriaAssunto in vm.MateriasAssuntos 
+                                        | filter: (vm.MateriaAssuntoGeral && MateriaAssunto.Codigo != 0 || '') && { AssuntoGeral: vm.MateriaAssuntoGeral }">
                                     <option value="">Tudo</option>
                                 </select>
                             </div>
@@ -50,43 +50,50 @@
                         <div class="col-sm-8 padding-t-10">
                             <div class="form-group">
                                 <label for="filtroTipoGrafico">Tipo do Gráfico</label>
-                                <select class="form-control" id="filtroTipoGrafico" ng-model="vm.TipoGrafico" ng-change="vm.Atualizar(null, true)"
-                                        ng-options="AssuntoEspecifico for AssuntoEspecifico in vm.AssuntosEspecificos">
-                                    <option value="">Tudo</option>
+                                <select class="form-control" id="filtroTipoGrafico" ng-model="vm.TipoGrafico" ng-change="vm.AtualizarGrafico()">
+                                    <option value="barras">Barras</option>
+                                    <option value="colunas">Colunas</option>
+                                    <option value="colunas3d">Colunas 3D</option>
+                                    <option value="pizza">Pizza</option>
+                                    <option value="pizza3d">Pizza 3D</option>
+                                    <option value="rosca">Rosca</option>
+                                    <option value="rosca3d">Rosca 3D</option>
+                                    <option value="polar">Polar</option>
                                 </select>
                             </div>
                         </div>
                     </fieldset>
                 </div>
             </div>
-            <div id="grafico"></div>
+            <div ng-show="!vm.loading && (vm.Votos.Sim || vm.Votos.Nao || vm.Votos.Abstencao || vm.Votos.Pnrv || vm.Votos.Ausente)" id="grafico"></div>
+            <div ng-show="!vm.loading && !vm.Votos.Sim && !vm.Votos.Nao && !vm.Votos.Abstencao && !vm.Votos.Pnrv && !vm.Votos.Ausente" class="alerta text-center">
+                <h3>
+                    <span class="glyphicon glyphicon-alert"></span>
+                    &nbsp;&nbsp;&nbsp;Nenhum Voto encontrado com o(s) assunto(s) selecionados!
+                </h3>
+            </div>
+            <div ng-show="vm.loading" class="alerta text-center">
+                <h3>
+                    <span class="glyphicon glyphicon-time"></span>
+                    &nbsp;&nbsp;&nbsp;Aguarde! Atualizando o gráfico...
+                </h3>
+            </div>
+            <!--<div class="row">
+                <div class="col-sm-6" id="sliders" ng-if="vm.TipoGrafico.includes('3d')">
+                    <label for="alpha">Ângulo Alpha</label>
+                        <input id="alpha" type="range" min="0" max="45" value="15" /> 
+                        <span id="alpha-value" class="value"></span>
+                        <label for="beta">Ângulo Beta</label>
+                        <input id="beta" type="range" min="-45" max="45" value="15" /> 
+                        <span id="beta-value" class="value"></span>
+                        <label for="alpha">Profundidade</label>
+                        <input id="depth" type="range" min="20" max="100" value="50" ng-change="" />
+                        <span id="depth-value" class="value"></span>
+                </div>
+                <div class="col-sm-24" id="grafico" ng-class="{ 'col-sm-18': vm.TipoGrafico.includes('3d'), 'col-sm-24': !vm.TipoGrafico.includes('3d') }">
+                    
+                </div>
+            </div>-->
         </div>
     </div>
 </section>
-<script>
-    $(function () {
-        var myChart = Highcharts.chart('grafico', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Fruit Consumption'
-            },
-            xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
-            },
-            yAxis: {
-                title: {
-                    text: 'Fruit eaten'
-                }
-            },
-            series: [{
-                name: 'Jane',
-                data: [1, 0, 4]
-            }, {
-                name: 'John',
-                data: [5, 7, 3]
-            }]
-        });
-    });
-</script>

@@ -60,29 +60,29 @@
                     </tr>
                 </tbody>
                 <tbody>
-                <tr ng-repeat="Senador in vm.Senadores">
-                    <td>
-                        <img ng-src="{{Senador.UrlFoto}}" />
-                    </td>
-                    <td>
-                        <h3><a ng-href="{{Senador.UrlPagina}}" target="_blank">{{Senador.Nome}}</a></h3>
-                    </td>
-                    <td>
-                        <h3>{{Senador.SiglaPartido}}</h3>
-                    </td>
-                    <td>
-                        <h3><img ng-src="assets/img/uf/{{Senador.UfMandato}}_p.gif" />&nbsp;&nbsp;{{Senador.UfMandato}}</h3>
-                    </td>
-                    <td class="vmiddle">
-                        <h4>{{Senador.Email}}</h4>
-                    </td>
-                    <td class="vmiddle">
-                        <a ui-sref="senador.votos({ id: {{Senador.Codigo}} })" class="btn btn-block btn-default">
-                            <i class="fa fa-bar-chart"></i>
-                            &nbsp;&nbsp;&nbsp;Votos
-                        </a>
-                    </td>
-                </tr>
+                    <tr ng-repeat="Senador in vm.Senadores">
+                        <td>
+                            <img ng-src="{{Senador.UrlFoto}}" />
+                        </td>
+                        <td>
+                            <h3><a ng-href="{{Senador.UrlPagina}}" target="_blank">{{Senador.Nome}}</a></h3>
+                        </td>
+                        <td>
+                            <h3>{{Senador.SiglaPartido}}</h3>
+                        </td>
+                        <td>
+                            <h3><img ng-src="assets/img/uf/{{Senador.UfMandato}}_p.gif" />&nbsp;&nbsp;{{Senador.UfMandato}}</h3>
+                        </td>
+                        <td class="vmiddle">
+                            <h4>{{Senador.Email}}</h4>
+                        </td>
+                        <td class="vmiddle">
+                            <a ui-sref="senador.votos({ id: {{Senador.Codigo}} })" class="btn btn-block btn-default">
+                                <i class="fa fa-bar-chart"></i>
+                                &nbsp;&nbsp;&nbsp;Votos
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div ng-include="'app/components/senadores/partials/paginacao.partial.html'"></div>

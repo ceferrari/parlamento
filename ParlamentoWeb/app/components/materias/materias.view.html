@@ -1,1 +1,83 @@
-﻿
+﻿<section class="content-header">
+    <h1>
+        Lista de Matérias
+        <small ng-if="vm.Paginacao.Ordem == 'Ano ASC, Codigo ASC'">Por Ano (Ascendente)</small>
+        <small ng-if="vm.Paginacao.Ordem == 'Ano DESC, Codigo ASC'">Por Ano (Descendente)</small>
+        <small ng-if="vm.Paginacao.Ordem == 'Codigo ASC'">Por Código (Ascendente)</small>
+        <small ng-if="vm.Paginacao.Ordem == 'Codigo DESC'">Por Código (Descendente)</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active"><a href="#">Matérias</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box">
+        <div class="box-body">
+            <div ng-include="'app/components/materias/partials/filtros.partial.html'"></div>
+            <div class="border-tb-1"
+                 ng-include="'app/components/materias/partials/paginacao.partial.html'"></div>
+            <table class="table table-hover table-condensed">
+                <thead>
+                <tr class="vmiddle">
+                    <th class="col-sm-2">
+                        Ano
+                        <span ng-if="vm.Paginacao.Ordem == 'Ano ASC, Codigo ASC'" class="fa fa-caret-up pull-right margin-r-10 padding-t-3"></span>
+                        <span ng-if="vm.Paginacao.Ordem == 'Ano DESC, Codigo ASC'" class="fa fa-caret-down pull-right margin-r-10 padding-t-3"></span>
+                    </th>
+                    <th class="col-sm-2">
+                        Código
+                        <span ng-if="vm.Paginacao.Ordem == 'Codigo ASC'" class="fa fa-caret-up pull-right margin-r-10 padding-t-3"></span>
+                        <span ng-if="vm.Paginacao.Ordem == 'Codigo DESC'" class="fa fa-caret-down pull-right margin-r-10 padding-t-3"></span>
+                    </th>
+                    <th class="col-sm-14">
+                        Ementa
+                    </th>
+                    <th class="col-sm-2">
+                        Código<br>Autor
+                    </th>
+                    <th class="col-sm-2">
+                        Código Assunto
+                    </th>
+                    <th class="col-sm-2">
+                        Código Subtipo
+                    </th>
+                </tr>
+                </thead>
+                <tbody ng-if="!vm.Materias.length">
+                    <tr>
+                        <td class="text-center" colspan="6">
+                            <h3>
+                                <span class="glyphicon glyphicon-alert"></span>
+                                &nbsp;&nbsp;&nbsp;Nenhuma Matéria encontrado com os filtros selecionados!
+                            </h3>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr ng-repeat="Materia in vm.Materias">
+                        <td>
+                            {{Materia.Ano}}
+                        </td>
+                        <td>
+                            {{Materia.Codigo}}
+                        </td>
+                        <td>
+                            {{Materia.Ementa}}
+                        </td>
+                        <td>
+                            {{Materia.CodigoAutor}}
+                        </td>
+                        <td>
+                            {{Materia.CodigoAssunto}}
+                        </td>
+                        <td>
+                            {{Materia.CodigoSubtipo}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-include="'app/components/materias/partials/paginacao.partial.html'"></div>
+        </div>
+    </div>
+</section>

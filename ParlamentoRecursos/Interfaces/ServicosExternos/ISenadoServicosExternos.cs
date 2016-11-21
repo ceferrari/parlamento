@@ -17,6 +17,6 @@ namespace ParlamentoRecursos.Interfaces.ServicosExternos
         RespostaViewModel<SenadorViewModel> ObterSenadorPorCodigo(string codigo);
         RespostaViewModel<ParlamentarViewModel> ObterParlamentarPorCodigo(string codigo);
 
-        RespostaViewModel<VotacaoViewModel> ObterVotacaoPorCodigo(string codigo);
+        RespostaViewModel<VotacaoViewModel> ObterVotacaoPorCodigo(int codigo);
     }
 }

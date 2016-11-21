@@ -1,0 +1,50 @@
+﻿<div class="row margin-lr-m5 margin-t-10">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="filtroAno">Ano</label>
+            <select class="form-control" id="filtroAno" ng-model="vm.Filtros.Ano" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Ano for Ano in vm.Anos">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+     <div class="col-sm-3">
+        <div class="form-group">
+            <label for="filtroCodigo">Código</label>
+            <input type="text" class="form-control" id="filtroCodigo" ng-model="vm.Filtros.Codigo" ng-keypress="vm.Atualizar($event)">
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="form-group">
+            <label for="filtroEmenta">Ementa</label>
+            <input type="text" class="form-control" id="filtroEmenta" ng-model="vm.Filtros.Ementa" ng-keypress="vm.Atualizar($event)">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="filtroAutor">Código Autor</label>
+            <select class="form-control" id="filtroAutor" ng-model="vm.Filtros.Autor" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Autor for Autor in vm.Autores">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="filtroAssunto">Código Assunto</label>
+            <select class="form-control" id="filtroAssunto" ng-model="vm.Filtros.Assunto" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Assunto for Assunto in vm.Assuntos">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="filtroSubtipo">Código Subtipo</label>
+            <select class="form-control" id="filtroSubtipo" ng-model="vm.Filtros.Subtipo" ng-change="vm.Atualizar(null, true)"
+                    ng-options="Subtipo for Subtipo in vm.Subtipos">
+                <option value="">Tudo</option>
+            </select>
+        </div>
+    </div>
+</div>

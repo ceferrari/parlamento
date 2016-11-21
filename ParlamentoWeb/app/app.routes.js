@@ -11,83 +11,108 @@
         $stateProvider
             .state('login', {
                 url: '/login',
-                controller: 'Login',
-                controllerAs: 'vm',
-                templateUrl: 'app/components/login/login.view.html'
+                views: {
+                    '@': {
+                        controller: 'Login',
+                        controllerAs: 'vm',
+                        templateUrl: 'app/components/login/login.view.html'
+                    }
+                }
             })
             .state('registro', {
                 url: '/registro',
-                controller: 'Registro',
-                controllerAs: 'vm',
-                templateUrl: 'app/components/registro/registro.view.html'
+                views: {
+                    '@': {
+                        controller: 'Registro',
+                        controllerAs: 'vm',
+                        templateUrl: 'app/components/registro/registro.view.html'
+                    }
+                }
             })
             .state('dashboard', {
                 url: '/dashboard',
                 views: {
-                    "header": {
+                    'header': {
                         controller: 'Main',
                         controllerAs: 'vm',
-                        templateUrl: "app/shared/header.partial.html"
+                        templateUrl: 'app/components/shared/header.partial.html'
                     },
-                    "menu": { templateUrl: "app/shared/menu.partial.html" },
-                    "content": {
+                    'menu': { templateUrl: 'app/components/shared/menu.partial.html' },
+                    'content': {
                         controller: 'Dashboard',
                         controllerAs: 'vm',
-                        templateUrl: "app/components/dashboard/dashboard.view.html"
+                        templateUrl: 'app/components/dashboard/dashboard.view.html'
                     },
-                    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                    'footer': { templateUrl: 'app/components/shared/footer.partial.html' }
                 }
             })
             .state('senadores', {
                 url: '/senadores',
                 views: {
-                    "header": {
+                    'header': {
                         controller: 'Main',
                         controllerAs: 'vm',
-                        templateUrl: "app/shared/header.partial.html"
+                        templateUrl: 'app/components/shared/header.partial.html'
                     },
-                    "menu": { templateUrl: "app/shared/menu.partial.html" },
-                    "content": {
+                    'menu': { templateUrl: 'app/components/shared/menu.partial.html' },
+                    'content': {
                         controller: 'Senadores',
                         controllerAs: 'vm',
-                        templateUrl: "app/components/senadores/senadores.view.html"
+                        templateUrl: 'app/components/senadores/senadores.view.html'
                     },
-                    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                    'footer': { templateUrl: 'app/components/shared/footer.partial.html' }
                 }
             })
             .state('senador', {
                 abstract: true,
                 url: '/senador/:id'
                 //views: {
-                //    "header": {
+                //    'header': {
                 //        controller: 'Senador',
                 //        controllerAs: 'vm',
-                //        templateUrl: "app/shared/header.partial.html"
+                //        templateUrl: 'app/components/shared/header.partial.html'
                 //    },
-                //    "menu": { templateUrl: "app/shared/menu.partial.html" },
-                //    "content": {
+                //    'menu': { templateUrl: 'app/components/shared/menu.partial.html' },
+                //    'content': {
                 //        controller: 'Votos',
                 //        controllerAs: 'vm',
-                //        templateUrl: "app/components/senador/senador.view.html"
+                //        templateUrl: 'app/components/senador/senador.view.html'
                 //    },
-                //    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                //    'footer': { templateUrl: 'app/components/shared/footer.partial.html' }
                 //}
             })
             .state('senador.votos', {
                 url: '/votos',
                 views: {
-                    "header": {
+                    'header': {
                         controller: 'Main',
                         controllerAs: 'vm',
-                        templateUrl: "app/shared/header.partial.html"
+                        templateUrl: 'app/components/shared/header.partial.html'
                     },
-                    "menu": { templateUrl: "app/shared/menu.partial.html" },
-                    "content": {
+                    'menu': { templateUrl: 'app/components/shared/menu.partial.html' },
+                    'content': {
                         controller: 'Senador.Votos',
                         controllerAs: 'vm',
-                        templateUrl: "app/components/senador/votos/votos.view.html"
+                        templateUrl: 'app/components/senador/votos/votos.view.html'
                     },
-                    "footer": { templateUrl: "app/shared/footer.partial.html" }
+                    'footer': { templateUrl: 'app/components/shared/footer.partial.html' }
+                }
+            })
+            .state('materias', {
+                url: '/materias',
+                views: {
+                    'header': {
+                        controller: 'Main',
+                        controllerAs: 'vm',
+                        templateUrl: 'app/components/shared/header.partial.html'
+                    },
+                    'menu': { templateUrl: 'app/components/shared/menu.partial.html' },
+                    'content': {
+                        controller: 'Materias',
+                        controllerAs: 'vm',
+                        templateUrl: 'app/components/materias/materias.view.html'
+                    },
+                    'footer': { templateUrl: 'app/components/shared/footer.partial.html' }
                 }
             });
 

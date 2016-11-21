@@ -25,7 +25,7 @@
         //}
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/login'];
+            var publicPages = ['/login', '/registro'];
             var restrictedPage = publicPages.indexOf($location.path()) === -1;
             if (restrictedPage && !$localStorage.Usuario) {
                 $location.path('/login');

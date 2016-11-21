@@ -7,6 +7,7 @@ using ParlamentoRecursos.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace ParlamentoTarefas.Tarefas.Senado
 {
@@ -26,30 +27,44 @@ namespace ParlamentoTarefas.Tarefas.Senado
 
         public void Executar()
         {
-            var legislaturaAtual = _legislaturas.ObterAtual();
-            var listaSenadoresLegislaturaAtual = _senado.ListarSenadoresPorLegislatura(legislaturaAtual.Codigo.ToString()).Conteudo;
-            var listaCodigosSenadoresLegislaturaAtual = listaSenadoresLegislaturaAtual.ListaParlamentarLegislatura.Parlamentares.Parlamentar
-                .Select(x => x.IdentificacaoParlamentar.CodigoParlamentar);
+            //var legislaturaAtual = _legislaturas.ObterAtual();
+            //var senadoresLegislaturaAtual = _senado.ListarSenadoresPorLegislatura(legislaturaAtual.Codigo.ToString());
+            //while (senadoresLegislaturaAtual.CodigoStatus != HttpStatusCode.OK)
+            //{
+            //    senadoresLegislaturaAtual = _senado.ListarSenadoresPorLegislatura(legislaturaAtual.Codigo.ToString());
+            //}
+            //var codigosSenadoresLegislaturaAtual = senadoresLegislaturaAtual.Conteudo.ListaParlamentarLegislatura.Parlamentares.Parlamentar.Select(x => x.IdentificacaoParlamentar.CodigoParlamentar);
 
-            var listaSenadoresEmExercicioViewModel = _senado.ListarSenadoresEmExercicio().Conteudo;
-            var listaCodigosSenadoresEmExercicio = listaSenadoresEmExercicioViewModel.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
-                .Select(x => x.IdentificacaoParlamentar.CodigoParlamentar);
-
-            var listaSenadoresEntidades = new List<Senador>();
-
-            foreach (var codigoSenador in listaCodigosSenadoresEmExercicio)
+            var senadoresEmExercicio = _senado.ListarSenadoresEmExercicio();
+            while (senadoresEmExercicio.CodigoStatus != HttpStatusCode.OK)
             {
-                var senadorViewModel = _senado.ObterSenadorPorCodigo(codigoSenador).Conteudo;
-                var senadorEntidade = Mapper.Map<Senador>(senadorViewModel);
+                senadoresEmExercicio = _senado.ListarSenadoresEmExercicio();
+            }
+            var codigosSenadoresEmExercicio = senadoresEmExercicio.Conteudo.ListaParlamentarEmExercicio.Parlamentares.Parlamentar.Select(x => x.IdentificacaoParlamentar.CodigoParlamentar);
 
-                var parlamentarViewModel = _senado.ObterParlamentarPorCodigo(codigoSenador).Conteudo;
-                senadorEntidade.CidadeNascimento = parlamentarViewModel.parlamentar.nomeCidadeNatural;
-                senadorEntidade.EmExercicio = listaCodigosSenadoresEmExercicio.Contains(codigoSenador);
+            var senadores = new List<Senador>();
 
-                listaSenadoresEntidades.Add(senadorEntidade);
+            foreach (var codigoSenadorEmExercicio in codigosSenadoresEmExercicio)
+            {
+                var senador = _senado.ObterSenadorPorCodigo(codigoSenadorEmExercicio);
+                while (senador.CodigoStatus != HttpStatusCode.OK)
+                {
+                    senador = _senado.ObterSenadorPorCodigo(codigoSenadorEmExercicio);
+                }
+                var senadorEntidade = Mapper.Map<Senador>(senador.Conteudo);
+
+                var parlamentar = _senado.ObterParlamentarPorCodigo(codigoSenadorEmExercicio);
+                while (parlamentar.CodigoStatus != HttpStatusCode.OK)
+                {
+                    parlamentar = _senado.ObterParlamentarPorCodigo(codigoSenadorEmExercicio);
+                }
+                senadorEntidade.CidadeNascimento = parlamentar.Conteudo.parlamentar.nomeCidadeNatural;
+                senadorEntidade.EmExercicio = codigosSenadoresEmExercicio.Contains(codigoSenadorEmExercicio);
+
+                senadores.Add(senadorEntidade);
             }
 
-            _senadores.MesclarEmMassa(listaSenadoresEntidades);
+            _senadores.MesclarEmMassa(senadores);
         }
     }
 }

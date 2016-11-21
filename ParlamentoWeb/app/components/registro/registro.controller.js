@@ -5,7 +5,7 @@
         .module('app')
         .controller('Registro', controller);
 
-    function controller($location, AuthenticationService) {
+    function controller($location, $state, AuthenticationService) {
         var vm = this;
 
         vm.registrar = registrar;
@@ -14,9 +14,9 @@
             vm.loading = true;
             AuthenticationService.Registrar(vm.nomeCompleto, vm.email, vm.senha, function (result) {
                 if (result === true) {
-                    //$location.path('/login');
+                    $state.go("login");
                 } else {
-                    vm.error = 'Erro.';
+                    vm.error = result;
                     vm.loading = false;
                 }
             });

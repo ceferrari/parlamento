@@ -3,19 +3,19 @@
 
     angular
         .module('app')
-        .directive('compare', directive);
+        .directive('match', directive);
 
     function directive() {
         return {
-            require: 'ngModel',
+            require: "ngModel",
             scope: {
-                otherModelValue: '=compare'
+                otherModelValue: "=match"
             },
-            link: function(scope, element, attributes, ngModel) {
-                ngModel.$validators.compare = function (modelValue) {
+            link: function (scope, element, attributes, ngModel) {
+                ngModel.$validators.match = function (modelValue) {
                     return modelValue === scope.otherModelValue;
                 };
-                scope.$watch('otherModelValue', function () {
+                scope.$watch("otherModelValue", function () {
                     ngModel.$validate();
                 });
             }

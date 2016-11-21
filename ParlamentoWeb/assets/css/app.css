@@ -233,6 +233,11 @@
 .votos fieldset label {
     color: #999;
 }
-.votos #grafico {
+.votos #grafico,
+.votos .alerta {
+    height: 500px;
     margin-top: 30px;
+}
+.votos .alerta {
+    padding-top: 150px;
 }

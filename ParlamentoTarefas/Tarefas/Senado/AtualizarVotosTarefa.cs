@@ -8,6 +8,7 @@ using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace ParlamentoTarefas.Tarefas.Senado
 {
@@ -15,46 +16,46 @@ namespace ParlamentoTarefas.Tarefas.Senado
     {
         private readonly ISenadoServicosExternos _senado;
         private readonly IMateriasServicosApp _materiasSvc;
+        private readonly ISenadoresServicosApp _senadoresSvc;
         private readonly IVotosServicosApp _votosSvc;
 
-        public AtualizarVotosTarefa(ISenadoServicosExternos senado, IMateriasServicosApp materiasSvc, IVotosServicosApp votosSvc)
+        public AtualizarVotosTarefa(ISenadoServicosExternos senado, ISenadoresServicosApp senadoresSvc, IMateriasServicosApp materiasSvc, IVotosServicosApp votosSvc)
             : base(new StandardKernel())
         {
             _senado = senado;
             _materiasSvc = materiasSvc;
+            _senadoresSvc = senadoresSvc;
             _votosSvc = votosSvc;
         }
 
         public void Executar()
         {
-            var listaSenadoresViewModel = _senado.ListarSenadoresEmExercicio().Conteudo.ListaParlamentarEmExercicio.Parlamentares.Parlamentar;
-            var listaCodigosSenadores = listaSenadoresViewModel.Select(x => x.IdentificacaoParlamentar.CodigoParlamentar);
+            var codigosSenadores = _senadoresSvc.Listar().Select(x => x.Codigo);
 
-            var listaVotosEntidades = new List<Voto>();
+            var votos = new List<Voto>();
 
-            foreach (var codigoSenador in listaCodigosSenadores)
+            foreach (var codigoSenador in codigosSenadores)
             {
-                var votacoesViewModel = _senado.ObterVotacaoPorCodigo(codigoSenador).Conteudo;
-                var aux = votacoesViewModel.VotacaoParlamentar.Parlamentar.Votacoes.Votacao;
-                var votos = Mapper.Map<List<Voto>>(aux);
-
-                var codigoSenadorInt = Convert.ToInt32(codigoSenador);
-                foreach (var voto in votos)
+                var votacoes = _senado.ObterVotacaoPorCodigo(codigoSenador);
+                while (votacoes.CodigoStatus != HttpStatusCode.OK)
                 {
-                    voto.CodigoSenador = codigoSenadorInt;
+                    votacoes = _senado.ObterVotacaoPorCodigo(codigoSenador);
                 }
+                var votosEntidades = Mapper.Map<List<Voto>>(votacoes.Conteudo.VotacaoParlamentar.Parlamentar.Votacoes.Votacao);
 
-                listaVotosEntidades.AddRange(votos);
+                foreach (var votoEntidade in votosEntidades)
+                {
+                    votoEntidade.CodigoSenador = codigoSenador;
+                }
+                votos.AddRange(votosEntidades);
             }
+            
+            var codigosMaterias = _materiasSvc.Listar().Select(x => x.Codigo);
 
-            var listaMateriasEntidades = _materiasSvc.Listar().ToList();
-            var listaCodigosMaterias = listaMateriasEntidades.Select(x => x.Codigo).ToList();
+            votos.RemoveAll(x => !codigosMaterias.Contains(x.CodigoMateria));
+            votos = votos.GroupBy(x => new {x.CodigoSenador, x.CodigoMateria, x.CodigoSessao}).Select(x => x.First()).ToList();
 
-            listaVotosEntidades.RemoveAll(x => !listaCodigosMaterias.Contains(x.CodigoMateria));
-
-            listaVotosEntidades = listaVotosEntidades.GroupBy(x => new {x.CodigoSenador, x.CodigoMateria, x.CodigoSessao}).Select(x => x.First()).ToList();
-
-            _votosSvc.MesclarEmMassa(listaVotosEntidades);
+            _votosSvc.MesclarEmMassa(votos);
         }
     }
 }

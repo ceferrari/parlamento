@@ -5,8 +5,12 @@
         .module('app')
         .controller('Senadores', controller);
 
-    function controller(RestService) {
+    function controller($rootScope, RestService) {
         var vm = this;
+
+        (function initController() {
+            $rootScope.FixLayout();
+        })();
 
         vm.Paginacao = {
             Total: 0,

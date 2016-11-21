@@ -2,6 +2,7 @@
 using ParlamentoRecursos.ViewModels;
 using ParlamentoRecursos.ViewModels.Senado;
 using RestSharp;
+using System.Collections.Generic;
 
 namespace ParlamentoRecursos.ServicosExternos
 {
@@ -30,8 +31,13 @@ namespace ParlamentoRecursos.ServicosExternos
 
         public RespostaViewModel<ListaMateriasAssuntosViewModel> ListarMateriasAssuntos()
         {
+            var parametros = new List<Parameter>
+            {
+                CriarParametro("indAtivos", "N")
+            };
+
             var recurso = "materia/assuntos";
-            var resposta = Executar(recurso, Method.GET);
+            var resposta = Executar(recurso, Method.GET, parametros);
 
             return new RespostaViewModel<ListaMateriasAssuntosViewModel>(resposta);
         }
@@ -84,7 +90,7 @@ namespace ParlamentoRecursos.ServicosExternos
             return new RespostaViewModel<ParlamentarViewModel>(resposta);
         }
 
-        public RespostaViewModel<VotacaoViewModel> ObterVotacaoPorCodigo(string codigo)
+        public RespostaViewModel<VotacaoViewModel> ObterVotacaoPorCodigo(int codigo)
         {
             var recurso = "senador/" + codigo + "/votacoes";
             var resposta = Executar(recurso, Method.GET);

@@ -7,6 +7,7 @@ using ParlamentoRecursos.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace ParlamentoTarefas.Tarefas.Senado
 {
@@ -24,17 +25,20 @@ namespace ParlamentoTarefas.Tarefas.Senado
 
         public void Executar()
         {
-            var listaLegislaturasViewModels = _senado.ListarLegislaturas().Conteudo.ListaLegislatura.Legislatura.Legislatura;
-            var listaLegislaturasEntidades = Mapper.Map<List<Legislatura>>(listaLegislaturasViewModels);
-            var legislaturaAtual = listaLegislaturasEntidades.OrderByDescending(x => x.Codigo).First();
-            listaLegislaturasEntidades.Add(new Legislatura()
+            var legislaturas = _senado.ListarLegislaturas();
+            while (legislaturas.CodigoStatus != HttpStatusCode.OK)
+            {
+                legislaturas = _senado.ListarLegislaturas();
+            }
+            var legislaturasEntidades = Mapper.Map<List<Legislatura>>(legislaturas.Conteudo.ListaLegislatura.Legislatura.Legislatura);
+            var legislaturaAtual = legislaturasEntidades.OrderByDescending(x => x.Codigo).First();
+            legislaturasEntidades.Add(new Legislatura
             {
                 Codigo = legislaturaAtual.Codigo + 1,
                 DataInicio = legislaturaAtual.DataInicio.AddYears(4),
                 DataFim = legislaturaAtual.DataFim.AddYears(4)
             });
-
-            _legislaturas.MesclarEmMassa(listaLegislaturasEntidades);
+            _legislaturas.MesclarEmMassa(legislaturasEntidades);
         }
     }
 }

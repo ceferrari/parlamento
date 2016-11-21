@@ -5,7 +5,11 @@
         .module('app')
         .controller('Dashboard', controller);
 
-    function controller() {
+    function controller($rootScope) {
         var vm = this;
+
+        (function initController() {
+            $rootScope.FixLayout();
+        })();
     }
 })();

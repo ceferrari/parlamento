@@ -1,0 +1,31 @@
+﻿<div class="row paginacao text-center">
+    <div class="col-sm-7 text-left no-padding-right">
+        <div class="col-sm-14 text-left no-padding">
+            <label for="ordenacao">Ordem: </label>
+            <select class="ordenacao" id="ordenacao" ng-model="vm.Paginacao.Ordem" ng-change="vm.Atualizar(null, true)">
+                <option value="Ano ASC, Codigo ASC">Ano ASC</option>
+                <option value="Ano DESC, Codigo ASC">Ano DESC</option>
+                <option value="Codigo ASC">Código ASC</option>
+                <option value="Codigo DESC">Código DESC</option>
+            </select>
+        </div>
+        <div class="col-sm-10 text-right no-padding">
+            <label for="exibicao">Por página: </label>
+            <select class="exibicao" id="exibicao" ng-model="vm.Paginacao.Limite" ng-change="vm.Atualizar(null, true)" convert-to-number>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-10 no-padding">
+         <ul class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-change="vm.Atualizar()"
+            ng-model="vm.Paginacao.Atual" total-items="vm.Paginacao.Total" items-per-page="vm.Paginacao.Limite" max-size="5" 
+            uib-pagination="" boundary-links="true" boundary-link-numbers="false" force-ellipses="false" rotate="true"
+            previous-text="‹" next-text="›" first-text="«" last-text="»">
+        </ul>
+    </div>
+    <div class="col-sm-7 text-right no-padding-left">
+        <p class="pull-right">{{vm.Paginacao.Calcular()}} Matérias</p>
+    </div>
+</div>
