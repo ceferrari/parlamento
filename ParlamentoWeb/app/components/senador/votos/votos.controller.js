@@ -16,7 +16,7 @@
         vm.CodigoSubtipoMateria = null;
         vm.MateriaAssuntoGeral = null;
         vm.MateriaAssuntoEspecifico = null;
-        vm.TipoGrafico = "colunas";
+        vm.TipoGrafico = "pizza";
         vm.TituloGrafico = 'Votos sobre todas as Matérias';
         vm.Votos = {
             Sim: 0,
@@ -161,7 +161,10 @@
                 renderTo: 'grafico',
                 type: 'column',
                 inverted: true,
-                polar: false
+                polar: false,
+                animation: {
+                    duration: 1000
+                }
             },
             title: {
                 text: vm.TituloGrafico,
@@ -205,22 +208,7 @@
                 x: -100,
                 width: 120
             },
-            series: [{
-                name: 'Total',
-                colorByPoint: true,
-                data: [
-                    { name: 'Sim', y: vm.Votos.Sim },
-                    { name: 'Não', y: vm.Votos.Nao },
-                    { name: 'Abstenção', y: vm.Votos.Abstencao },
-                    { name: 'Não Votou', y: vm.Votos.Pnrv },
-                    { name: 'Ausente', y: vm.Votos.Ausente }
-                ],
-                shadow: {
-                    width: 5,
-                    offsetX: 0,
-                    offsetY: 0
-                }
-            }],
+            series: [{}],
             credits: {
                 enabled: false
             }
@@ -231,23 +219,6 @@
         };
 
         vm.AtualizarGrafico = function () {
-            vm.chart.update({
-                title: {
-                    text: vm.TituloGrafico
-                },
-                legend: {
-                    enabled: vm.TipoGrafico.includes("rosca")
-                },
-                series: [{
-                    data: [
-                        { name: 'Sim', y: vm.Votos.Sim },
-                        { name: 'Não', y: vm.Votos.Nao },
-                        { name: 'Abstenção', y: vm.Votos.Abstencao },
-                        { name: 'Não Votou', y: vm.Votos.Pnrv },
-                        { name: 'Ausente', y: vm.Votos.Ausente }
-                    ]
-                }]
-            });
             if (vm.TipoGrafico.includes("pizza") || vm.TipoGrafico.includes("rosca")) {
                 vm.chart.update({
                     chart: {
@@ -311,18 +282,43 @@
                     }
                 });
             }
+            vm.chart.update({
+                title: {
+                    text: vm.TituloGrafico
+                },
+                legend: {
+                    enabled: vm.TipoGrafico.includes("rosca")
+                }
+            });
+            vm.chart.series[0].remove();
+            vm.chart.addSeries({
+                name: 'Total',
+                animations: true,
+                colorByPoint: true,
+                data: [
+                    { name: 'Sim', y: vm.Votos.Sim },
+                    { name: 'Não', y: vm.Votos.Nao },
+                    { name: 'Abstenção', y: vm.Votos.Abstencao },
+                    { name: 'Não Votou', y: vm.Votos.Pnrv },
+                    { name: 'Ausente', y: vm.Votos.Ausente }
+                ],
+                shadow: {
+                    color: 'white',
+                    offsetX: 0,
+                    offsetY: 0,
+                    width: 5
+                }
+            });
         }
 
-        vm.Atualizar = function (event) {
-            if (!event || event.keyCode === 13) {
-                vm.loading = true;
-                vm.ContarVotos();
-                vm.AtualizarTituloGrafico();
-                $timeout(function() {
-                    vm.AtualizarGrafico();
-                    vm.loading = false;
-                }, 500);
-            }
+        vm.Atualizar = function () {
+            vm.loading = true;
+            vm.ContarVotos();
+            vm.AtualizarTituloGrafico();
+            $timeout(function() {
+                vm.AtualizarGrafico();
+                vm.loading = false;
+            }, 500);
         };
 
         vm.ListarMateriasAssuntos();
