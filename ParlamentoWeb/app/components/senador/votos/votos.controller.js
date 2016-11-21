@@ -16,7 +16,7 @@
         vm.CodigoSubtipoMateria = null;
         vm.MateriaAssuntoGeral = null;
         vm.MateriaAssuntoEspecifico = null;
-        vm.TipoGrafico = "pizza";
+        vm.TipoGrafico = "colunas";
         vm.TituloGrafico = 'Votos sobre todas as Matérias';
         vm.Votos = {
             Sim: 0,
