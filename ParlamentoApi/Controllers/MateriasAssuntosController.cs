@@ -187,16 +187,16 @@ namespace ParlamentoApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        /// <summary>
-        /// Trunca a tabela de Assuntos de Matérias no banco de dados
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage TruncarTabela()
-        {
-            _servicosApp.TruncarTabela("MateriasAssuntos");
+        ///// <summary>
+        ///// Trunca a tabela de Assuntos de Matérias no banco de dados
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public HttpResponseMessage TruncarTabela()
+        //{
+        //    _servicosApp.TruncarTabela("MateriasAssuntos");
 
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
     }
 }

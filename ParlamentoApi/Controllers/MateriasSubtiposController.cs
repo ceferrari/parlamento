@@ -163,16 +163,16 @@ namespace ParlamentoApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        /// <summary>
-        /// Trunca a tabela de Subtipos de Matérias no banco de dados
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage TruncarTabela()
-        {
-            _servicosApp.TruncarTabela("MateriasSubtipos");
+        ///// <summary>
+        ///// Trunca a tabela de Subtipos de Matérias no banco de dados
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public HttpResponseMessage TruncarTabela()
+        //{
+        //    _servicosApp.TruncarTabela("MateriasSubtipos");
 
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
     }
 }

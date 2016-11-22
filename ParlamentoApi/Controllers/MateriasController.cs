@@ -47,6 +47,18 @@ namespace ParlamentoApi.Controllers
         }
 
         /// <summary>
+        /// Lista os Anos distintos das Matérias
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage ListarAnos()
+        {
+            var lista = _servicosApp.ListarAnos();
+
+            return Request.CreateResponse(HttpStatusCode.OK, lista);
+        }
+
+        /// <summary>
         /// Obtém uma Matéria pelo código
         /// </summary>
         /// <param name="id"></param>
@@ -163,16 +175,16 @@ namespace ParlamentoApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        /// <summary>
-        /// Trunca a tabela de Matérias no banco de dados
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage TruncarTabela()
-        {
-            _servicosApp.TruncarTabela("Materias");
+        ///// <summary>
+        ///// Trunca a tabela de Matérias no banco de dados
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public HttpResponseMessage TruncarTabela()
+        //{
+        //    _servicosApp.TruncarTabela("Materias");
 
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
     }
 }

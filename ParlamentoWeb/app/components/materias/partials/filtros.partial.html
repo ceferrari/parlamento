@@ -3,7 +3,7 @@
         <div class="form-group">
             <label for="filtroAno">Ano</label>
             <select class="form-control" id="filtroAno" ng-model="vm.Filtros.Ano" ng-change="vm.Atualizar(null, true)"
-                    ng-options="Ano for Ano in vm.Anos">
+                    ng-options="Ano for Ano in vm.Anos | orderBy: '-'">
                 <option value="">Tudo</option>
             </select>
         </div>
@@ -14,7 +14,7 @@
             <input type="text" class="form-control" id="filtroCodigo" ng-model="vm.Filtros.Codigo" ng-keypress="vm.Atualizar($event)">
         </div>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-7">
         <div class="form-group">
             <label for="filtroEmenta">Ementa</label>
             <input type="text" class="form-control" id="filtroEmenta" ng-model="vm.Filtros.Ementa" ng-keypress="vm.Atualizar($event)">
@@ -22,27 +22,28 @@
     </div>
     <div class="col-sm-3">
         <div class="form-group">
-            <label for="filtroAutor">Código Autor</label>
-            <select class="form-control" id="filtroAutor" ng-model="vm.Filtros.Autor" ng-change="vm.Atualizar(null, true)"
-                    ng-options="Autor for Autor in vm.Autores">
+            <label for="filtroAssuntoGeral">Assunto Geral</label>
+            <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.Filtros.CodigoAssuntoGeral" ng-change="vm.Atualizar()"
+                    ng-options="MateriaAssuntoGeral for MateriaAssuntoGeral in vm.MateriasAssuntosGerais">
                 <option value="">Tudo</option>
             </select>
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="filtroAssunto">Código Assunto</label>
-            <select class="form-control" id="filtroAssunto" ng-model="vm.Filtros.Assunto" ng-change="vm.Atualizar(null, true)"
-                    ng-options="Assunto for Assunto in vm.Assuntos">
+            <label for="filtroAssuntoEspecifico">Assunto Específico</label>
+            <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.Filtros.CodigoAssuntoEspecifico" ng-change="vm.Atualizar()"
+                    ng-options="MateriaAssunto.Codigo as MateriaAssunto.AssuntoEspecifico for MateriaAssunto in vm.MateriasAssuntos 
+                    | filter: (vm.MateriaAssuntoGeral && MateriaAssunto.Codigo != 0 || '') && { AssuntoGeral: vm.MateriaAssuntoGeral }">
                 <option value="">Tudo</option>
             </select>
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="filtroSubtipo">Código Subtipo</label>
-            <select class="form-control" id="filtroSubtipo" ng-model="vm.Filtros.Subtipo" ng-change="vm.Atualizar(null, true)"
-                    ng-options="Subtipo for Subtipo in vm.Subtipos">
+            <label for="filtroSubtipo">Subtipo</label>
+            <select class="form-control" id="filtroSubtipo" ng-model="vm.Filtros.CodigoSubtipo" ng-change="vm.Atualizar(null, true)"
+                    ng-options="MateriaSubtipo.Codigo as MateriaSubtipo.Descricao for MateriaSubtipo in vm.MateriasSubtipos">
                 <option value="">Tudo</option>
             </select>
         </div>

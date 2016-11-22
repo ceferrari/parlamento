@@ -9,7 +9,8 @@ namespace ParlamentoApi.Filtros
     {
         public int? ano { get; set; }
         public int? autor { get; set; }
-        public int? assunto { get; set; }
+        public string assuntoGeral { get; set; }
+        public int? assuntoEspecifico { get; set; }
         public string subtipo { get; set; }
 
         public override Expression<Func<Materia, bool>> Condicoes()
@@ -26,9 +27,14 @@ namespace ParlamentoApi.Filtros
                 condicoes = condicoes.And(x => x.CodigoAutor == autor);
             }
 
-            if (assunto != null)
+            if (assuntoGeral != null)
             {
-                condicoes = condicoes.And(x => x.CodigoAssunto == assunto);
+                condicoes = condicoes.And(x => x.Assunto.AssuntoGeral.Equals(assuntoGeral));
+            }
+
+            if (assuntoEspecifico != null)
+            {
+                condicoes = condicoes.And(x => x.CodigoAssunto == assuntoEspecifico);
             }
 
             if (subtipo != null)

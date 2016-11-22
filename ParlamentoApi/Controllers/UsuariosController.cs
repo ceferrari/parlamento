@@ -189,16 +189,16 @@ namespace ParlamentoApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        /// <summary>
-        /// Trunca a tabela de Usuários no banco de dados
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage TruncarTabela()
-        {
-            _servicosApp.TruncarTabela("Usuarios");
+        ///// <summary>
+        ///// Trunca a tabela de Usuários no banco de dados
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public HttpResponseMessage TruncarTabela()
+        //{
+        //    _servicosApp.TruncarTabela("Usuarios");
 
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
     }
 }

@@ -199,16 +199,16 @@ namespace ParlamentoApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        /// <summary>
-        /// Trunca a tabela de Senadores no banco de dados
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage TruncarTabela()
-        {
-            _servicosApp.TruncarTabela("Senadores");
+        ///// <summary>
+        ///// Trunca a tabela de Senadores no banco de dados
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public HttpResponseMessage TruncarTabela()
+        //{
+        //    _servicosApp.TruncarTabela("Senadores");
 
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
     }
 }

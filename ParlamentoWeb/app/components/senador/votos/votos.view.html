@@ -31,7 +31,7 @@
                         <div class="col-sm-8 padding-t-10">
                             <div class="form-group">
                                 <label for="filtroAssuntoGeral">Assunto Geral</label>
-                                <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.MateriaAssuntoGeral" ng-change="vm.Atualizar()"
+                                <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.Filtros.CodigoAssuntoGeral" ng-change="vm.Atualizar()"
                                         ng-options="MateriaAssuntoGeral for MateriaAssuntoGeral in vm.MateriasAssuntosGerais">
                                     <option value="">Tudo</option>
                                 </select>
@@ -40,9 +40,9 @@
                         <div class="col-sm-8 padding-t-10">
                             <div class="form-group">
                                 <label for="filtroAssuntoEspecifico">Assunto Específico</label>
-                                <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.CodigoAssuntoMateria" ng-change="vm.Atualizar()"
+                                <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.Filtros.CodigoAssuntoEspecifico" ng-change="vm.Atualizar()"
                                         ng-options="MateriaAssunto.Codigo as MateriaAssunto.AssuntoEspecifico for MateriaAssunto in vm.MateriasAssuntos 
-                                        | filter: (vm.MateriaAssuntoGeral && MateriaAssunto.Codigo != 0 || '') && { AssuntoGeral: vm.MateriaAssuntoGeral }">
+                                        | filter: (vm.Filtros.CodigoAssuntoGeral && MateriaAssunto.Codigo != 0 || '') && { AssuntoGeral: vm.Filtros.CodigoAssuntoGeral }">
                                     <option value="">Tudo</option>
                                 </select>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="col-sm-8 padding-t-10">
                             <div class="form-group">
                                 <label for="filtroTipoGrafico">Tipo do Gráfico</label>
-                                <select class="form-control" id="filtroTipoGrafico" ng-model="vm.TipoGrafico" ng-change="vm.AtualizarGrafico()">
+                                <select class="form-control" id="filtroTipoGrafico" ng-model="vm.Filtros.TipoGrafico" ng-change="vm.AtualizarGrafico()">
                                     <option value="barras">Barras</option>
                                     <option value="colunas">Colunas</option>
                                     <option value="colunas3d">Colunas 3D</option>

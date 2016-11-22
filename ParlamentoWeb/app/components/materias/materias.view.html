@@ -30,10 +30,10 @@
                         <span ng-if="vm.Paginacao.Ordem == 'Codigo ASC'" class="fa fa-caret-up pull-right margin-r-10 padding-t-3"></span>
                         <span ng-if="vm.Paginacao.Ordem == 'Codigo DESC'" class="fa fa-caret-down pull-right margin-r-10 padding-t-3"></span>
                     </th>
-                    <th class="col-sm-14">
+                    <th class="col-sm-20">
                         Ementa
                     </th>
-                    <th class="col-sm-2">
+                    <!--<th class="col-sm-2">
                         Código<br>Autor
                     </th>
                     <th class="col-sm-2">
@@ -41,7 +41,7 @@
                     </th>
                     <th class="col-sm-2">
                         Código Subtipo
-                    </th>
+                    </th>-->
                 </tr>
                 </thead>
                 <tbody ng-if="!vm.Materias.length">
@@ -60,12 +60,12 @@
                             {{Materia.Ano}}
                         </td>
                         <td>
-                            {{Materia.Codigo}}
+                            <a ng-href="http://legis.senado.leg.br/dadosabertos/materia/{{Materia.Codigo}}" target="_blank">{{Materia.Codigo}}</a>
                         </td>
                         <td>
                             {{Materia.Ementa}}
                         </td>
-                        <td>
+                        <!--<td>
                             {{Materia.CodigoAutor}}
                         </td>
                         <td>
@@ -73,7 +73,7 @@
                         </td>
                         <td>
                             {{Materia.CodigoSubtipo}}
-                        </td>
+                        </td>-->
                     </tr>
                 </tbody>
             </table>

@@ -1,4 +1,5 @@
-﻿using ParlamentoDominio.Entidades.Senado;
+﻿using System.Linq;
+using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
 using ParlamentoDominio.Interfaces.Servicos.Senado;
 
@@ -12,6 +13,11 @@ namespace ParlamentoDominio.Servicos.Senado
             : base (repositorio)
         {
             _repositorio = repositorio;
+        }
+
+        public IQueryable<int> ListarAnos()
+        {
+            return _repositorio.ListarAnos();
         }
     }
 }

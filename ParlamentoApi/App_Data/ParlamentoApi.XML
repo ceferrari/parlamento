@@ -585,12 +585,6 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
-        <member name="M:ParlamentoApi.Controllers.LegislaturasController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Legislaturas no banco de dados
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:ParlamentoApi.Controllers.MateriasSubtiposController">
             <summary>
             Métodos referetes aos Subtipos de Matérias votadas pelo Senado
@@ -671,12 +665,6 @@
             Mescla em massa uma lista de Subtipos de Matérias
             </summary>
             <param name="lista"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ParlamentoApi.Controllers.MateriasSubtiposController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Subtipos de Matérias no banco de dados
-            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Controllers.MateriasAssuntosController">
@@ -773,12 +761,6 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
-        <member name="M:ParlamentoApi.Controllers.MateriasAssuntosController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Assuntos de Matérias no banco de dados
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:ParlamentoApi.Controllers.MateriasController">
             <summary>
             Métodos referetes às Matérias votadas pelo Senado
@@ -796,6 +778,12 @@
             Lista as Matérias com base nos parâmetros fornecidos
             </summary>
             <param name="filtro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ParlamentoApi.Controllers.MateriasController.ListarAnos">
+            <summary>
+            Lista os Anos distintos das Matérias
+            </summary>
             <returns></returns>
         </member>
         <member name="M:ParlamentoApi.Controllers.MateriasController.ObterPorChave(System.Int32)">
@@ -859,12 +847,6 @@
             Mescla em massa uma lista de Matérias
             </summary>
             <param name="lista"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ParlamentoApi.Controllers.MateriasController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Matérias no banco de dados
-            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Controllers.UsuariosController">
@@ -963,12 +945,6 @@
             <param name="lista"></param>
             <returns></returns>
         </member>
-        <member name="M:ParlamentoApi.Controllers.UsuariosController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Usuários no banco de dados
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:ParlamentoApi.Controllers.VotosController">
             <summary>
             Métodos referetes aos Votos dos Senadores
@@ -1042,12 +1018,6 @@
             Mescla em massa uma lista de Votos
             </summary>
             <param name="lista"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ParlamentoApi.Controllers.VotosController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Votos no banco de dados
-            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Controllers.SenadoresController">
@@ -1148,12 +1118,6 @@
             Mescla em massa uma lista de Senadores
             </summary>
             <param name="lista"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ParlamentoApi.Controllers.SenadoresController.TruncarTabela">
-            <summary>
-            Trunca a tabela de Senadores no banco de dados
-            </summary>
             <returns></returns>
         </member>
         <member name="T:ParlamentoApi.Recursos.PredicateBuilder">

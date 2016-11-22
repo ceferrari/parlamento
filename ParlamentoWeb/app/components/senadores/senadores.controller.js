@@ -8,10 +8,6 @@
     function controller($rootScope, RestService) {
         var vm = this;
 
-        (function initController() {
-            $rootScope.FixLayout();
-        })();
-
         vm.Paginacao = {
             Total: 0,
             Atual: 1,
@@ -93,9 +89,13 @@
             vm.Atualizar(null, true);
         };
 
-        vm.LimparFiltros();
-        vm.ListarPartidos();
-        vm.ListarEstados();
-        vm.ListarSexos();
+        (function initController() {
+            $rootScope.FixLayout();
+
+            vm.LimparFiltros();
+            vm.ListarPartidos();
+            vm.ListarEstados();
+            vm.ListarSexos();
+        })();
     }
 })();
