@@ -56,6 +56,7 @@
     <Compile Include="Recursos\AutoMapperConfig.cs" />
     <Compile Include="Recursos\NinjectBootstrapper.cs" />
     <Compile Include="Recursos\SingleOrArrayConverter.cs" />
+    <Compile Include="Recursos\StringExtensions.cs" />
     <Compile Include="ServicosExternos\BaseServicosExternos.cs" />
     <Compile Include="ServicosExternos\SenadoServicosExternos.cs" />
     <Compile Include="ViewModels\RespostaViewModel.cs" />

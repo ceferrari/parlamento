@@ -7,57 +7,57 @@ namespace ParlamentoApi.Filtros
 {
     public class VotosFiltro : BaseFiltro<Voto>
     {
-        public int? senador { get; set; }
-        public int? materia { get; set; }
-        public int? sessao { get; set; }
-        public int? autorMateria { get; set; }
-        public string assuntoGeralMateria { get; set; }
-        public int? assuntoEspecificoMateria { get; set; }
-        public string subtipoMateria { get; set; }
-        public string descricaoVoto { get; set; }
+        public int? Senador { get; set; }
+        public int? Materia { get; set; }
+        public int? Sessao { get; set; }
+        public int? AutorMateria { get; set; }
+        public string AssuntoGeralMateria { get; set; }
+        public int? AssuntoEspecificoMateria { get; set; }
+        public string SubtipoMateria { get; set; }
+        public string DescricaoVoto { get; set; }
 
         public override Expression<Func<Voto, bool>> Condicoes()
         {
             Expression<Func<Voto, bool>> condicoes = PredicateBuilder.True<Voto>();
 
-            if (senador != null)
+            if (Senador != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSenador == senador);
+                condicoes = condicoes.And(x => x.CodigoSenador == Senador);
             }
 
-            if (materia != null)
+            if (Materia != null)
             {
-                condicoes = condicoes.And(x => x.CodigoMateria == materia);
+                condicoes = condicoes.And(x => x.CodigoMateria == Materia);
             }
 
-            if (sessao != null)
+            if (Sessao != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSessao == sessao);
+                condicoes = condicoes.And(x => x.CodigoSessao == Sessao);
             }
 
-            if (autorMateria != null)
+            if (AutorMateria != null)
             {
-                condicoes = condicoes.And(x => x.Materia.CodigoAutor == autorMateria);
+                condicoes = condicoes.And(x => x.Materia.CodigoAutor == AutorMateria);
             }
 
-            if (assuntoGeralMateria != null)
+            if (AssuntoGeralMateria != null)
             {
-                condicoes = condicoes.And(x => x.Materia.Assunto.AssuntoGeral.Equals(assuntoGeralMateria));
+                condicoes = condicoes.And(x => x.Materia.Assunto.AssuntoGeral.Equals(AssuntoGeralMateria));
             }
 
-            if (assuntoEspecificoMateria != null)
+            if (AssuntoEspecificoMateria != null)
             {
-                condicoes = condicoes.And(x => x.Materia.CodigoAssunto == assuntoEspecificoMateria);
+                condicoes = condicoes.And(x => x.Materia.CodigoAssunto == AssuntoEspecificoMateria);
             }
 
-            if (subtipoMateria != null)
+            if (SubtipoMateria != null)
             {
-                condicoes = condicoes.And(x => x.Materia.CodigoSubtipo.Equals(subtipoMateria));
+                condicoes = condicoes.And(x => x.Materia.CodigoSubtipo.Equals(SubtipoMateria));
             }
 
-            if (descricaoVoto != null)
+            if (DescricaoVoto != null)
             {
-                if (string.Equals(descricaoVoto, "Ausente", StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(DescricaoVoto, "Ausente", StringComparison.OrdinalIgnoreCase))
                 {
                     Expression<Func<Voto, bool>> ausente = PredicateBuilder.False<Voto>();
 
@@ -72,7 +72,7 @@ namespace ParlamentoApi.Filtros
                 }
                 else
                 {
-                    condicoes = condicoes.And(x => x.DescricaoVoto.Equals(descricaoVoto));
+                    condicoes = condicoes.And(x => x.DescricaoVoto.Equals(DescricaoVoto));
                 }
             }
 

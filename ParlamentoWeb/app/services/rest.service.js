@@ -17,7 +17,6 @@
             'getArray': { method: "GET", isArray: true },
             'postAndGetArray': { method: "POST", isArray: true }
         };
-
         return $resource(provider, params, methods);
     }
 })();

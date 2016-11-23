@@ -5,7 +5,6 @@ using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
 using ParlamentoRecursos.Interfaces.ServicosExternos;
 using ParlamentoTarefas.Interfaces.Tarefas.Senado;
-using RestSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

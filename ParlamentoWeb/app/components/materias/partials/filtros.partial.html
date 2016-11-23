@@ -23,7 +23,7 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label for="filtroAssuntoGeral">Assunto Geral</label>
-            <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.Filtros.CodigoAssuntoGeral" ng-change="vm.Atualizar()"
+            <select class="form-control" id="filtroAssuntoGeral" ng-model="vm.Filtros.CodigoAssuntoGeral" ng-change="vm.Atualizar(null, true)"
                     ng-options="MateriaAssuntoGeral for MateriaAssuntoGeral in vm.MateriasAssuntosGerais">
                 <option value="">Tudo</option>
             </select>
@@ -32,7 +32,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label for="filtroAssuntoEspecifico">Assunto Específico</label>
-            <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.Filtros.CodigoAssuntoEspecifico" ng-change="vm.Atualizar()"
+            <select class="form-control" id="filtroAssuntoEspecifico" ng-model="vm.Filtros.CodigoAssuntoEspecifico" ng-change="vm.Atualizar(null, true)"
                     ng-options="MateriaAssunto.Codigo as MateriaAssunto.AssuntoEspecifico for MateriaAssunto in vm.MateriasAssuntos 
                     | filter: (vm.MateriaAssuntoGeral && MateriaAssunto.Codigo != 0 || '') && { AssuntoGeral: vm.MateriaAssuntoGeral }">
                 <option value="">Tudo</option>

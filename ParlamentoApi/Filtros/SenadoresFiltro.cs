@@ -7,51 +7,51 @@ namespace ParlamentoApi.Filtros
 {
     public class SenadoresFiltro : BaseFiltro<Senador>
     {
-        public string nome { get; set; }
-        public string partido { get; set; }
-        public string estado { get; set; }
-        public int? primeiraLeg { get; set; }
-        public int? segundaLeg { get; set; }
-        public string sexo { get; set; }
-        public bool? emExercicio { get; set; }
+        public string Nome { get; set; }
+        public string Partido { get; set; }
+        public string Estado { get; set; }
+        public int? PrimeiraLegislatura { get; set; }
+        public int? SegundaLegislatura { get; set; }
+        public string Sexo { get; set; }
+        public bool? EmExercicio { get; set; }
 
         public override Expression<Func<Senador, bool>> Condicoes()
         {
             Expression<Func<Senador, bool>> condicoes = PredicateBuilder.True<Senador>();
 
-            if (nome != null)
+            if (Nome != null)
             {
-                condicoes = condicoes.And(x => x.Nome.Contains(nome));
+                condicoes = condicoes.And(x => x.Nome.Contains(Nome));
             }
 
-            if (partido != null)
+            if (Partido != null)
             {
-                condicoes = condicoes.And(x => x.SiglaPartido.Equals(partido));
+                condicoes = condicoes.And(x => x.SiglaPartido.Equals(Partido));
             }
 
-            if (estado != null)
+            if (Estado != null)
             {
-                condicoes = condicoes.And(x => x.UfMandato.Equals(estado));
+                condicoes = condicoes.And(x => x.UfMandato.Equals(Estado));
             }
 
-            if (primeiraLeg != null)
+            if (PrimeiraLegislatura != null)
             {
-                condicoes = condicoes.And(x => x.CodigoPrimeiraLegislatura == primeiraLeg);
+                condicoes = condicoes.And(x => x.CodigoPrimeiraLegislatura == PrimeiraLegislatura);
             }
 
-            if (segundaLeg != null)
+            if (SegundaLegislatura != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSegundaLegislatura == segundaLeg);
+                condicoes = condicoes.And(x => x.CodigoSegundaLegislatura == SegundaLegislatura);
             }
 
-            if (sexo != null)
+            if (Sexo != null)
             {
-                condicoes = condicoes.And(x => x.Sexo.Equals(sexo));
+                condicoes = condicoes.And(x => x.Sexo.Equals(Sexo));
             }
 
-            if (emExercicio != null)
+            if (EmExercicio != null)
             {
-                condicoes = condicoes.And(x => x.EmExercicio == emExercicio);
+                condicoes = condicoes.And(x => x.EmExercicio == EmExercicio);
             }
 
             return condicoes.Body.NodeType == ExpressionType.Constant ? null : condicoes;

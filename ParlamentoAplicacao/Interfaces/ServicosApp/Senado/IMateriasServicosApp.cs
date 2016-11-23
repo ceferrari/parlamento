@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using ParlamentoDominio.Entidades.Senado;
+﻿using ParlamentoDominio.Entidades.Senado;
+using System.Linq;
 
 namespace ParlamentoAplicacao.Interfaces.ServicosApp.Senado
 {

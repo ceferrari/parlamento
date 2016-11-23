@@ -7,39 +7,45 @@ namespace ParlamentoApi.Filtros
 {
     public class MateriasFiltro : BaseFiltro<Materia>
     {
-        public int? ano { get; set; }
-        public int? autor { get; set; }
-        public string assuntoGeral { get; set; }
-        public int? assuntoEspecifico { get; set; }
-        public string subtipo { get; set; }
+        public int? Ano { get; set; }
+        public int? Autor { get; set; }
+        public string AssuntoGeral { get; set; }
+        public int? AssuntoEspecifico { get; set; }
+        public string Subtipo { get; set; }
+        public string Ementa { get; set; }
 
         public override Expression<Func<Materia, bool>> Condicoes()
         {
             Expression<Func<Materia, bool>> condicoes = PredicateBuilder.True<Materia>();
 
-            if (ano != null)
+            if (Ano != null)
             {
-                condicoes = condicoes.And(x => x.Ano == ano);
+                condicoes = condicoes.And(x => x.Ano == Ano);
             }
 
-            if (autor != null)
+            if (Autor != null)
             {
-                condicoes = condicoes.And(x => x.CodigoAutor == autor);
+                condicoes = condicoes.And(x => x.CodigoAutor == Autor);
             }
 
-            if (assuntoGeral != null)
+            if (AssuntoGeral != null)
             {
-                condicoes = condicoes.And(x => x.Assunto.AssuntoGeral.Equals(assuntoGeral));
+                condicoes = condicoes.And(x => x.Assunto.AssuntoGeral.Equals(AssuntoGeral));
             }
 
-            if (assuntoEspecifico != null)
+            if (AssuntoEspecifico != null)
             {
-                condicoes = condicoes.And(x => x.CodigoAssunto == assuntoEspecifico);
+                condicoes = condicoes.And(x => x.CodigoAssunto == AssuntoEspecifico);
             }
 
-            if (subtipo != null)
+            if (Subtipo != null)
             {
-                condicoes = condicoes.And(x => x.CodigoSubtipo.Equals(subtipo));
+                condicoes = condicoes.And(x => x.CodigoSubtipo.Equals(Subtipo));
+            }
+
+            if (Ementa != null)
+            {
+                condicoes = condicoes.And(x => x.Ementa.Contains(Ementa));
             }
 
             return condicoes.Body.NodeType == ExpressionType.Constant ? null : condicoes;

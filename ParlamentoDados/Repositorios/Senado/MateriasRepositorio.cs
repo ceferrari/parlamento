@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Linq.Expressions;
-using ParlamentoDados.Recursos;
+﻿using ParlamentoDados.Recursos;
 using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Repositorios.Senado;
 using System;
 using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace ParlamentoDados.Repositorios.Senado
 {

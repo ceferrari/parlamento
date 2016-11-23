@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
+﻿using ParlamentoAplicacao.Interfaces.ServicosApp.Senado;
 using ParlamentoDominio.Entidades.Senado;
 using ParlamentoDominio.Interfaces.Servicos.Senado;
+using System.Linq;
 
 namespace ParlamentoAplicacao.ServicosApp.Senado
 {

@@ -24,7 +24,8 @@
             Ano: null,
             CodigoAssuntoGeral: null,
             CodigoAssuntoEspecifico: null,
-            CodigoSubtipo: null
+            CodigoSubtipo: null,
+            Ementa: null
         }
 
         vm.ListarAnos = function () {
@@ -65,7 +66,8 @@
                 ano: vm.Filtros.Ano,
                 assuntoGeral: vm.Filtros.CodigoAssuntoGeral,
                 assuntoEspecifico: vm.Filtros.CodigoAssuntoEspecifico,
-                subtipo: vm.Filtros.CodigoSubtipo
+                subtipo: vm.Filtros.CodigoSubtipo,
+                ementa: vm.Filtros.Ementa
             }, function (resultado) {
                 vm.Materias = resultado;
             });
@@ -74,7 +76,8 @@
                 ano: vm.Filtros.Ano,
                 assuntoGeral: vm.Filtros.CodigoAssuntoGeral,
                 assuntoEspecifico: vm.Filtros.CodigoAssuntoEspecifico,
-                subtipo: vm.Filtros.CodigoSubtipo
+                subtipo: vm.Filtros.CodigoSubtipo,
+                ementa: vm.Filtros.Ementa
             }, function (resultado) {
                 vm.Paginacao.Total = resultado.Total;
             });
