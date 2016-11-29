@@ -1,6 +1,6 @@
 # VotosSENADO
 
-URL: www.votossenado.net
+www.votossenado.net
 
 Sistema de monitoramento dos votos dos senadores em cada matéria que está em tramitação ou já tramitou durante o período da legislatura atual
 
