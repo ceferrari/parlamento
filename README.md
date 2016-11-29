@@ -12,3 +12,8 @@ O VotosSENADO possibilita:
 - Acompanhar, através de gráficos, se um senador está predominantemente votando a favor ou contra determinado assunto (geral ou específico)
 - Acompanhar, através de gráficos, se um senador está presente durante as votações, mas não está registrando voto
 - Acompanhar, através de gráficos, se um senador não está presente nas votações
+
+
+Observações gerais:
+- Muitas matérias tiveram votação secreta e, portanto, os votos referentes a elas não foram considerados
+- Muitas matérias não estavam vinculados a um assunto. Para esses casos, foi criado uma tag "- Sem Assunto", para que todos os votos não-secretos pudessem ser considerados nas análises gráficas 
