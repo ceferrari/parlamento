@@ -10,7 +10,7 @@ Todos os dados são obtidos do [Serviços de Dados Abertos Legislativos do Senad
 
 Os dados coletados são tratados e armazenados em um banco de dados local para que possam ser disponibilizados em uma estruturação adequada pela API interna, que é consumida pela aplicação principal. 
 
-A listagem de senadores contempla aqueles que estão em exercício no dia. Se algum senador não aparecer na lista é provável que tenha tirado licença e um dos respectivos suplentes tenha assumido, fazendo com que o próprio suplente apareça na lista, provisoriamente, até que o senador retorne da licença.
+A listagem de senadores contempla aqueles que estão em exercício no dia. Se algum senador não aparecer na lista, é provável que tenha tirado licença e um dos respectivos suplentes tenha assumido, fazendo com que o próprio suplente apareça na lista, provisoriamente, até que o senador retorne da licença.
 
 **O VotosSENADO possibilita:**
 * Listar todos os senadores que estão em exercício no dia atual
