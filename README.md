@@ -9,6 +9,6 @@ A listagem de senadores contempla aqueles que estão em exercício no dia. Se al
 O VotosSENADO possibilita:
 - Listar todos os senadores que estão em exercício no dia atual
 - Listar todas as matérias que foram ou serão votadas na legislatura atual
-- Acompanhar, através de gráficos, se um senador está predominantemente votando a favor ou contra determinado assunto
+- Acompanhar, através de gráficos, se um senador está predominantemente votando a favor ou contra determinado assunto (geral ou específico)
 - Acompanhar, através de gráficos, se um senador está presente durante as votações, mas não está registrando voto
 - Acompanhar, através de gráficos, se um senador não está presente nas votações
