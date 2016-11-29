@@ -4,7 +4,7 @@ URL: www.votossenado.net
 
 API: www.votossenado.net/api
 
-Sistema de monitoramento dos votos dos senadores em cada matéria que está em tramitação ou já tramitou durante o período da legislatura atual
+O **VotosSENADO** é sistema de coleta, análise e monitoramento dos votos dos senadores em cada matéria que está em tramitação ou já tramitou durante o período da legislatura atual
 
 Todos os dados são obtidos do [Serviços de Dados Abertos Legislativos do Senado Federal](http://legis.senado.leg.br/dadosabertos/docs/index.html)
 
